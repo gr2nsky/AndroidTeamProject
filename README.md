@@ -44,6 +44,7 @@ cos.jar<br>
 <p>hostIP는 본인의 인터넷 환경에 맞게 수정해서 사용하도록 합니다. </p>
 <p>단, hostRootAddr는 tomcat server의 root dir이므로 수정은 절대 불허합니다. </p>
 <p>이외의 추가 및 수정은 가능하나 혼자만 사용하는 변수의 공유는 지양하겠습니다. </p>
+<br>
 ```java
 public static String hostIP = "192.168.2.4";
 public static String hostRootAddr = "http://" + hostIP + ":8080/MogaStyle/";
