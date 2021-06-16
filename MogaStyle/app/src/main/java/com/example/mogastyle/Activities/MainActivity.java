@@ -13,7 +13,7 @@ import android.view.MenuItem;
 
 
 import com.example.mogastyle.Activities.Consult.ConsultFragment;
-import com.example.mogastyle.Activities.HairShop.HairShopFragment;
+import com.example.mogastyle.Activities.Hair.HairShopFragment;
 import com.example.mogastyle.Activities.Home.HomeFragment;
 import com.example.mogastyle.Activities.MyPage.MyPageFragment;
 import com.example.mogastyle.Activities.Diary.DiaryFragment;
