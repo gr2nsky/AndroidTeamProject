@@ -12,7 +12,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 
-import com.example.mogastyle.DiaryFragment;
+import com.example.mogastyle.Activities.Consult.ConsultFragment;
+import com.example.mogastyle.Activities.HairShop.HairShopFragment;
+import com.example.mogastyle.Activities.Home.HomeFragment;
+import com.example.mogastyle.Activities.MyPage.MyPageFragment;
+import com.example.mogastyle.Activities.Diary.DiaryFragment;
 import com.example.mogastyle.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
