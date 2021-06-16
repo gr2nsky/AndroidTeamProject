@@ -4,7 +4,7 @@ Android Studio 4.1.3 <br>
 <br>
 
 > ### Server<br>
-Apache Tomcat 8.5.65.0<br>
+Apache Tomcat 8.5.65<br>
 <br>
 
 > ### Language<br>
