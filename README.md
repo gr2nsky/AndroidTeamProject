@@ -38,7 +38,7 @@ CALL_PHONE<br>
 
 
 > ### Participants<br>
-윤재필, 임현진, 최지연, 오영준<br>
+윤재필 😃 , 임현진 😃 , 최지연 😃 , 오영준 😃<br>
 <br>
 
 > ## Naming Rules<br>
