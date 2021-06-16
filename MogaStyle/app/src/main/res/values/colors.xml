@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="main_color">#F8F6F5</color>
+    <color name="high_light_color">#FDF3E6</color>
+    <color name="btn_super_positive">#E5D2AB</color>
+    <color name="btn_positive">#F0E5CF</color>
+    <color name="btn_negative">#F2F1DA</color>
+    <color name="btn_super_negative">#E9E7BF</color>
+    <color name="font_color">#FFFFFF</color>
 </resources>
