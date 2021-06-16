@@ -29,6 +29,15 @@ cos.jar<br>
 
 <br>
 
+
+> ### Permisson<br>
+INTERNET<br>
+ACCESS_NETWORK_STATE<br>
+READ_EXTERNAL_STORAGE<br>
+CALL_PHONE<br>
+
+<br>
+
 > ### Participants<br>
 윤재필, 임현진, 최지연, 오영준<br>
 <br>
