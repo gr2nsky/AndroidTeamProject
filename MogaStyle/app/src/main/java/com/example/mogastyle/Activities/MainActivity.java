@@ -7,74 +7,76 @@ package com.example.mogastyle.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
-
-import com.example.mogastyle.Activities.Consult.ConsultFragment;
-import com.example.mogastyle.Activities.Hair.HairShopFragment;
-import com.example.mogastyle.Activities.Home.HomeFragment;
-import com.example.mogastyle.Activities.MyPage.MyPageFragment;
-import com.example.mogastyle.Activities.Diary.DiaryFragment;
+import com.example.mogastyle.Activities.Consult.ConsultMainActivity;
+import com.example.mogastyle.Activities.Diary.DiaryMainActivity;
+import com.example.mogastyle.Activities.Hair.HairMainActivity;
+import com.example.mogastyle.Activities.MyPage.MyPageMainActivity;
 import com.example.mogastyle.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+import org.jetbrains.annotations.NotNull;
 
+
+public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
-    HomeFragment homeFragment;
-    ConsultFragment consultFragment;
-    HairShopFragment hairShopFragment;
-    DiaryFragment diaryFragment;
-    MyPageFragment myPageFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        homeFragment = new HomeFragment();
-        consultFragment = new ConsultFragment();
-        hairShopFragment = new HairShopFragment();
-        diaryFragment = new DiaryFragment();
-        myPageFragment = new MyPageFragment();
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_layout , homeFragment).commitAllowingStateLoss();
+        bottomNavigationView.setSelectedItemId(R.id.page_home);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.page_home:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main_layout,homeFragment).commitAllowingStateLoss();
-
                         return true;
-
                     case R.id.page_consult:
-
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main_layout,consultFragment).commitAllowingStateLoss();
+                        startActivity(new Intent(getApplicationContext(),ConsultMainActivity.class));
+                        finish();
+                        overridePendingTransition(0,0);
                         return true;
                     case R.id.page_reservation:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main_layout,hairShopFragment).commitAllowingStateLoss();
-
+                        startActivity(new Intent(getApplicationContext(),HairMainActivity.class));
+                        finish();
+                        overridePendingTransition(0,0);
                         return true;
                     case R.id.page_diary:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main_layout,diaryFragment).commitAllowingStateLoss();
-
+                        startActivity(new Intent(getApplicationContext(),DiaryMainActivity.class));
+                        finish();
+                        overridePendingTransition(0,0);
                         return true;
                     case R.id.page_user:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main_layout,myPageFragment).commitAllowingStateLoss();
-
+                        startActivity(new Intent(getApplicationContext(),MyPageMainActivity.class));
+                        finish();
+                        overridePendingTransition(0,0);
                         return true;
 
-
                 }
+
 
                 return false;
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Toast.makeText(this, "앱을 종료합니다.", Toast.LENGTH_SHORT).show();
+        ActivityCompat.finishAffinity(this);
     }
 }
