@@ -14,4 +14,6 @@
     <color name="btn_negative">#F2F1DA</color>
     <color name="btn_super_negative">#E9E7BF</color>
     <color name="font_color">#FFFFFF</color>
+    <color name="menu_selected">#8F6614</color>
+    <color name="menu_nomal">#CAC673</color>
 </resources>
