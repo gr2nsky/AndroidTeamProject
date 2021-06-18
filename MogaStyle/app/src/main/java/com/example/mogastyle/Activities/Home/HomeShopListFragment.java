@@ -1,32 +1,29 @@
 package com.example.mogastyle.Activities.Home;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.mogastyle.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
+ * Use the {@link HomeShopListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment {
+public class HomeShopListFragment extends Fragment {
 
     private String title;
     private int page;
 
-
-    // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(int page, String title) {
-        HomeFragment fragment = new HomeFragment();
+    public static HomeShopListFragment newInstance(int page, String title) {
+        HomeShopListFragment fragment = new HomeShopListFragment();
         Bundle args = new Bundle();
-        args.putInt("someInt", page);
-        args.putString("someTitle", title);
+        args.putInt("someInt",page);
+        args.putString("someTitle" , title);
         fragment.setArguments(args);
         return fragment;
     }
@@ -42,7 +39,8 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View Home =  inflater.inflate(R.layout.fragment_home, container, false);
-        return Home;
+        View HomeShopList = inflater.inflate(R.layout.fragment_home_shop_list, container, false);
+
+        return HomeShopList;
     }
 }
