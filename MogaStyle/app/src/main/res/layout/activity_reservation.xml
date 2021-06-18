@@ -48,8 +48,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:padding="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:background="@drawable/background_rounded_bottom_corners_white"
             android:orientation="vertical">
             <TextView
@@ -130,7 +128,6 @@
             </LinearLayout><!-- //price tv area-->
         </LinearLayout>
         <!--#####################Select Date########################### -->
-        <!--#####################Select Time########################### -->
         <LinearLayout
             android:id="@+id/Linear_reservation_select_date"
             android:layout_width="match_parent"
@@ -153,7 +150,7 @@
                 android:layout_height="match_parent"
                 android:scrollbars="horizontal"/>
         </LinearLayout>
-
+        <!--#####################Select Time########################### -->
         <LinearLayout
             android:id="@+id/Linear_reservation_select_time"
             android:layout_width="match_parent"
