@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "985196020705",
+    "project_id": "mogastyle-77df6",
+    "storage_bucket": "mogastyle-77df6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:985196020705:android:55af2f49efe0205dc448a0",
+        "android_client_info": {
+          "package_name": "com.example.mogastyle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "985196020705-0utj048ti5lmt5fe710809h7pfbm0ef6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeK4MHZfEY3L0c2aA6x8gHUsM2ylKpauY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "985196020705-0utj048ti5lmt5fe710809h7pfbm0ef6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

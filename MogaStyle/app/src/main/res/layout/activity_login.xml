@@ -108,15 +108,31 @@
         android:gravity="center">
 
 
-    <Button
-        android:id="@+id/btn_login_goMain"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="메인으로 가기 개발 종료후 삭제"
-        android:fontFamily="@font/bmjua_otf"
-        android:backgroundTint="@color/btn_positive"
-        android:textColor="@color/black"
-        />
+        <Button
+            android:id="@+id/btn_login_goMain"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="메인으로 가기 개발 종료후 삭제"
+            android:fontFamily="@font/bmjua_otf"
+            android:backgroundTint="@color/btn_positive"
+            android:textColor="@color/black"
+            android:layout_marginBottom="20dp"
+            />
+
+        <ImageView
+            android:id="@+id/iv_login_kakao_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/kakao_login_medium_wide"
+            android:layout_marginBottom="20dp"
+            />
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/btn_login_google_login"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"/>
+
+
     </LinearLayout>
 
 </LinearLayout>
