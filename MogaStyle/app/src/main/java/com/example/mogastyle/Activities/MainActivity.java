@@ -8,6 +8,9 @@ package com.example.mogastyle.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,21 +22,38 @@ import com.example.mogastyle.Activities.Consult.ConsultMainActivity;
 import com.example.mogastyle.Activities.Diary.DiaryMainActivity;
 import com.example.mogastyle.Activities.Hair.HairMainActivity;
 import com.example.mogastyle.Activities.MyPage.MyPageMainActivity;
+import com.example.mogastyle.Adapters.Home.HomePageAdapter;
 import com.example.mogastyle.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.jetbrains.annotations.NotNull;
 
+import me.relex.circleindicator.CircleIndicator;
+
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
+    FragmentPagerAdapter fragmentPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+
+        ViewPager viewPager = findViewById(R.id.viewPager_main_loginSuccess);
+        fragmentPagerAdapter = new HomePageAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(fragmentPagerAdapter);
+        viewPager.setCurrentItem(1);
+
+        CircleIndicator indicator = findViewById(R.id.main_indicator);
+        indicator.setViewPager(viewPager);
+
+
+
+
+
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
         bottomNavigationView.setSelectedItemId(R.id.page_home);
 

@@ -9,12 +9,21 @@
     tools:context=".Activities.MainActivity"
     >
 
-    <FrameLayout
-        android:id="@+id/main_layout"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager_main_loginSuccess"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        />
+        android:layout_weight="1"/>
+
+    <me.relex.circleindicator.CircleIndicator
+        android:id="@+id/main_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:ci_drawable="@drawable/black_radius"
+        app:ci_width="7dp"
+        app:ci_height="7dp"
+        app:ci_margin="7dp"/>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
