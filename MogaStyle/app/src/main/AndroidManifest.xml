@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MogaStyle">
-        <activity android:name=".Activities.MyPage.MyPageMainActivity"></activity>
+        <activity android:name=".Activities.LoginBasicActivity"></activity>
+        <activity android:name=".Activities.MyPage.MyPageMainActivity" />
         <activity android:name=".Activities.Hair.HairMainActivity" />
         <activity android:name=".Activities.Diary.DiaryMainActivity" />
         <activity android:name=".Activities.Consult.ConsultMainActivity" />
@@ -29,6 +30,10 @@
         </activity>
         <activity android:name=".Activities.LoginActivity" />
         <activity android:name=".Activities.MainActivity" />
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="d501006782a521eb40a06174fe0acf07" />
     </application>
 
 </manifest>

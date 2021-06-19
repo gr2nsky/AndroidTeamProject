@@ -43,4 +43,5 @@ dependencies {
     implementation 'me.relex:circleindicator:2.1.6'
     implementation platform('com.google.firebase:firebase-bom:28.1.0')
     implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.kakao.sdk:usermgmt:1.27.0'
 }
