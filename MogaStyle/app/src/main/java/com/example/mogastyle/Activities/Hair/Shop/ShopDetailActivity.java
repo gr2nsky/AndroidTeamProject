@@ -1,46 +1,28 @@
-package com.example.mogastyle.Activities.Hair;
+package com.example.mogastyle.Activities.Hair.Shop;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 
 import com.example.mogastyle.Activities.Consult.ConsultMainActivity;
 import com.example.mogastyle.Activities.Diary.DiaryMainActivity;
 import com.example.mogastyle.Activities.MainActivity;
 import com.example.mogastyle.Activities.MyPage.MyPageMainActivity;
-import com.example.mogastyle.HairMainFragment;
 import com.example.mogastyle.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-
-import net.daum.android.map.MapView;
-
 import org.jetbrains.annotations.NotNull;
 
-public class HairMainActivity extends AppCompatActivity {
+public class ShopDetailActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
-//    MapView mapView = new MapView(this);
-    private FragmentManager fragmentManager;
-    private HairMainFragment hairMainFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        fragmentManager = getSupportFragmentManager();
-        hairMainFragment = new HairMainFragment();
-
-
-
-        ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
-       // mapViewContainer.addView(mapView);
-        setContentView(R.layout.activity_hair_main);
-
+        setContentView(R.layout.activity_shop_detail);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
@@ -51,12 +33,12 @@ public class HairMainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.page_home:
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         finish();
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.page_consult:
-                        startActivity(new Intent(getApplicationContext(),ConsultMainActivity.class));
+                        startActivity(new Intent(getApplicationContext(), ConsultMainActivity.class));
                         finish();
                         overridePendingTransition(0,0);
                         return true;
@@ -64,12 +46,12 @@ public class HairMainActivity extends AppCompatActivity {
                     case R.id.page_reservation:
                         return true;
                     case R.id.page_diary:
-                        startActivity(new Intent(getApplicationContext(),DiaryMainActivity.class));
+                        startActivity(new Intent(getApplicationContext(), DiaryMainActivity.class));
                         finish();
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.page_user:
-                        startActivity(new Intent(getApplicationContext(),MyPageMainActivity.class));
+                        startActivity(new Intent(getApplicationContext(), MyPageMainActivity.class));
                         finish();
                         overridePendingTransition(0,0);
                         return true;
@@ -80,7 +62,6 @@ public class HairMainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
     }
     @Override
     public void onBackPressed() {
@@ -88,4 +69,5 @@ public class HairMainActivity extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext() , MainActivity.class));
         overridePendingTransition(0,0);
     }
+
 }
