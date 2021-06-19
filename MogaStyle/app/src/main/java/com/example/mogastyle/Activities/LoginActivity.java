@@ -17,8 +17,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.mogastyle.Common.LoginedUserInfo;
 import com.example.mogastyle.R;
+import com.kakao.auth.ISessionCallback;
+import com.kakao.auth.Session;
+import com.kakao.network.ErrorResult;
+import com.kakao.usermgmt.UserManagement;
+import com.kakao.usermgmt.callback.MeV2ResponseCallback;
+import com.kakao.usermgmt.response.MeV2Response;
+import com.kakao.util.exception.KakaoException;
 
 import java.security.MessageDigest;
 
@@ -26,6 +35,12 @@ public class LoginActivity extends AppCompatActivity {
 
     Button btn_login_goMain;
     TextView tv_login_another_way_login;
+
+    //KAKAO LOGIN
+    private ISessionCallback kakaoSessionCallback;
+    //-- KAKAO END
+
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +51,52 @@ public class LoginActivity extends AppCompatActivity {
         btn_login_goMain.setOnClickListener(onClickListener);
         tv_login_another_way_login = findViewById(R.id.tv_login_another_way_login);
         tv_login_another_way_login.setOnClickListener(onClickListener);
+
+        //KAKAO LOGIN
+        kakaoSessionCallback = new ISessionCallback() {
+            @Override
+            public void onSessionOpened() {
+                // 로그인 요청
+                UserManagement.getInstance().me(new MeV2ResponseCallback() {
+
+                    @Override
+                    public void onFailure(ErrorResult errorResult) {
+                        // 로그인 실패 상황
+                        Toast.makeText(LoginActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onSessionClosed(ErrorResult errorResult) {
+                        // 세션 닫힘 상황
+                        Toast.makeText(LoginActivity.this, "세션 닫힘.. 다시 시도 요망", Toast.LENGTH_SHORT).show();
+                        
+                    }
+
+                    @Override
+                    public void onSuccess(MeV2Response result) {
+                        // 로그인 성공 상황
+                        intent = new Intent(LoginActivity.this , MainActivity.class);
+                        intent.putExtra("userKakaoName" , result.getKakaoAccount().getProfile().getNickname());
+                        intent.putExtra("userKakaoImage" , result.getKakaoAccount().getProfile().getProfileImageUrl());
+                        intent.putExtra("userKakaoPhone" , result.getKakaoAccount().getPhoneNumber());
+                        //User 저장
+                        LoginedUserInfo.user.setName(result.getKakaoAccount().getProfile().getNickname());
+                        //User 저장 end --
+                        startActivity(intent);
+                        Toast.makeText(LoginActivity.this, "로그인 성공!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+            @Override
+            public void onSessionOpenFailed(KakaoException exception) {
+
+            }
+        };
+
+        Session.getCurrentSession().addCallback(kakaoSessionCallback);
+        Session.getCurrentSession().checkAndImplicitOpen();
+        //-- KAKAO END
 
         // 반영후에는 삭제될 메소드
         getAppKeyHash();
