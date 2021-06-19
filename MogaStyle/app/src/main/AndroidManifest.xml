@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MogaStyle">
-        <activity android:name=".Activities.Hair.Reservation.ReservationCheckActivity"></activity>
+        <activity android:name=".Activities.Hair.Reservation.ReservationCheckActivity">        </activity>
         <activity android:name=".Activities.Hair.Reservation.PaymentActivity" />
         <activity android:name=".Activities.Hair.Reservation.ReservationActivity" />
         <activity android:name=".Activities.MyPage.MyPageMainActivity" />
