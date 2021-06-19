@@ -100,10 +100,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="0dp"/>
+        android:layout_height="0dp"
+        android:background="@color/main_color"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
+        android:id="@+id/recheck_bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:itemIconTint="@drawable/selector"
