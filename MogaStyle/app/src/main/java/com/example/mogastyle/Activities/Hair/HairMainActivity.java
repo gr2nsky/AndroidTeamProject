@@ -13,12 +13,9 @@ import com.example.mogastyle.Activities.Consult.ConsultMainActivity;
 import com.example.mogastyle.Activities.Diary.DiaryMainActivity;
 import com.example.mogastyle.Activities.MainActivity;
 import com.example.mogastyle.Activities.MyPage.MyPageMainActivity;
-import com.example.mogastyle.HairMainFragment;
 import com.example.mogastyle.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-
-import net.daum.android.map.MapView;
 
 import org.jetbrains.annotations.NotNull;
 
