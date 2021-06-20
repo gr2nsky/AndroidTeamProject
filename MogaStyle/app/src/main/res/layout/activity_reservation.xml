@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="날짜 선택"
+                android:text="메뉴 정보"
                 android:textSize="25dp"
                 android:textColor="@color/black"
                 android:fontFamily="@font/bmjua_otf"/>
@@ -155,7 +155,7 @@
         <LinearLayout
             android:id="@+id/Linear_reservation_select_time"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="250dp"
             android:layout_marginBottom="20dp"
             android:padding="10dp"
             android:background="@drawable/background_rounded_corners_white"
@@ -175,6 +175,7 @@
                 android:orientation="horizontal"
                 android:layout_marginBottom="20dp">
                 <ImageView
+                    android:id="@+id/iv_reservation_designer_photo"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:src="@drawable/jpeg_default_profile_photo"
@@ -211,6 +212,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="horizontal"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/btn_positive"
+                android:text="더 보기"
+                android:textColor="@color/black"
+                android:fontFamily="@font/bmjua_otf"/>
         </LinearLayout>
         <!--#####################Topper########################### -->
         <LinearLayout
