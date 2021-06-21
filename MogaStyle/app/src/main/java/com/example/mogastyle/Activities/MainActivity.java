@@ -35,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     FragmentPagerAdapter fragmentPagerAdapter;
 
+    private String strUserKakaoName;
+
+    Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +53,12 @@ public class MainActivity extends AppCompatActivity {
         indicator.setViewPager(viewPager);
 
 
+        //KAKAO LOGIN GET INFO --
+
+        intent = getIntent();
+        strUserKakaoName = intent.getStringExtra("userKakaoName");
+
+        //KAKAO LOGIN GET INFO END --
 
 
 
