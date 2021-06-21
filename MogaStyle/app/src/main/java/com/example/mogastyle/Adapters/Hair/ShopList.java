@@ -54,7 +54,7 @@ public class ShopList extends BaseAdapter {
         tv_code.setText("이름 : "+ data.get(position).getName());
         tv_name.setText("주소 : "+ data.get(position).getAddress());
         tv_dept.setText("우편번호 : "+ data.get(position).getPostcode());
-        tv_phone.setText("사진 : "+ data.get(position).get\);
+        tv_phone.setText("사진 : "+ data.get(position).getImage());
 
         return convertView;
     }
