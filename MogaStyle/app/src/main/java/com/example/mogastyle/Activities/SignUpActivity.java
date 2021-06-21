@@ -109,7 +109,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 case R.id.btn_sign_up_token_check:
                     //인증하기
-                    if(TextUtils.isEmpty(userToken)){
+                    if(TextUtils.isEmpty(et_sign_up_token.getText().toString())){
                         Toast.makeText(SignUpActivity.this, "인증 번호를 입력해주세요!", Toast.LENGTH_SHORT).show();
                     }else{
                         userToken = et_sign_up_token.getText().toString();
