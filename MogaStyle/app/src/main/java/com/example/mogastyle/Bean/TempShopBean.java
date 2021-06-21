@@ -2,14 +2,30 @@ package com.example.mogastyle.Bean;
 
 import java.util.ArrayList;
 
-public class Shop {
+public class TempShopBean {
     private String name;
     private String tel;
     private String address;
     private String postcode;
     private int image;
 
-    public Shop(String name, String tel, String address, String postcode, int image) {
+    ArrayList<Integer> holidays;
+
+    //임시
+    public TempShopBean(String name, String holiday){
+        this.name = name;
+        holidays = new ArrayList<>();
+        if(holiday.length() > 2) {
+            String[] holidaySplited = holiday.split(",");
+            for(String s : holidaySplited){
+                holidays.add(Integer.parseInt(s));
+            }
+        } else {
+            holidays.add(Integer.parseInt(holiday));
+        }
+    }
+
+    public TempShopBean(String name, String tel, String address, String postcode, int image) {
         this.name = name;
         this.tel = tel;
         this.address = address;
@@ -56,5 +72,13 @@ public class Shop {
 
     public void setImage(int image) {
         this.image = image;
+    }
+
+    public ArrayList<Integer> getHolidays() {
+        return holidays;
+    }
+
+    public void setHolidays(ArrayList<Integer> holidays) {
+        this.holidays = holidays;
     }
 }
