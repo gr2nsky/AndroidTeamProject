@@ -9,7 +9,7 @@
     android:background="@color/main_color">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
         <!--#####################Topper########################### -->
         <LinearLayout
@@ -41,7 +41,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:src="@drawable/icon_home"/>
-
         </LinearLayout>
         <!--#####################Inputed menu########################### -->
         <LinearLayout
@@ -128,29 +127,41 @@
                     android:fontFamily="@font/bmjua_otf"/>
             </LinearLayout><!-- //price tv area-->
         </LinearLayout>
+        <View
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
         <!--#####################Select Date########################### -->
         <LinearLayout
             android:id="@+id/Linear_reservation_select_date"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_marginBottom="20dp"
-            android:padding="10dp"
             android:background="@drawable/background_rounded_corners_white"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="10dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/bmjua_otf"
+                android:layout_marginBottom="5dp"
                 android:gravity="center"
                 android:text="날짜 선택"
-                android:textSize="25dp"
                 android:textColor="@color/black"
-                android:fontFamily="@font/bmjua_otf"/>
+                android:textSize="25dp" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_reservation_date_selector"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:scrollbars="horizontal"/>
+                android:scrollbars="none" />
         </LinearLayout>
+
+        <View
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
         <!--#####################Select Time########################### -->
         <LinearLayout
             android:id="@+id/Linear_reservation_select_time"
@@ -211,16 +222,21 @@
                 android:id="@+id/recycler_reservation_time_selector"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="horizontal"/>
+                android:scrollbars="none" />
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:backgroundTint="@color/btn_positive"
+                android:layout_marginTop="10dp"
                 android:text="더 보기"
                 android:textColor="@color/black"
                 android:fontFamily="@font/bmjua_otf"/>
         </LinearLayout>
+        <View
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
         <!--#####################Topper########################### -->
         <LinearLayout
             android:id="@+id/Linear_reservation_go_payment"
@@ -246,11 +262,11 @@
                     android:id="@+id/tv_reservation_total_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="10,000"
+                    android:text="10,000원"
                     android:textColor="@color/black"
                     android:fontFamily="@font/bmjua_otf"
                     android:gravity="left|top"/>
-            </LinearLayout>원 <!-- price lin -->
+            </LinearLayout><!-- price lin -->
             <Button
                 android:id="@+id/btn_reservation_go_payment"
                 android:layout_weight="1"

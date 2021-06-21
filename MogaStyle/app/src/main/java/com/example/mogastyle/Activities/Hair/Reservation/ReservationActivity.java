@@ -12,9 +12,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.example.mogastyle.Adapters.Hair.Reservation.RecyclerDecoration;
 import com.example.mogastyle.Adapters.Hair.Reservation.ResDateSelectorAdapter;
 import com.example.mogastyle.Adapters.Hair.Reservation.ResTimeSelectorAdapter;
 import com.example.mogastyle.Bean.ResDateData;
+import com.example.mogastyle.Bean.Shop;
+import com.example.mogastyle.Bean.TempDesignerBean;
+import com.example.mogastyle.Bean.TempShopBean;
+import com.example.mogastyle.Bean.TempStyleBean;
+import com.example.mogastyle.Common.ShareVar;
 import com.example.mogastyle.R;
 
 import java.text.SimpleDateFormat;
@@ -30,6 +37,7 @@ public class ReservationActivity extends AppCompatActivity {
     ////메뉴 정보
     TextView tv_shop_name;
     TextView tv_menu_name;
+    TextView tv_menu_price;
     ////날짜 선택
     RecyclerView list_date_selector;
     RecyclerView.LayoutManager dateLayoutManager;
@@ -43,14 +51,18 @@ public class ReservationActivity extends AppCompatActivity {
     TextView tv_total_price;
     Button btn_go_payment;
 
-    //res datas
-    int shopNo;
-    int menuNo;
-    int designNo;
-
     //adapters
     ResDateSelectorAdapter dateSelectorAdapter;
     ResTimeSelectorAdapter timeSelectorAdapter;
+
+    ///////////////////////////////////
+    //            temp data          //
+    ///////////////////////////////////
+    ArrayList<ResDateData> reservedDates;
+    ResDateData today;
+    TempDesignerBean tempDesignerBean;
+    TempStyleBean tempStyleBean;
+    TempShopBean tempShopBean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +72,7 @@ public class ReservationActivity extends AppCompatActivity {
         //layout item binding
         tv_shop_name = findViewById(R.id.tv_reservation_shop_name);
         tv_menu_name = findViewById(R.id.tv_reservation_menu_name);
+        tv_menu_price = findViewById(R.id.tv_reservation_shop_price);
         list_date_selector = findViewById(R.id.recycler_reservation_date_selector);
         iv_designer_photo = findViewById(R.id.iv_reservation_designer_photo);
         tv_designer_name = findViewById(R.id.tv_reservation_designer_name);
@@ -76,20 +89,83 @@ public class ReservationActivity extends AppCompatActivity {
             }
         });
 
+        //////////////////////////////////
+        //      temp data maker         //
+        /////////////////////////////////
+        tempDataMaker();
+
         //list_date_selector
         ArrayList<ResDateData> dds = dateDataMaker();
         dateLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         list_date_selector.setLayoutManager(dateLayoutManager);
-        dateSelectorAdapter = new ResDateSelectorAdapter(ReservationActivity.this, R.layout.list_item_reservation_date_selector, dds);
+        dateSelectorAdapter = new ResDateSelectorAdapter(this, R.layout.list_item_reservation_date_selector, dds, tempShopBean.getHolidays());
         list_date_selector.setAdapter(dateSelectorAdapter);
 
+        //최초 1회성으로 DataSelector가 오늘로 기본으로 선택되게 하였으므로 오늘 데이터를 넘김.
+        ///////////////////////////////////////////////////
+        //      오늘이 휴무라면 어떻게 해야 하나 ?                //
+        ///////////////////////////////////////////////////
+        //휴무일이라면 선택이 안되게 하는게 아니라 tiemSelector의 값이 "정기휴무" 하나로 되도록 세팅해야 함
+
         //list_time_selector
-        ArrayList<Integer> resableTime = resableTimeMaker();
+        ArrayList<Integer> resableTime = resableTimeMaker(today);
+        //예약 빈자리가 없을 경우
+        if(resableTime.isEmpty()){
+            timeSelectorDataChange(777);
+        }
         timeLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         list_time_selector.setLayoutManager(timeLayoutManager);
         timeSelectorAdapter = new ResTimeSelectorAdapter(ReservationActivity.this, R.layout.list_item_reservation_time_selector, resableTime);
         list_time_selector.setAdapter(timeSelectorAdapter);
+        RecyclerDecoration decoration = new RecyclerDecoration(20);
+        list_time_selector.addItemDecoration(decoration);
 
+        ////////////////////////////////////////////////////////////
+        //               temp data binding to view                //
+        ////////////////////////////////////////////////////////////
+        tv_shop_name.setText(tempShopBean.getName());
+        tv_menu_name.setText(tempStyleBean.getTitle());
+        tv_menu_price.setText(Integer.toString(tempStyleBean.getPrice()));
+        Glide.with(this)
+                .load(ShareVar.userImgPath+tempDesignerBean.getImg())
+                .placeholder(R.drawable.jpeg_default_profile_photo)
+                .error(R.drawable.jpeg_default_profile_photo)
+                .fallback(R.drawable.jpeg_default_profile_photo)
+                .into(iv_designer_photo);
+        tv_designer_name.setText(tempDesignerBean.getName());
+        String[] getCertificationSplit = tempDesignerBean.getCertificationDate().split("-");
+        int gerCertificationYear = Integer.parseInt(getCertificationSplit[0]);
+        tv_designer_intro.setText("경력 " + (today.getYear() - gerCertificationYear + 1) +"년");
+        tv_total_price.setText(Integer.toString(tempStyleBean.getPrice()));
+    }//onCreate
+
+    //dataSeletor에서 아이템을 클릭할떄마다 해당 함수 호출
+    public void timeSelectorDataChange(ResDateData rdd){
+
+        //개인 휴무일일 경우
+        if(tempDesignerBean.getHolidays().contains(rdd.getDayOfWeek())) {
+            timeSelectorDataChange(888);
+            return;
+        }
+
+        ArrayList<Integer> resableTime = resableTimeMaker(rdd);
+        //예약 빈자리가 없을 경우
+        if(resableTime.isEmpty()){
+            timeSelectorDataChange(777);
+            return;
+        }
+
+        timeLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        list_time_selector.setLayoutManager(timeLayoutManager);
+        timeSelectorAdapter = new ResTimeSelectorAdapter(ReservationActivity.this, R.layout.list_item_reservation_time_selector, resableTime);
+        list_time_selector.setAdapter(timeSelectorAdapter);
+    }
+    //샵의 정기휴무일때
+    public void timeSelectorDataChange(int i){
+        timeLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        list_time_selector.setLayoutManager(timeLayoutManager);
+        timeSelectorAdapter = new ResTimeSelectorAdapter(ReservationActivity.this, R.layout.list_item_reservation_time_selector, i);
+        list_time_selector.setAdapter(timeSelectorAdapter);
     }
 
 
@@ -110,8 +186,20 @@ public class ReservationActivity extends AppCompatActivity {
         int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
         int resableNextMonthDate = datIneterval - (dayOfMonth - nowDate);
 
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+        SimpleDateFormat sdf = new SimpleDateFormat("hh");
+        int nowHour = Integer.parseInt(sdf.format(date));
+
+        //오늘 날자는 별도로 저장
+        today = new ResDateData(nowYear, nowMonth, nowDate, dayOfWeek, nowHour);
+
+        /////////////////////////////////////////////////////////////////
+        //                휴무 데이터는 여기서 처리해주어야 함                   //
+        /////////////////////////////////////////////////////////////////
+
         for (int i = nowDate; i <= dayOfMonth; i++){
-            ResDateData dd = new ResDateData(nowYear, nowMonth, i, dayMaker(dayOfWeek));
+            ResDateData dd = new ResDateData(nowYear, nowMonth, i, dayOfWeek);
             dateData.add(dd);
             Log.v(TAG, "dateDataMaker : " + dd.printAll());
             dayOfWeek += 1;
@@ -121,7 +209,7 @@ public class ReservationActivity extends AppCompatActivity {
         }
         nowMonth += 1;
         for( int i = 1; i <= resableNextMonthDate; i++){
-            ResDateData dd = new ResDateData(nowYear, nowMonth, i, dayMaker(dayOfWeek));
+            ResDateData dd = new ResDateData(nowYear, nowMonth, i, dayOfWeek);
             dateData.add(dd);
             Log.v(TAG, "dateDataMaker : " + dd.printAll());
             dayOfWeek += 1;
@@ -132,36 +220,72 @@ public class ReservationActivity extends AppCompatActivity {
         return dateData;
     }
 
-    public String dayMaker(int i){
-        String result = "";
-        switch (i){
-            case 1:
-                return "일";
-            case 2:
-                return "월";
-            case 3:
-                return "화";
-            case 4:
-                return "수";
-            case 5:
-                return "목";
-            case 6:
-                return "금";
-            case 7:
-                return "토";
-        }
-        return Integer.toString(i);
-    }
-
     //예약가능시간 배열 생성
-    public ArrayList<Integer> resableTimeMaker(){
+    public ArrayList<Integer> resableTimeMaker(ResDateData resDateData){
+
         ArrayList<Integer> resableTimeList = new ArrayList<>();
-        //이후 예약된 시간 배열을 불러와서 예외처리
-        for(int i = 10; i <= 20; i++){
+
+        //예약가능시간은 10시부터
+        int startTime = 10;
+
+        //들어온 데이터가 오늘이라면 현재시간 +1시간부터 예약가능
+        if(resDateData.getDate() == today.getDate()){
+            if(startTime <=10){
+                startTime = 10;
+            }
+            else if (startTime > 20){
+                return resableTimeList;
+            } else {
+                startTime = today.getNowHour() + 1;
+            }
+        }
+
+        for(int i = startTime; i <= 20; i++){
             if(i == 12 || i == 13) continue;
             Log.v(TAG, "resableTime : " + i);
             resableTimeList.add(i);
         }
+        //////////////////////////////////////////////
+        //       이후 예약된 시간 배열을 불러와서 예외처리     //
+        //////////////////////////////////////////////
+        ArrayList<ResDateData> todayResData = new ArrayList<>();
+        for(ResDateData rdd : reservedDates){
+            if(rdd.getDate() == resDateData.getDate()){
+                 ArrayList<Integer> reservedTime = rdd.getTime();
+                 for(Integer i : reservedTime){
+                     int index = resableTimeList.indexOf(i);
+                     if(index != -1){
+                         resableTimeList.remove(index);
+                     }
+                 }
+            }
+        }
+
         return resableTimeList;
+    }
+
+    /////////////////////////////////////////////
+    //                 temp data maker         //
+    /////////////////////////////////////////////
+    public void tempDataMaker(){
+        reservedDates = new ArrayList<>();
+
+        ResDateData rdd1 = new ResDateData("2021-06-29", 10, 2);
+        ResDateData rdd2 = new ResDateData("2021-06-29", 15, 1);
+        ResDateData rdd3 = new ResDateData("2021-06-29", 16, 1);
+        ResDateData rdd4 = new ResDateData("2021-07-01", 18, 2);
+        ResDateData rdd5 = new ResDateData("2021-06-22", 13, 2);
+        ResDateData rdd6 = new ResDateData("2021-07-9", 10, 20);
+        reservedDates.add(rdd1);
+        reservedDates.add(rdd2);
+        reservedDates.add(rdd3);
+        reservedDates.add(rdd4);
+        reservedDates.add(rdd5);
+        reservedDates.add(rdd6);
+
+        tempDesignerBean = new TempDesignerBean("최준", "2020-05-26", reservedDates, "tempImg.png", "5");
+        tempStyleBean = new TempStyleBean(1, "봄탄소년단", 50000);
+        tempShopBean = new TempShopBean("더존미용실 강남점", "1,7");
+
     }
 }
