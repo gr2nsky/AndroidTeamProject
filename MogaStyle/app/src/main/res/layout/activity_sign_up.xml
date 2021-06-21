@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.SignUpActivity">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="40dp"
+        >
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/main_icon"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SIGN UP TO MOGASTYLING"
+            android:fontFamily="@font/bmjua_otf"
+            android:layout_marginTop="30dp"
+            android:textSize="20dp"
+            android:layout_marginBottom="20dp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="40dp"
+        >
+        <EditText
+            android:id="@+id/et_sign_up_userid"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:hint=" ID 를 입력해주세요 !"
+            android:fontFamily="@font/bmjua_otf"
+            android:layout_marginRight="40dp"
+            />
+        <Button
+            android:id="@+id/btn_sign_up_check_user_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="중복 확인"
+            android:fontFamily="@font/bmjua_otf"
+            android:backgroundTint="@color/btn_positive"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="40dp"
+        >
+        <EditText
+            android:id="@+id/et_sign_up_userpw"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:hint=" Password 를 입력해주세요 !"
+            android:fontFamily="@font/bmjua_otf"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="40dp"
+            />
+        <EditText
+            android:id="@+id/et_sign_up_userpw2"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:hint=" Password 를 한번 더 입력해주세요 !"
+            android:fontFamily="@font/bmjua_otf"
+            android:layout_marginRight="40dp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="40dp"
+        >
+        <EditText
+            android:id="@+id/et_sign_up_phone"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:hint=" 휴대전화번호"
+            android:fontFamily="@font/bmjua_otf"
+            android:layout_marginRight="40dp"
+
+            />
+        <Button
+            android:id="@+id/btn_sign_up_phone_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="문자 전송"
+            android:fontFamily="@font/bmjua_otf"
+            android:backgroundTint="@color/btn_positive"
+
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="40dp"
+        >
+        <EditText
+            android:id="@+id/et_sign_up_token"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:hint=" 인증번호 입력"
+            android:fontFamily="@font/bmjua_otf"
+            android:layout_marginRight="40dp"
+            />
+        <Button
+            android:id="@+id/btn_sign_up_token_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="인증 하기"
+            android:fontFamily="@font/bmjua_otf"
+            android:backgroundTint="@color/btn_positive"
+
+            />
+    </LinearLayout>
+    <Button
+        android:id="@+id/btn_sign_up_final"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="화원 가입"
+        android:fontFamily="@font/bmjua_otf"
+        android:backgroundTint="@color/btn_positive"/>
+
+
+
+</LinearLayout>
