@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".Activities.KakaoLoginApplication"
@@ -17,6 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MogaStyle">
+
         <activity android:name=".Activities.FindIdPwActivity"></activity>
         <activity android:name=".Activities.SignUpActivity" />
         <activity android:name=".Activities.Hair.Reservation.ReservationCheckActivity" />
@@ -34,6 +36,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="8126580675308408e613f97a9e461e6d" />
+
+        <activity android:name=".Activities.LoginActivity" />
+
         <activity android:name=".Activities.MainActivity" />
 
         <meta-data
