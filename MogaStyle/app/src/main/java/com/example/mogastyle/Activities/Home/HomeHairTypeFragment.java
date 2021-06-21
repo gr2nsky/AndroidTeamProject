@@ -33,7 +33,7 @@ public class HomeHairTypeFragment extends Fragment {
     int usrHairSparsely;
     int usrHairCurledness;
 
-public static HomeHairTypeFragment newInstance(int page, String title) {
+public static HomeHairTypeFragment newInstance(int page, String title , String userName) {
     HomeHairTypeFragment fragment = new HomeHairTypeFragment();
     Bundle args = new Bundle();
     args.putInt("someInt", page);

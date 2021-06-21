@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
+        android:name=".Activities.KakaoLoginApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -16,10 +17,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MogaStyle">
-        <activity android:name=".Activities.Hair.Reservation.ReservationCheckActivity"/>
+        <activity android:name=".Activities.FindIdPwActivity"></activity>
+        <activity android:name=".Activities.SignUpActivity" />
+        <activity android:name=".Activities.Hair.Reservation.ReservationCheckActivity" />
         <activity android:name=".Activities.Hair.Reservation.PaymentActivity" />
         <activity android:name=".Activities.Hair.Reservation.ReservationActivity" />
-        <activity android:name=".Activities.LoginBasicActivity"/>
+        <activity android:name=".Activities.LoginBasicActivity" />
         <activity android:name=".Activities.MyPage.MyPageMainActivity" />
         <activity android:name=".Activities.Hair.HairMainActivity" />
         <activity android:name=".Activities.Diary.DiaryMainActivity" />
@@ -32,6 +35,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activities.MainActivity" />
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="d501006782a521eb40a06174fe0acf07" />
     </application>
 
 </manifest>
