@@ -42,6 +42,44 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="별점 :"
+            android:textSize="30dp"/>
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="46dp"
+            android:rating="4" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="리뷰 :"
+            android:textSize="30dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="110"
+            android:textSize="30dp"/>
+    </LinearLayout>
+
     <ListView
         android:id="@+id/lv_shop"
         android:layout_width="match_parent"
