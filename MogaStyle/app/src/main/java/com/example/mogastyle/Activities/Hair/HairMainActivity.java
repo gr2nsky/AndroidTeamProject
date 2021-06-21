@@ -1,13 +1,12 @@
 package com.example.mogastyle.Activities.Hair;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mogastyle.Activities.Consult.ConsultMainActivity;
 import com.example.mogastyle.Activities.Diary.DiaryMainActivity;
@@ -16,26 +15,27 @@ import com.example.mogastyle.Activities.MyPage.MyPageMainActivity;
 import com.example.mogastyle.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import net.daum.android.map.MapView;
 
 import org.jetbrains.annotations.NotNull;
 
 public class HairMainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
-   // MapView mapView = new MapView(this);
-    private FragmentManager fragmentManager;
-    private HairMainFragment hairMainFragment;
+    MapView mapView = new MapView(this);
+//    private FragmentManager fragmentManager;
+//    private HairMainFragment hairMainFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        fragmentManager = getSupportFragmentManager();
-        hairMainFragment = new HairMainFragment();
+//        fragmentManager = getSupportFragmentManager();
+//        hairMainFragment = new HairMainFragment();
 
 
 
         ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
-       // mapViewContainer.addView(mapView);
+        mapViewContainer.addView(mapView);
         setContentView(R.layout.activity_hair_main);
 
 
