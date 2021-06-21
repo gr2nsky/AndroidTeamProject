@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import com.example.mogastyle.Activities.Home.HomeFragment;
 import com.example.mogastyle.Activities.Home.HomeHairTypeFragment;
 import com.example.mogastyle.Activities.Home.HomeShopListFragment;
+import com.example.mogastyle.Common.LoginedUserInfo;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -25,10 +26,10 @@ public class HomePageAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return HomeHairTypeFragment.newInstance(0,"Page#1");
+                return HomeHairTypeFragment.newInstance(0,"Page#1" , LoginedUserInfo.user.getName());
 
             case 1:
-                return HomeFragment.newInstance(1,"Page#2");
+                return HomeFragment.newInstance(1,"Page#2", LoginedUserInfo.user.getName());
 
             case 2:
                 return HomeShopListFragment.newInstance(2,"Page#3");
