@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class HairMainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
-//    MapView mapView = new MapView(this);
+   // MapView mapView = new MapView(this);
     private FragmentManager fragmentManager;
     private HairMainFragment hairMainFragment;
 

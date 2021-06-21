@@ -8,19 +8,10 @@ package com.example.mogastyle.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Base64;
-import android.util.Log;
 
 import com.example.mogastyle.R;
-import com.example.mogastyle.Test;
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 public class LogoActivity extends AppCompatActivity {
 

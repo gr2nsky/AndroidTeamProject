@@ -19,7 +19,6 @@
         android:theme="@style/Theme.MogaStyle">
         <activity android:name=".Activities.Hair.Shop.ShopDetailActivity"></activity>
         <activity android:name=".Activities.Hair.Shop.ShopListActivity" />
-        <activity android:name=".Test" />
         <activity android:name=".Activities.Hair.Reservation.ReservationActivity" />
         <activity android:name=".Activities.MyPage.MyPageMainActivity" />
         <activity android:name=".Activities.Hair.HairMainActivity" />
