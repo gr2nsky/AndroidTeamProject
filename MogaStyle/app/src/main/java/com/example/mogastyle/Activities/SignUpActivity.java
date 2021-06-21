@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mogastyle.R;
@@ -29,6 +30,8 @@ public class SignUpActivity extends AppCompatActivity {
     EditText et_sign_up_userid , et_sign_up_userpw ,et_sign_up_userpw2 ,et_sign_up_phone , et_sign_up_token;
 
     Button btn_sign_up_check_user_id, btn_sign_up_phone_check ,btn_sign_up_token_check ,btn_sign_up_final;
+
+    TextView tv_sign_up_token_check;
 
     String userId ,userPw , userPw2 , userPhone , userToken;
 
@@ -54,6 +57,10 @@ public class SignUpActivity extends AppCompatActivity {
         btn_sign_up_phone_check = findViewById(R.id.btn_sign_up_phone_check);
         btn_sign_up_token_check = findViewById(R.id.btn_sign_up_token_check);
         btn_sign_up_final = findViewById(R.id.btn_sign_up_final);
+
+        //TextView Binding
+        tv_sign_up_token_check = findViewById(R.id.tv_sign_up_token_check);
+
 
         btn_sign_up_check_user_id.setOnClickListener(onClickListener);
         btn_sign_up_phone_check.setOnClickListener(onClickListener);
@@ -147,7 +154,9 @@ public class SignUpActivity extends AppCompatActivity {
         public void onVerificationCompleted(@NonNull @NotNull PhoneAuthCredential phoneAuthCredential) {
             final String code = phoneAuthCredential.getSmsCode();
             et_sign_up_token.setText(code);
-            verifyCode(code);
+            tv_sign_up_token_check.setVisibility(View.VISIBLE);
+            tv_sign_up_token_check.setText("인증번호 일치");
+//            verifyCode(code);
         }
 
         @Override
@@ -170,6 +179,9 @@ public class SignUpActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     // 성공했을 경우 나오는 것
                     // 뭔가 로그인이 완료됬을때 보여주는거 같은데..
+
+
+
                 }else{
                     Toast.makeText(SignUpActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }

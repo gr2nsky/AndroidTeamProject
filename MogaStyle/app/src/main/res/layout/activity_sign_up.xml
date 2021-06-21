@@ -109,7 +109,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginBottom="40dp"
         >
         <EditText
             android:id="@+id/et_sign_up_token"
@@ -126,9 +125,18 @@
             android:text="인증 하기"
             android:fontFamily="@font/bmjua_otf"
             android:backgroundTint="@color/btn_positive"
-
             />
+
     </LinearLayout>
+    <TextView
+        android:id="@+id/tv_sign_up_token_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="인증번호 일치"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="40dp"
+        android:visibility="invisible"
+        />
     <Button
         android:id="@+id/btn_sign_up_final"
         android:layout_width="230dp"
