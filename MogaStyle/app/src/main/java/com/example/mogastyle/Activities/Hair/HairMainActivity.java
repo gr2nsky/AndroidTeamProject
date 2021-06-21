@@ -15,13 +15,13 @@ import com.example.mogastyle.Activities.MyPage.MyPageMainActivity;
 import com.example.mogastyle.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import net.daum.android.map.MapView;
+// import net.daum.android.map.MapView;
 
 import org.jetbrains.annotations.NotNull;
 
 public class HairMainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
-    MapView mapView = new MapView(this);
+   // MapView mapView = new MapView(this);
 
 
     @Override
@@ -30,7 +30,7 @@ public class HairMainActivity extends AppCompatActivity {
 
 
         ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
-        mapViewContainer.addView(mapView);
+   //     mapViewContainer.addView(mapView);
         setContentView(R.layout.activity_hair_main);
 
 
