@@ -3,14 +3,20 @@ package com.example.mogastyle.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mogastyle.Common.ShareVar;
+import com.example.mogastyle.NetworkTasks.Login.LoginCheckUserId;
+import com.example.mogastyle.NetworkTasks.Login.SignUpInApp;
 import com.example.mogastyle.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,19 +33,21 @@ import java.util.concurrent.TimeUnit;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    EditText et_sign_up_userid , et_sign_up_userpw ,et_sign_up_userpw2 ,et_sign_up_phone , et_sign_up_token;
+    EditText et_sign_up_userid , et_sign_up_userpw , et_sign_up_phone , et_sign_up_token;
 
     Button btn_sign_up_check_user_id, btn_sign_up_phone_check ,btn_sign_up_token_check ,btn_sign_up_final;
 
     TextView tv_sign_up_token_check;
 
-    String userId ,userPw , userPw2 , userPhone , userToken;
+    String userId ,userPw , userPw2 , userPhone , userToken , userCheck , joinType;
 
     //FireBase Phone Auth
     FirebaseAuth firebaseAuth;
     String verificationId ;
     // FireBase Phone Auth End --
 
+
+    String urlAddr = ShareVar.hostRootAddr ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +56,7 @@ public class SignUpActivity extends AppCompatActivity {
         //EditText Binding
         et_sign_up_userid = findViewById(R.id.et_sign_up_userid);
         et_sign_up_userpw = findViewById(R.id.et_sign_up_userpw);
-        et_sign_up_userpw2 = findViewById(R.id.et_sign_up_userpw2);
+
         et_sign_up_phone = findViewById(R.id.et_sign_up_phone);
         et_sign_up_token = findViewById(R.id.et_sign_up_token);
 
@@ -68,11 +76,7 @@ public class SignUpActivity extends AppCompatActivity {
         btn_sign_up_final.setOnClickListener(onClickListener);
 
         //정보 가져오기
-        userId = et_sign_up_userid.getText().toString();
-        userPw = et_sign_up_userpw.getText().toString();
-        userPw2 = et_sign_up_userpw2.getText().toString();
-        userToken = et_sign_up_token.getText().toString();
-        userPhone = et_sign_up_phone.getText().toString();
+
 
         //FireBase Phone Auth
         firebaseAuth = FirebaseAuth.getInstance();
@@ -86,16 +90,32 @@ public class SignUpActivity extends AppCompatActivity {
             switch(v.getId()){
                 case R.id.btn_sign_up_check_user_id:
                     // 아이디 중복 확인
+                    userId = et_sign_up_userid.getText().toString();
+                    LoginCheckUserId loginCheckUserId = new LoginCheckUserId(SignUpActivity.this, urlAddr + "Home/userSignUpCheckId.jsp",userId);
+                    Object userCheckObject = null;
+                    String userCheckResult = "0";
+                    try{
+                        userCheckObject = loginCheckUserId.execute().get();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
 
+                    userCheckResult = (String) userCheckObject;
 
-                    //DB CHECK
-
+                    if ( userCheckResult.equals("2")){
+                        Toast.makeText(SignUpActivity.this, userId + "이미 로그인 되어있는 아이디입니다.", Toast.LENGTH_SHORT).show();
+                    }else if( userCheckResult.equals("1")) {
+                        Toast.makeText(SignUpActivity.this, "사용 가능한 아이디 입니다.", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(SignUpActivity.this, "아이디 체크 실패", Toast.LENGTH_SHORT).show();
+                    }
                     break;
 
-
                 case R.id.btn_sign_up_phone_check:
+                    userPhone = et_sign_up_phone.getText().toString();
                     // 문자 전송
-                    if(TextUtils.isEmpty(et_sign_up_phone.getText().toString())){
+                    if(TextUtils.isEmpty(userPhone)){
                         Toast.makeText(SignUpActivity.this, "핸드폰 번호 입력해주세요!", Toast.LENGTH_SHORT).show();
 
                     }else{
@@ -109,20 +129,56 @@ public class SignUpActivity extends AppCompatActivity {
 
                 case R.id.btn_sign_up_token_check:
                     //인증하기
-                    if(TextUtils.isEmpty(et_sign_up_token.getText().toString())){
+                    userToken = et_sign_up_token.getText().toString();
+                    if(TextUtils.isEmpty(userToken)){
                         Toast.makeText(SignUpActivity.this, "인증 번호를 입력해주세요!", Toast.LENGTH_SHORT).show();
                     }else{
-                        userToken = et_sign_up_token.getText().toString();
-                        verifyCode(userToken);
+//                        verifyCode(userToken);
+
+
                     }
 
                     break;
 
                 case R.id.btn_sign_up_final:
                     //마지막 화원가입 완료
+                    userId = et_sign_up_userid.getText().toString();
+                    userPw = et_sign_up_userpw.getText().toString();
+                    userToken = et_sign_up_token.getText().toString();
+                    userPhone = et_sign_up_phone.getText().toString();
+                    userCheck = "0";
+                    joinType = "0";
 
+                    SignUpInApp signUpInApp = new SignUpInApp(SignUpActivity.this , urlAddr + "Home/userSignUpInApp.jsp" , userId , userPw , userPhone ,userCheck,joinType);
 
+                    Object object = null;
+                    String result = "0";
+                    try{
+                        object = signUpInApp.execute().get();
+                    }catch (Exception e){
+                        e.printStackTrace();
 
+                    }
+
+                    result = (String) object;
+
+                    Log.d("result" , result);
+
+                    if (result.equals("1")){
+                        Toast.makeText(SignUpActivity.this, userId + " 님 회원가입 완료!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(SignUpActivity.this , LoginBasicActivity.class);
+//                        intent.putExtra("userId",userId);
+//                        intent.putExtra("userPw",userPw);
+//                        //회원가입 에서 왔어요~
+//                        intent.putExtra("login","1");
+                        startActivity(intent);
+
+                    }else if(result.equals("2")) {
+                        Toast.makeText(SignUpActivity.this, "이미 로그인 되어있는 아이디입니다", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(SignUpActivity.this, "회원가입 실패!", Toast.LENGTH_SHORT).show();
+                    }
                     break;
 
             }
@@ -153,10 +209,11 @@ public class SignUpActivity extends AppCompatActivity {
         @Override
         public void onVerificationCompleted(@NonNull @NotNull PhoneAuthCredential phoneAuthCredential) {
             final String code = phoneAuthCredential.getSmsCode();
+            Log.d("SHHHHH" , code);
+            verifyCode(code);
             et_sign_up_token.setText(code);
             tv_sign_up_token_check.setVisibility(View.VISIBLE);
             tv_sign_up_token_check.setText("인증번호 일치");
-//            verifyCode(code);
         }
 
         @Override
