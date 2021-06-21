@@ -22,16 +22,11 @@ import org.jetbrains.annotations.NotNull;
 public class HairMainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     MapView mapView = new MapView(this);
-//    private FragmentManager fragmentManager;
-//    private HairMainFragment hairMainFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-//        fragmentManager = getSupportFragmentManager();
-//        hairMainFragment = new HairMainFragment();
-
 
 
         ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
