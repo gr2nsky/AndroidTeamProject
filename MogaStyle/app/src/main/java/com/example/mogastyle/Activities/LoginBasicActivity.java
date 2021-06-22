@@ -64,7 +64,7 @@ public class LoginBasicActivity extends AppCompatActivity {
                     String loginUserId = et_login_write_id.getText().toString();
                     String loginUserPw = et_login_write_pw.getText().toString();
 
-                    LoginInApp loginInApp = new LoginInApp(LoginBasicActivity.this , urlAddr + "Home/userLoginInAPP.jsp" , loginUserId , loginUserPw);
+                    LoginInApp loginInApp = new LoginInApp(LoginBasicActivity.this , urlAddr + "Home/userLoginInApp.jsp" , loginUserId , loginUserPw);
 
                     Object object = null;
                     String result = "0";
