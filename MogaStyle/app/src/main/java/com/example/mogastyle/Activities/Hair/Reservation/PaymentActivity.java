@@ -30,6 +30,7 @@ public class PaymentActivity extends AppCompatActivity {
     TextView tv_res_date;
     TextView tv_res_time;
     TextView tv_res_shop_name;
+
     TextView tv_res_designer_name;
     TextView tv_res_total_price;
     Button btn_request_auth_code;
@@ -48,6 +49,7 @@ public class PaymentActivity extends AppCompatActivity {
         //
         //          layout resource match
         //
+
         cb = findViewById(R.id.cb_payment_auto_input);
         et_booker_name = findViewById(R.id.et_payment_name);
         et_booker_phone = findViewById(R.id.et_payment_phone);
