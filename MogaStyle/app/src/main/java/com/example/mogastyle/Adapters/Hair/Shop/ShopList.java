@@ -1,4 +1,4 @@
-package com.example.mogastyle.Adapters.Hair;
+package com.example.mogastyle.Adapters.Hair.Shop;
 
 import android.content.Context;
 import android.view.LayoutInflater;

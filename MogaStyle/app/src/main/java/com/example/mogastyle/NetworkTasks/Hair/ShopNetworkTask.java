@@ -5,7 +5,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.mogastyle.Adapters.Hair.ShopList;
+import com.example.mogastyle.Adapters.Hair.Shop.ShopList;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
