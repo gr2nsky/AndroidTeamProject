@@ -10,6 +10,7 @@ package com.example.mogastyle.Activities.Hair.Reservation;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -17,6 +18,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mogastyle.Bean.PaymentBeanStack;
+import com.example.mogastyle.Bean.ResDateData;
+import com.example.mogastyle.Bean.TempDesignerBean;
+import com.example.mogastyle.Bean.TempShopBean;
+import com.example.mogastyle.Bean.TempStyleBean;
+import com.example.mogastyle.Bean.User;
 import com.example.mogastyle.Common.LoginedUserInfo;
 import com.example.mogastyle.R;
 
@@ -36,6 +42,14 @@ public class PaymentActivity extends AppCompatActivity {
     Button btn_check_auth_code;
     Button btn_submit;
 
+    ///////////data
+    TempDesignerBean designerBean = null;
+    TempShopBean shopBean = null;
+    TempStyleBean styleBean = null;
+    ResDateData resDateData = null;
+    User booker;
+    int resTime = -1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +58,16 @@ public class PaymentActivity extends AppCompatActivity {
         if(!paymentBeanStackCheck()){
             Toast.makeText(this, "Payment Stack error", Toast.LENGTH_SHORT).show();
         }
+        //
+        //          data binding
+        //
+        designerBean = PaymentBeanStack.stack.getDesignerBean();
+        shopBean = PaymentBeanStack.stack.getShopBean();
+        styleBean = PaymentBeanStack.stack.getStyleBean();
+        resDateData = PaymentBeanStack.stack.getResDateData();
+        resTime = PaymentBeanStack.stack.getResTime();
+        booker = LoginedUserInfo.user;
+
 
         //
         //          layout resource match
@@ -63,14 +87,49 @@ public class PaymentActivity extends AppCompatActivity {
         btn_check_auth_code = findViewById(R.id.btn_payment_check_auth_code);
         btn_submit = findViewById(R.id.btn_payment_submit);
 
+        btn_request_auth_code.setOnClickListener(onClickListener);
+        btn_check_auth_code.setOnClickListener(onClickListener);
+        btn_submit.setOnClickListener(onClickListener);
+
         //
         //           data + Layout resource
         //
+        et_booker_name.setText(booker.getName());
+        et_booker_phone.setText(booker.getUserPhone());
+        tv_res_date.setText(resDateData.print());
+        tv_res_time.setText(Integer.toString(resTime));
+        tv_res_shop_name.setText(shopBean.getName());
+        tv_res_designer_name.setText(designerBean.getName());
+        tv_res_total_price.setText(styleBean.getPrice());
+    }
 
-        et_booker_name.setText(LoginedUserInfo.user.getName());
-        et_booker_phone.setText(LoginedUserInfo.user.getPhone());
-        tv_resDate
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.btn_payment_request_auth_code:
+                    requestAuthCode();
+                    break;
+                case R.id.btn_payment_check_auth_code:
+                    authCodeCheck();
+                    break;
+                case R.id.btn_payment_submit:
 
+                    break;
+            }
+        }
+    };
+
+    ////////////////////////////////////////////////////////
+    //                                                    //
+    //              문자인증 추가 해야함                        //
+    //                                                    //
+    ////////////////////////////////////////////////////////
+    public void requestAuthCode(){
+
+    }
+
+    public void authCodeCheck(){
 
     }
 

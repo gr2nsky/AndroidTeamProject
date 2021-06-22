@@ -39,6 +39,7 @@
         <activity android:name=".Activities.Diary.DiaryMainActivity" />
         <activity android:name=".Activities.Consult.ConsultMainActivity" />
         <activity android:name=".Activities.LogoActivity">
+
         </activity>
         <activity android:name=".Activities.LoginActivity" />
         <activity android:name=".Activities.MainActivity" />

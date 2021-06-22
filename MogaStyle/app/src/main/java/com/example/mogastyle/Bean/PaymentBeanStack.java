@@ -6,6 +6,8 @@ public class PaymentBeanStack {
     TempDesignerBean designerBean = null;
     TempShopBean shopBean = null;
     TempStyleBean styleBean = null;
+    ResDateData resDateData = null;
+    int resTime = -1;
 
     public PaymentBeanStack() {
     }
@@ -14,6 +16,8 @@ public class PaymentBeanStack {
         designerBean = null;
         shopBean = null;
         styleBean = null;
+        resDateData = null;
+        resTime = -1;
     }
 
     public TempDesignerBean getDesignerBean() {
@@ -38,5 +42,29 @@ public class PaymentBeanStack {
 
     public void setStyleBean(TempStyleBean styleBean) {
         this.styleBean = styleBean;
+    }
+
+    public static PaymentBeanStack getStack() {
+        return stack;
+    }
+
+    public static void setStack(PaymentBeanStack stack) {
+        PaymentBeanStack.stack = stack;
+    }
+
+    public ResDateData getResDateData() {
+        return resDateData;
+    }
+
+    public void setResDateData(ResDateData resDateData) {
+        this.resDateData = resDateData;
+    }
+
+    public int getResTime() {
+        return resTime;
+    }
+
+    public void setResTime(int resTime) {
+        this.resTime = resTime;
     }
 }

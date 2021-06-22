@@ -2,8 +2,8 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:state_selected="true"
-        android:color="@color/btn_super_positive"/>
+        android:color="@color/menu_selected"/>
     <item
         android:state_selected="false"
-        android:color="@color/btn_super_negative"/>
+        android:color="@color/menu_nomal"/>
 </selector>

@@ -86,6 +86,8 @@ public class ReservationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PaymentActivity.class);
+                PaymentBeanStack.stack.setResDateData(dateSelectorAdapter.getSelectedData());
+                PaymentBeanStack.stack.setResTime(timeSelectorAdapter.getSelectedTime());
                 startActivity(intent);
             }
         });
