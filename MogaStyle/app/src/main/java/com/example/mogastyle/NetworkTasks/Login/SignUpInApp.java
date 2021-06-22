@@ -18,11 +18,12 @@ public class SignUpInApp extends AsyncTask<Integer , String , Object> {
     Context context;
     String mAddr;
     ProgressDialog progressDialog;
-    String userId ,userPw , userPhone ,userCheck , joinType;
+    String userName,userId ,userPw , userPhone ,userCheck , joinType;
 
-    public SignUpInApp(Context context, String mAddr, String userId, String userPw, String userPhone, String userCheck, String joinType) {
+    public SignUpInApp(Context context, String mAddr, String userName,String userId, String userPw, String userPhone, String userCheck, String joinType) {
         this.context = context;
         this.mAddr = mAddr;
+        this.userName = userName;
         this.userId = userId;
         this.userPw = userPw;
         this.userPhone = userPhone;
@@ -66,7 +67,7 @@ public class SignUpInApp extends AsyncTask<Integer , String , Object> {
             httpURLConnection.setRequestMethod("POST");
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(httpURLConnection.getOutputStream());
 
-            String sendMSG = "userId="+userId +"&userPw="+userPw + "&userPhone="+userPhone+ "&userCheck="+userCheck+ "&joinType="+joinType;
+            String sendMSG = "userName="+ userName+"&userId="+userId +"&userPw="+userPw + "&userPhone="+userPhone+ "&userCheck="+userCheck+ "&joinType="+joinType;
             outputStreamWriter.write(sendMSG);
             outputStreamWriter.flush();
 
