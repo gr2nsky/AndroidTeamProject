@@ -16,8 +16,24 @@ public class User {
     String hairType;
     String joinType;
     String userCheck;
+    //추가
+    String userImage;
+    String userPhone;
 
     public User() {
+    }
+
+//    User user = new User(userNo,userId,userName,userImage,userPhone,userJoinType,userCheck);가
+
+
+    public User(int no, String id, String name, String userImage, String userPhone,String joinType, String userCheck) {
+        this.no = no;
+        this.id = id;
+        this.name = name;
+        this.joinType = joinType;
+        this.userCheck = userCheck;
+        this.userImage = userImage;
+        this.userPhone = userPhone;
     }
 
     public User(int no, String id, String name, String gender, String birthday, String hairType, String joinType, String userCheck) {
@@ -93,6 +109,23 @@ public class User {
 
     public void setUserCheck(String userCheck) {
         this.userCheck = userCheck;
+    }
+
+    //추
+    public String getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(String userImage) {
+        this.userImage = userImage;
+    }
+
+    public String getUserPhone() {
+        return userPhone;
+    }
+
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
     }
 
     //Log용 테스트 메서드

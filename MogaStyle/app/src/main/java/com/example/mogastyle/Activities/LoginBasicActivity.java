@@ -11,10 +11,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mogastyle.Bean.User;
+import com.example.mogastyle.Common.LoginedUserInfo;
 import com.example.mogastyle.Common.ShareVar;
 import com.example.mogastyle.NetworkTasks.Login.LoginInApp;
+import com.example.mogastyle.NetworkTasks.Login.LoginInAppGetUserInfo;
 import com.example.mogastyle.NetworkTasks.Login.SignUpInApp;
 import com.example.mogastyle.R;
+
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 public class LoginBasicActivity extends AppCompatActivity {
 
@@ -26,6 +32,9 @@ public class LoginBasicActivity extends AppCompatActivity {
     Button btn_login_login;
 
     String urlAddr = ShareVar.hostRootAddr ;
+
+    ArrayList<User> userInfo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +73,7 @@ public class LoginBasicActivity extends AppCompatActivity {
                     String loginUserId = et_login_write_id.getText().toString();
                     String loginUserPw = et_login_write_pw.getText().toString();
 
-                    LoginInApp loginInApp = new LoginInApp(LoginBasicActivity.this , urlAddr + "Home/userLoginInAPP.jsp" , loginUserId , loginUserPw);
+                    LoginInApp loginInApp = new LoginInApp(LoginBasicActivity.this , urlAddr + "Home/userLoginInApp.jsp" , loginUserId , loginUserPw);
 
                     Object object = null;
                     String result = "0";
@@ -79,19 +88,32 @@ public class LoginBasicActivity extends AppCompatActivity {
 
                     Log.d("result" , result);
 
-                    if (result.equals("1")){
-                        // 로그인 성공~~
-                        Toast.makeText(LoginBasicActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
+                    if (result.equals("0")){
+                        // 로그인 실패~~
+                        Toast.makeText(LoginBasicActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
+
+                    }else{
+                        Toast.makeText(LoginBasicActivity.this, "로그인 성공 !", Toast.LENGTH_SHORT).show();
+
+                        //로그인 성공시에 들고오는 유저의 정보들 작업
+                        try {
+                            LoginInAppGetUserInfo loginInAppGetUserInfo = new LoginInAppGetUserInfo(LoginBasicActivity.this, urlAddr + "Home/userLoginGetInfo.jsp", result);
+                            Object userObject = loginInAppGetUserInfo.execute().get();
+                            userInfo = (ArrayList<User>) userObject;
+
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+
+                        LoginedUserInfo.user.setName(userInfo.get(0).getName());
+                        Log.d("userName" ,userInfo.get(0).getName());
+                        //성공한 작업을 가지고 MainActivity 에 넣어줌
                         Intent intent = new Intent(LoginBasicActivity.this , MainActivity.class);
-
+                        intent.putExtra("userNo" , result);
+                        intent.putExtra("userName" , userInfo.get(0).getName());
                         startActivity(intent);
+                    }
 
-                    }else if(result.equals("2")) {
-                        Toast.makeText(LoginBasicActivity.this, "이미 로그인 되어있는 아이디입니다", Toast.LENGTH_SHORT).show();
-                    }
-                    else{
-                        Toast.makeText(LoginBasicActivity.this, "회원가입 실패!", Toast.LENGTH_SHORT).show();
-                    }
                     break;
 
             }
