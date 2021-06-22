@@ -98,6 +98,25 @@ public class ResDateData {
         this.dayOfWeek = dayOfWeek;
     }
 
+    public String print(){
+        String monthStr = null;
+        String dateStr = null;
+
+        if(month < 10){
+            monthStr = "0"+month;
+        } else {
+           monthStr = Integer.toString(month);
+        }
+
+        if(date < 10){
+            dateStr = "0"+dateStr;
+        } else {
+            dateStr = Integer.toString(date);
+        }
+
+        return year+"-"+monthStr+"-"+dateStr;
+    }
+
     public String getDay(){
         switch (dayOfWeek){
             case 1:
