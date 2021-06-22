@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,11 +20,14 @@ import com.example.mogastyle.Activities.Hair.HairMainActivity;
 import com.example.mogastyle.Activities.MainActivity;
 import com.example.mogastyle.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import org.jetbrains.annotations.NotNull;
 
 public class MyPageMainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
+
+    BottomSheetDialog bottomSheetDialog;
 
     //Activity VAR
     LinearLayout linear_layout_my_page_info;
@@ -70,6 +74,8 @@ public class MyPageMainActivity extends AppCompatActivity {
         tv_my_page_reservation_setting.setTextColor(myColor);
         tv_my_page_diary_setting.setTextColor(myColor);
         //
+
+
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
@@ -118,10 +124,18 @@ public class MyPageMainActivity extends AppCompatActivity {
             int myColor = ContextCompat.getColor(getApplicationContext(),R.color.btn_super_positive);
             switch (v.getId()){
                 case R.id.linear_layout_my_page_info:
+                    //프로필 클릭시
+                    bottomSheetDialog = new BottomSheetDialog(MyPageMainActivity.this, R.style.BottomSheetTheme);
 
-                    Intent intent = new Intent(MyPageMainActivity.this , MyPageUpdateActivity.class);
-                    startActivity(intent);
+                    View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.layout_my_page_bottom_sheet, findViewById(R.id.linear_layout_my_page_profile_click));
 
+                    bottomSheetView.findViewById(R.id.linear_layout_my_page_bottom_additional_info).setOnClickListener(onClickListener);
+                    bottomSheetView.findViewById(R.id.linear_layout_my_page_bottom_update_info).setOnClickListener(onClickListener);
+                    bottomSheetView.findViewById(R.id.linear_layout_my_page_bottom_logout).setOnClickListener(onClickListener);
+
+                    bottomSheetDialog.setContentView(bottomSheetView);
+                    bottomSheetDialog.show();
+                    //end
                     break;
 
                 case R.id.tv_my_page_consult_setting:
@@ -148,6 +162,21 @@ public class MyPageMainActivity extends AppCompatActivity {
                     DiarySettingFragment diarySettingFragment = new DiarySettingFragment();
                     transaction.replace(R.id.my_page_setting_frame , diarySettingFragment);
                     transaction.commit();
+                    break;
+//                    BottomSheetClickListener
+
+                case R.id.linear_layout_my_page_bottom_additional_info:
+                    bottomSheetDialog.dismiss();
+
+                    break;
+                case R.id.linear_layout_my_page_bottom_update_info:
+                    bottomSheetDialog.dismiss();
+
+                    break;
+
+                case R.id.linear_layout_my_page_bottom_logout:
+                    bottomSheetDialog.dismiss();
+
                     break;
             }
         }
