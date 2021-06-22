@@ -69,6 +69,7 @@ public class PaymentActivity extends AppCompatActivity {
 
         et_booker_name.setText(LoginedUserInfo.user.getName());
         et_booker_phone.setText(LoginedUserInfo.user.getPhone());
+        tv_resDate
 
 
     }
