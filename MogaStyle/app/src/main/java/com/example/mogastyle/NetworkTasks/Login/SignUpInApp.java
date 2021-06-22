@@ -13,24 +13,28 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class LoginCheckUserId extends AsyncTask<Integer , String,Object> {
+public class SignUpInApp extends AsyncTask<Integer , String , Object> {
 
     Context context;
     String mAddr;
     ProgressDialog progressDialog;
-    String userId;
+    String userId ,userPw , userPhone ,userCheck , joinType;
 
-    public LoginCheckUserId(Context context, String mAddr, String userId) {
+    public SignUpInApp(Context context, String mAddr, String userId, String userPw, String userPhone, String userCheck, String joinType) {
         this.context = context;
         this.mAddr = mAddr;
         this.userId = userId;
+        this.userPw = userPw;
+        this.userPhone = userPhone;
+        this.userCheck = userCheck;
+        this.joinType = joinType;
     }
     @Override
     protected void onPreExecute() {
         progressDialog = new ProgressDialog(context);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setTitle("Dialog");
-        progressDialog.setMessage("Checking Id...");
+        progressDialog.setMessage("Sign Up...");
         progressDialog.show();
     }
 
@@ -45,7 +49,6 @@ public class LoginCheckUserId extends AsyncTask<Integer , String,Object> {
         super.onCancelled();
         progressDialog.dismiss();
     }
-
     @Override
     protected Object doInBackground(Integer... integers) {
         StringBuffer stringBuffer = new StringBuffer();
@@ -53,6 +56,8 @@ public class LoginCheckUserId extends AsyncTask<Integer , String,Object> {
         InputStreamReader inputStreamReader = null;
         BufferedReader bufferedReader = null;
         String result = null;
+
+
         try{
             URL url = new URL(mAddr);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -61,7 +66,7 @@ public class LoginCheckUserId extends AsyncTask<Integer , String,Object> {
             httpURLConnection.setRequestMethod("POST");
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(httpURLConnection.getOutputStream());
 
-            String sendMSG = "userId="+userId;
+            String sendMSG = "userId="+userId +"&userPw="+userPw + "&userPhone="+userPhone+ "&userCheck="+userCheck+ "&joinType="+joinType;
             outputStreamWriter.write(sendMSG);
             outputStreamWriter.flush();
 

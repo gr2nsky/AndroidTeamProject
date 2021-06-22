@@ -69,14 +69,7 @@
             android:layout_marginRight="65dp"
             android:layout_marginBottom="20dp"
             />
-        <EditText
-            android:id="@+id/et_sign_up_userpw2"
-            android:layout_width="260dp"
-            android:layout_height="wrap_content"
-            android:hint=" Password 를 한번 더 입력해주세요 !"
-            android:fontFamily="@font/bmjua_otf"
-            android:layout_marginRight="50dp"
-            />
+
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"

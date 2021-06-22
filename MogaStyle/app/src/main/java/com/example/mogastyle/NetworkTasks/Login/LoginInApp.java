@@ -12,25 +12,29 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.channels.AsynchronousChannelGroup;
 
-public class LoginCheckUserId extends AsyncTask<Integer , String,Object> {
-
+public class LoginInApp extends AsyncTask<Integer , String, Object> {
     Context context;
     String mAddr;
     ProgressDialog progressDialog;
-    String userId;
+    String userId, userPw;
 
-    public LoginCheckUserId(Context context, String mAddr, String userId) {
+    public LoginInApp(Context context, String mAddr, String userId, String userPw) {
         this.context = context;
         this.mAddr = mAddr;
         this.userId = userId;
+        this.userPw = userPw;
     }
+
+
+
     @Override
     protected void onPreExecute() {
         progressDialog = new ProgressDialog(context);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setTitle("Dialog");
-        progressDialog.setMessage("Checking Id...");
+        progressDialog.setMessage("Log in...");
         progressDialog.show();
     }
 
@@ -44,6 +48,7 @@ public class LoginCheckUserId extends AsyncTask<Integer , String,Object> {
     protected void onCancelled() {
         super.onCancelled();
         progressDialog.dismiss();
+
     }
 
     @Override
@@ -53,6 +58,8 @@ public class LoginCheckUserId extends AsyncTask<Integer , String,Object> {
         InputStreamReader inputStreamReader = null;
         BufferedReader bufferedReader = null;
         String result = null;
+
+
         try{
             URL url = new URL(mAddr);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -61,7 +68,7 @@ public class LoginCheckUserId extends AsyncTask<Integer , String,Object> {
             httpURLConnection.setRequestMethod("POST");
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(httpURLConnection.getOutputStream());
 
-            String sendMSG = "userId="+userId;
+            String sendMSG = "userId="+userId +"&userPw="+userPw;
             outputStreamWriter.write(sendMSG);
             outputStreamWriter.flush();
 
@@ -96,3 +103,4 @@ public class LoginCheckUserId extends AsyncTask<Integer , String,Object> {
         return result;
     }
 }
+
