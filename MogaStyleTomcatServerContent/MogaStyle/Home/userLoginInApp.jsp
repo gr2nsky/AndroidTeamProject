@@ -3,12 +3,8 @@
 <%@page import="java.sql.*"%>
 <%
 	request.setCharacterEncoding("utf-8");
-  String userName = request.getParameter("userName");
   String userId = request.getParameter("userId");
   String userPw = request.getParameter("userPw");
-  String userPhone = request.getParameter("userPhone");
-  String userCheck = request.getParameter("userCheck");
-  String userType = request.getParameter("joinType");
 
 //------
 	String url_mysql = "jdbc:mysql://localhost/stylediary?serverTimezone=Asia/Seoul&characterEncoding=utf8&useSSL=false";
@@ -19,7 +15,7 @@
 
 
 	PreparedStatement ps = null;
-  PreparedStatement ps2 = null;
+
   ResultSet resultSet = null;
 	try{
 	    Class.forName("com.mysql.jdbc.Driver");
@@ -28,25 +24,23 @@
 
 
 
-      String queryUserCheck = "select id from user where id = ?";
-      ps = conn_mysql.prepareStatement(queryUserCheck);
-      ps.setString(1,userId);
-      resultSet = ps.executeQuery();
-      if(resultSet.next()){
-        result = 2;
-      }else{
-        String A = "insert into user(id, pw, userPhone, joinType , userCheck , name";
-        String B = ") values (?,?,?,?,?,?)";
-        ps2 = conn_mysql.prepareStatement(A+B);
-        ps2.setString(1,userId);
-        ps2.setString(2,userPw);
-        ps2.setString(3,userPhone);
-        ps2.setString(4,userType);
-        ps2.setString(5,userCheck);
-        ps2.setString(6,userName);
-        result = ps2.executeUpdate();
+      String queryUserSignIn = "select no from user where id = ? and pw = ?";
+      ps = conn_mysql.prepareStatement(queryUserSignIn);
 
-}
+      ps.setString(1,userId);
+      ps.setString(2,userPw);
+
+      resultSet = ps.executeQuery();
+
+      if(resultSet.next()){
+
+        result = resultSet.getInt(1);
+
+      }else{
+
+        result = 0;
+
+      }
 
 %>
 		{
