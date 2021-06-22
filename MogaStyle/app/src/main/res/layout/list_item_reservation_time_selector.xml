@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="5dp"
-    android:background="@drawable/background_rounded_corners_white">
+    android:background="@drawable/background_rounded_conner_border">
     <TextView
         android:id="@+id/tv_list_item_res_time_selector"
         android:layout_width="40dp"

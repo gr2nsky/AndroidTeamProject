@@ -1,13 +1,17 @@
+
 package com.example.mogastyle.Adapters.Hair.Reservation;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mogastyle.R;
@@ -36,6 +40,16 @@ public class ResTimeSelectorAdapter extends RecyclerView.Adapter<ResTimeSelector
     private ArrayList<RecyclerView.ViewHolder> holderList = null;
     private int selectedPosition = -1;
 
+    //휴무날일떈 이걸로 받음. 999 : 샵 휴무일, 888 : 개인 휴무일, 777 : 예약이 꽉 참
+    public ResTimeSelectorAdapter(Context con, int layout, int i) {
+        this.con = con;
+        this.layout = layout;
+        inflater = (LayoutInflater) con.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        resableTimeList = new ArrayList<>();
+        resableTimeList.add(i);
+        holderList = new ArrayList<>();
+    }
+
     public ResTimeSelectorAdapter(Context con, int layout, ArrayList<Integer> resableTimeList) {
         this.con = con;
         this.layout = layout;
@@ -51,9 +65,30 @@ public class ResTimeSelectorAdapter extends RecyclerView.Adapter<ResTimeSelector
         return viewHolder;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onBindViewHolder(ResTimeSelectorAdapter.ResTimeSelectViewHolder holder, int position) {
         if(!holderList.contains(holder)) holderList.add(holder);
+
+        if(resableTimeList.get(position) == 999){
+            holder.tv_time.setText("샵 휴무일");
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            holder.tv_time.setLayoutParams(lp);
+            holder.itemView.setBackground(con.getDrawable(R.drawable.background_rounded_conner_border_red));
+            return;
+        } else if (resableTimeList.get(position) == 888){
+            holder.tv_time.setText("개인 휴무일");
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            holder.tv_time.setLayoutParams(lp);
+            holder.itemView.setBackground(con.getDrawable(R.drawable.background_rounded_conner_border_red));
+            return;
+        } else if(resableTimeList.get(position) == 777){
+            holder.tv_time.setText("예약이 가능한 시간이 없습니다.");
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            holder.tv_time.setLayoutParams(lp);
+            holder.itemView.setBackground(con.getDrawable(R.drawable.background_rounded_conner_border_red));
+            return;
+        }
 
         String t = "";
         if( resableTimeList.get(position) < 10) {
@@ -62,18 +97,18 @@ public class ResTimeSelectorAdapter extends RecyclerView.Adapter<ResTimeSelector
         t += Integer.toString(resableTimeList.get(position)) + ":00";
         holder.tv_time.setText(t);
         if(selectedPosition == position){
-            holder.itemView.setBackgroundColor(con.getResources().getColor(R.color.high_light_color));
+            holder.itemView.setBackground(con.getDrawable(R.drawable.background_rounded_conner_border_full));
         } else {
-            holder.itemView.setBackgroundColor(Color.parseColor("#ffffff"));
+            holder.itemView.setBackground(con.getDrawable(R.drawable.background_rounded_conner_border));
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 for(int i = 0; i < holderList.size(); i++){
-                    holderList.get(i).itemView.setBackgroundColor(Color.parseColor("#ffffff"));
+                    holderList.get(i).itemView.setBackground(con.getDrawable(R.drawable.background_rounded_conner_border));
                 }
-                holder.itemView.setBackgroundColor(con.getResources().getColor(R.color.high_light_color));
+                holder.itemView.setBackground(con.getDrawable(R.drawable.background_rounded_conner_border_full));
                 selectedPosition = position;
             }
         });

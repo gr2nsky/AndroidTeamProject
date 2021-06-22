@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mogastyle.Activities.Hair.Reservation.ReservationActivity;
 import com.example.mogastyle.Bean.ResDateData;
 import com.example.mogastyle.R;
 
@@ -34,18 +35,22 @@ public class ResDateSelectorAdapter extends RecyclerView.Adapter<ResDateSelector
         }
     }
 
+    private ReservationActivity ra;
     private Context con;
     private int layout = 0;
     private LayoutInflater inflater = null;
     private ArrayList<ResDateData> dds = null;
     private ArrayList<RecyclerView.ViewHolder> holderList = null;
-    private int selectedPosition = -1;
+    private ArrayList<Integer> shopHolidays = null;
+    private int selectedPosition = 0;
 
-    public ResDateSelectorAdapter(Context con, int layout, ArrayList<ResDateData> dds) {
-        this.con = con;
+    public ResDateSelectorAdapter(ReservationActivity ra, int layout, ArrayList<ResDateData> dds, ArrayList<Integer> shopHolidays) {
+        this.ra = ra;
+        this.con = ra.getApplicationContext();
         this.layout = layout;
         inflater = (LayoutInflater)con.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.dds = dds;
+        this.shopHolidays = shopHolidays;
         holderList = new ArrayList<>();
     }
 
@@ -61,12 +66,30 @@ public class ResDateSelectorAdapter extends RecyclerView.Adapter<ResDateSelector
     @Override
     public void onBindViewHolder(ResDateSelectorAdapter.ResDateSelectViewHolder holder, int position) {
         ResDateData dd = dds.get(position);
+        boolean isHoliday = shopHolidays.contains(dd.getDayOfWeek());
+
+
         Log.v(TAG, "dd : " + dd.printAll());
         holder.tv_day.setText(dd.getDay());
         holder.tv_date.setText(Integer.toString(dd.getDate()));
         if(position == 0){
             holder.tv_today.setText("오늘");
+        } else if(isHoliday){
+           holder.tv_today.setText("휴무");
         }
+
+        if(dd.getDayOfWeek() == 1){
+            holder.tv_day.setTextColor(con.getResources().getColor(R.color.sunday));
+            holder.tv_date.setTextColor(con.getResources().getColor(R.color.sunday));
+        } else if(dd.getDayOfWeek() == 7){
+            holder.tv_day.setTextColor(con.getResources().getColor(R.color.saturday));
+            holder.tv_date.setTextColor(con.getResources().getColor(R.color.saturday));
+        } else {
+            holder.tv_day.setTextColor(con.getResources().getColor(R.color.black));
+            holder.tv_date.setTextColor(con.getResources().getColor(R.color.black));
+        }
+
+
         if (selectedPosition == position){
             holder.itemView.setBackgroundColor(con.getResources().getColor(R.color.high_light_color));
         } else {
@@ -82,6 +105,12 @@ public class ResDateSelectorAdapter extends RecyclerView.Adapter<ResDateSelector
                 }
                 holder.itemView.setBackgroundColor(con.getResources().getColor(R.color.high_light_color));
                 selectedPosition = position;
+
+                if (isHoliday) {
+                    ra.timeSelectorDataChange(999);
+                }else {
+                    ra.timeSelectorDataChange(dds.get(position));
+                }
             }
         });
     }
