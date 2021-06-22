@@ -1,4 +1,4 @@
-package com.examples.mogastyle.Activities.Hair.Reservation;
+package com.example.mogastyle.Activities.Hair.Reservation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
