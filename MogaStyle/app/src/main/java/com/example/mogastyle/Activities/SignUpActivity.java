@@ -33,13 +33,13 @@ import java.util.concurrent.TimeUnit;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    EditText et_sign_up_userid , et_sign_up_userpw , et_sign_up_phone , et_sign_up_token;
+    EditText et_sign_up_name ,et_sign_up_userid , et_sign_up_userpw , et_sign_up_phone , et_sign_up_token;
 
     Button btn_sign_up_check_user_id, btn_sign_up_phone_check ,btn_sign_up_token_check ,btn_sign_up_final;
 
     TextView tv_sign_up_token_check;
 
-    String userId ,userPw , userPw2 , userPhone , userToken , userCheck , joinType;
+    String userName,userId ,userPw , userPhone , userToken , userCheck , joinType;
 
     //FireBase Phone Auth
     FirebaseAuth firebaseAuth;
@@ -54,6 +54,7 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         //EditText Binding
+        et_sign_up_name = findViewById(R.id.et_sign_up_name);
         et_sign_up_userid = findViewById(R.id.et_sign_up_userid);
         et_sign_up_userpw = findViewById(R.id.et_sign_up_userpw);
 
@@ -142,6 +143,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 case R.id.btn_sign_up_final:
                     //마지막 화원가입 완료
+                    userName = et_sign_up_name.getText().toString();
                     userId = et_sign_up_userid.getText().toString();
                     userPw = et_sign_up_userpw.getText().toString();
                     userToken = et_sign_up_token.getText().toString();
@@ -149,7 +151,7 @@ public class SignUpActivity extends AppCompatActivity {
                     userCheck = "0";
                     joinType = "0";
 
-                    SignUpInApp signUpInApp = new SignUpInApp(SignUpActivity.this , urlAddr + "Home/userSignUpInApp.jsp" , userId , userPw , userPhone ,userCheck,joinType);
+                    SignUpInApp signUpInApp = new SignUpInApp(SignUpActivity.this , urlAddr + "Home/userSignUpInApp.jsp" , userName,userId , userPw , userPhone ,userCheck,joinType);
 
                     Object object = null;
                     String result = "0";

@@ -29,6 +29,15 @@
             android:layout_marginBottom="20dp"
             />
     </LinearLayout>
+    <EditText
+        android:id="@+id/et_sign_up_name"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:hint=" 이름을 입력해 주세요 !"
+        android:fontFamily="@font/bmjua_otf"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center"/>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -40,9 +49,10 @@
             android:id="@+id/et_sign_up_userid"
             android:layout_width="230dp"
             android:layout_height="wrap_content"
-            android:hint=" ID 를 입력해주세요 !"
+            android:hint=" Email 를 입력해주세요 !"
             android:fontFamily="@font/bmjua_otf"
             android:layout_marginRight="40dp"
+            android:inputType="textEmailAddress"
             />
         <Button
             android:id="@+id/btn_sign_up_check_user_id"
@@ -68,6 +78,7 @@
             android:fontFamily="@font/bmjua_otf"
             android:layout_marginRight="65dp"
             android:layout_marginBottom="20dp"
+            android:inputType="textPassword"
             />
 
     </LinearLayout>

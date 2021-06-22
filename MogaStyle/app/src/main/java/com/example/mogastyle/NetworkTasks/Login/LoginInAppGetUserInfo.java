@@ -4,6 +4,10 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.example.mogastyle.Bean.User;
+import com.example.mogastyle.Common.LoginedUserInfo;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -12,30 +16,28 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
-public class SignUpInApp extends AsyncTask<Integer , String , Object> {
-
+public class LoginInAppGetUserInfo extends AsyncTask<Integer , String , Object> {
     Context context;
     String mAddr;
     ProgressDialog progressDialog;
-    String userName,userId ,userPw , userPhone ,userCheck , joinType;
+    ArrayList<User> userInfo;
+    String userNo;
 
-    public SignUpInApp(Context context, String mAddr, String userName,String userId, String userPw, String userPhone, String userCheck, String joinType) {
+    public LoginInAppGetUserInfo(Context context, String mAddr, String userNo) {
         this.context = context;
         this.mAddr = mAddr;
-        this.userName = userName;
-        this.userId = userId;
-        this.userPw = userPw;
-        this.userPhone = userPhone;
-        this.userCheck = userCheck;
-        this.joinType = joinType;
+        this.userInfo = new ArrayList<User>();
+        this.userNo = userNo;
     }
+
     @Override
     protected void onPreExecute() {
         progressDialog = new ProgressDialog(context);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setTitle("Dialog");
-        progressDialog.setMessage("Sign Up...");
+        progressDialog.setMessage("get Info...");
         progressDialog.show();
     }
 
@@ -50,14 +52,13 @@ public class SignUpInApp extends AsyncTask<Integer , String , Object> {
         super.onCancelled();
         progressDialog.dismiss();
     }
+
     @Override
     protected Object doInBackground(Integer... integers) {
         StringBuffer stringBuffer = new StringBuffer();
         InputStream inputStream = null;
         InputStreamReader inputStreamReader = null;
         BufferedReader bufferedReader = null;
-        String result = null;
-
 
         try{
             URL url = new URL(mAddr);
@@ -67,13 +68,13 @@ public class SignUpInApp extends AsyncTask<Integer , String , Object> {
             httpURLConnection.setRequestMethod("POST");
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(httpURLConnection.getOutputStream());
 
-            String sendMSG = "userName="+ userName+"&userId="+userId +"&userPw="+userPw + "&userPhone="+userPhone+ "&userCheck="+userCheck+ "&joinType="+joinType;
+            String sendMSG = "userNo="+ userNo;
             outputStreamWriter.write(sendMSG);
             outputStreamWriter.flush();
 
             if (httpURLConnection.getResponseCode() == httpURLConnection.HTTP_OK){
 
-                inputStreamReader = new InputStreamReader(httpURLConnection.getInputStream(),"EUC-KR");
+                inputStreamReader = new InputStreamReader(httpURLConnection.getInputStream(),"UTF-8");
                 bufferedReader = new BufferedReader(inputStreamReader);
 
 
@@ -84,7 +85,20 @@ public class SignUpInApp extends AsyncTask<Integer , String , Object> {
                 }
 
                 JSONObject jsonObject = new JSONObject(stringBuffer.toString());
-                result = jsonObject.getString("result");
+                JSONArray jsonArray = new JSONArray(jsonObject.getString("user_info"));
+                userInfo.clear();
+
+                JSONObject jsonObject1 = (JSONObject) jsonArray.get(0);
+                String userNo = jsonObject1.getString("no");
+                String userId = jsonObject1.getString("id");
+                String userName = jsonObject1.getString("name");
+                String userImage = jsonObject1.getString("image");
+                String userPhone = jsonObject1.getString("phone");
+                String userJoinType = jsonObject1.getString("joinType");
+                String userCheck = jsonObject1.getString("userCheck");
+                User user = new User(Integer.parseInt(userNo),userId,userName,userImage,userPhone,userJoinType,userCheck);
+                userInfo.add(user);
+
 
             }
         } catch (Exception e){
@@ -99,6 +113,6 @@ public class SignUpInApp extends AsyncTask<Integer , String , Object> {
             }
         }
 
-        return result;
+        return userInfo;
     }
 }
