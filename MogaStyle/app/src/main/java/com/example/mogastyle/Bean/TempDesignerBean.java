@@ -19,7 +19,8 @@ public class TempDesignerBean {
     public TempDesignerBean() {
     }
 
-    public TempDesignerBean(String name, String certificationDate, ArrayList<ResDateData> resDates, String img, String holiday) {
+    public TempDesignerBean(int no, String name, String certificationDate, ArrayList<ResDateData> resDates, String img, String holiday) {
+        this.no = no;
         this.name = name;
         this.certificationDate = certificationDate;
         this.resDates = resDates;

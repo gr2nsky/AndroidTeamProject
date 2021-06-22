@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.example.mogastyle.Adapters.Hair.Reservation.RecyclerDecoration;
 import com.example.mogastyle.Adapters.Hair.Reservation.ResDateSelectorAdapter;
 import com.example.mogastyle.Adapters.Hair.Reservation.ResTimeSelectorAdapter;
+import com.example.mogastyle.Bean.PaymentBeanStack;
 import com.example.mogastyle.Bean.ResDateData;
 import com.example.mogastyle.Bean.Shop;
 import com.example.mogastyle.Bean.TempDesignerBean;
@@ -283,9 +284,12 @@ public class ReservationActivity extends AppCompatActivity {
         reservedDates.add(rdd5);
         reservedDates.add(rdd6);
 
-        tempDesignerBean = new TempDesignerBean("최준", "2020-05-26", reservedDates, "tempImg.png", "5");
+        tempDesignerBean = new TempDesignerBean(2, "최준", "2020-05-26", reservedDates, "tempImg.png", "5");
         tempStyleBean = new TempStyleBean(1, "봄탄소년단", 50000);
-        tempShopBean = new TempShopBean("더존미용실 강남점", "1,7");
+        tempShopBean = new TempShopBean(3, "더존미용실 강남점", "1,7");
+        PaymentBeanStack.stack.setDesignerBean(tempDesignerBean);
+        PaymentBeanStack.stack.setStyleBean(tempStyleBean);
+        PaymentBeanStack.stack.setShopBean(tempShopBean);
 
     }
 }

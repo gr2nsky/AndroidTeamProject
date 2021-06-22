@@ -3,6 +3,7 @@ package com.example.mogastyle.Bean;
 import java.util.ArrayList;
 
 public class TempShopBean {
+    private int no;
     private String name;
     private String tel;
     private String address;
@@ -12,7 +13,8 @@ public class TempShopBean {
     ArrayList<Integer> holidays;
 
     //임시
-    public TempShopBean(String name, String holiday){
+    public TempShopBean(int no, String name, String holiday){
+        this.no = no;
         this.name = name;
         holidays = new ArrayList<>();
         if(holiday.length() > 2) {
