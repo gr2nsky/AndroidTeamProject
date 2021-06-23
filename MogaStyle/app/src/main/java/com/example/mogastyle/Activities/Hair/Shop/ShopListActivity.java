@@ -2,15 +2,18 @@ package com.example.mogastyle.Activities.Hair.Shop;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ImageButton;
 
 import com.example.mogastyle.Activities.Consult.ConsultMainActivity;
 import com.example.mogastyle.Activities.Diary.DiaryMainActivity;
 import com.example.mogastyle.Activities.MainActivity;
 import com.example.mogastyle.Activities.MyPage.MyPageMainActivity;
+import com.example.mogastyle.Adapters.Hair.Shop.ShopPagerAdapter;
 import com.example.mogastyle.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -18,11 +21,20 @@ import org.jetbrains.annotations.NotNull;
 
 public class ShopListActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
+    ShopPagerAdapter shopPagerAdapter;
+    Intent intent;
+    ViewPager viewPager;
+    ImageButton imageButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_list);
+
+        viewPager = findViewById(R.id.pager);
+        ShopPagerAdapter adapter = new ShopPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
+        imageButton = findViewById(R.id.btn_home);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
 

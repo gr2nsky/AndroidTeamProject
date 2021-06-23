@@ -21,15 +21,15 @@ import org.jetbrains.annotations.NotNull;
 
 public class HairMainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
-    MapView mapView = new MapView(this);
+    //MapView mapView = new MapView(this);
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
-        mapViewContainer.addView(mapView);
+//        ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
+//        mapViewContainer.addView(mapView);
         setContentView(R.layout.activity_hair_main);
 
 
