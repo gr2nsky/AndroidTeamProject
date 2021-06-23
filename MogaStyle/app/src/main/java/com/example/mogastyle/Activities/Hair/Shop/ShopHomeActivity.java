@@ -21,6 +21,8 @@ import com.google.android.material.tabs.TabLayout;
 
 import org.jetbrains.annotations.NotNull;
 
+//HairMain에서 미용실을 클릭했을 때, 넘어가는 페이지
+
 public class ShopHomeActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     ShopPagerAdapter shopPagerAdapter;

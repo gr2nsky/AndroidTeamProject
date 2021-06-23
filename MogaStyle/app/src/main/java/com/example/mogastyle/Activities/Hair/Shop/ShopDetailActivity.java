@@ -19,6 +19,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.jetbrains.annotations.NotNull;
 
+//styling list에서 선택하면 넘어오는 페이지이자 예약 직전 페이지
+
 public class ShopDetailActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
 
