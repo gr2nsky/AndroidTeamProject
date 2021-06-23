@@ -28,8 +28,14 @@ public class HairMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+<<<<<<< Updated upstream
 //        ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
 //        mapViewContainer.addView(mapView);
+=======
+
+       // ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
+       // mapViewContainer.addView(mapView);
+>>>>>>> Stashed changes
         setContentView(R.layout.activity_hair_main);
 
 
