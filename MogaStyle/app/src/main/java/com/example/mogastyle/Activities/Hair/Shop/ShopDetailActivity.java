@@ -6,9 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.mogastyle.Activities.Consult.ConsultMainActivity;
 import com.example.mogastyle.Activities.Diary.DiaryMainActivity;
+import com.example.mogastyle.Activities.Hair.Reservation.PaymentActivity;
 import com.example.mogastyle.Activities.MainActivity;
 import com.example.mogastyle.Activities.MyPage.MyPageMainActivity;
 import com.example.mogastyle.R;
@@ -19,10 +22,18 @@ import org.jetbrains.annotations.NotNull;
 public class ShopDetailActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
 
+    Button button;
+
+    Intent intent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_detail);
+
+        button = findViewById(R.id.btn_reservation1);
+
+        button.setOnClickListener(onClickListener);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
@@ -63,6 +74,17 @@ public class ShopDetailActivity extends AppCompatActivity {
             }
         });
     }
+
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.btn_reservation1:
+                    intent = new Intent(ShopDetailActivity.this, PaymentActivity.class);
+                    startActivity(intent);
+            }
+        }
+    };
     @Override
     public void onBackPressed() {
         super.onBackPressed();

@@ -34,7 +34,7 @@ import java.util.ArrayList;
 public class HairMainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     //MapView mapView = new MapView(this);
-    private Spinner spinner;
+    //private Spinner spinner;
     ArrayAdapter<CharSequence> adapter1 = null;
 
     String urlAddr = null;
@@ -115,8 +115,6 @@ public class HairMainActivity extends AppCompatActivity {
         super.onResume();
         //데이터를 갱신할 수 있는 LIFECYCLE
         connectGetData();
-
-
     }
 
     private void connectGetData(){

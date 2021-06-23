@@ -7,6 +7,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.mogastyle.Activities.Consult.ConsultMainActivity;
@@ -16,10 +17,11 @@ import com.example.mogastyle.Activities.MyPage.MyPageMainActivity;
 import com.example.mogastyle.Adapters.Hair.Shop.ShopPagerAdapter;
 import com.example.mogastyle.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabLayout;
 
 import org.jetbrains.annotations.NotNull;
 
-public class ShopListActivity extends AppCompatActivity {
+public class ShopHomeActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     ShopPagerAdapter shopPagerAdapter;
     Intent intent;
@@ -35,6 +37,14 @@ public class ShopListActivity extends AppCompatActivity {
         ShopPagerAdapter adapter = new ShopPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         imageButton = findViewById(R.id.btn_home);
+
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
+        tabLayout.setupWithViewPager(viewPager);
+//        tabLayout.addTab(tabLayout.newTab().setText("홈"));
+//        tabLayout.addTab(tabLayout.newTab().setText("메뉴"));
+//        tabLayout.addTab(tabLayout.newTab().setText("디자이너"));
+//        tabLayout.addTab(tabLayout.newTab().setText("리뷰"));
+        imageButton.setOnClickListener(onClickListener);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
@@ -76,6 +86,19 @@ public class ShopListActivity extends AppCompatActivity {
         });
 
     }
+
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.btn_home:
+                    intent = new Intent(ShopHomeActivity.this,MainActivity.class);
+                    startActivity(intent);
+
+            }
+        }
+    };
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

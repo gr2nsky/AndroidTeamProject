@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import com.example.mogastyle.Activities.Consult.ConsultFragment;
 import com.example.mogastyle.Activities.Hair.Designer.DesignerFragment;
 import com.example.mogastyle.Activities.Hair.Menu.MenuFragment;
-import com.example.mogastyle.Activities.Hair.Shop.ShopListFragment;
+import com.example.mogastyle.Activities.Hair.Shop.ShopHomeFragment;
 
 import java.util.ArrayList;
 
@@ -19,7 +19,7 @@ public class ShopPagerAdapter extends FragmentPagerAdapter {
 
     public ShopPagerAdapter(FragmentManager fm) {
         super(fm);
-        arrayList.add(new ShopListFragment());
+        arrayList.add(new ShopHomeFragment());
         arrayList.add(new MenuFragment());
         arrayList.add(new DesignerFragment());
         arrayList.add(new ConsultFragment());

@@ -17,14 +17,15 @@
 <!--            android:id="@+id/map_view"-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="match_parent" >-->
-            <ListView
-                android:id="@+id/lv_shoplist"
-                android:layout_width="match_parent"
-                android:layout_height="567dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:fontFamily="@font/bmjua_otf"
-                android:textColor="@color/black" />
+
+    <ListView
+        android:id="@+id/lv_shoplist"
+        android:layout_width="match_parent"
+        android:layout_height="371dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:fontFamily="@font/bmjua_otf"
+        android:textColor="@color/black" />
 
 <!--        </RelativeLayout>-->
 
