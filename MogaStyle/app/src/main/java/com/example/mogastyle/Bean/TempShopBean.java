@@ -83,4 +83,12 @@ public class TempShopBean {
     public void setHolidays(ArrayList<Integer> holidays) {
         this.holidays = holidays;
     }
+
+    public int getNo() {
+        return no;
+    }
+
+    public void setNo(int no) {
+        this.no = no;
+    }
 }
