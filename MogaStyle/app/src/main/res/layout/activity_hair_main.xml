@@ -13,26 +13,29 @@
         android:layout_height="wrap_content"
         android:queryHint="검색어를 입력하시오" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation ="vertical">
-
-        <RelativeLayout
-            android:id="@+id/map_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottomNavigationView"
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/map_view"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent" >-->
+            <ListView
+                android:id="@+id/lv_shoplist"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:itemIconTint="@drawable/selector"
-                app:itemTextColor="@drawable/selector"
-                app:menu="@menu/menu" />
-        </RelativeLayout>
+                android:layout_height="567dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/bmjua_otf"
+                android:textColor="@color/black" />
 
-    </RelativeLayout>
+<!--        </RelativeLayout>-->
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:itemIconTint="@drawable/selector"
+            app:itemTextColor="@drawable/selector"
+            app:menu="@menu/menu" />
+
 
 
 </LinearLayout>
