@@ -7,28 +7,9 @@
     android:padding="10dp"
     android:background="@drawable/bottom_sheet_background">
 
-    <LinearLayout
-        android:id="@+id/linear_layout_my_page_bottom_additional_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="15dp">
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/user_add_info"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="추가 정보 입력 / 수정"
-            android:textSize="20dp"
-            android:fontFamily="@font/bmjua_otf"
-            android:layout_marginLeft="30dp"/>
-
-    </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linear_layout_my_page_bottom_update_info"
+        android:id="@+id/linear_layout_my_page_bottom_update_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -40,7 +21,27 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="프로필 변경"
+            android:text="프로필 사진 변경"
+            android:textSize="20dp"
+            android:fontFamily="@font/bmjua_otf"
+            android:layout_marginLeft="30dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_layout_my_page_bottom_update_pw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="15dp">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/user_info_update"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="비밀 번호 변경"
             android:textSize="20dp"
             android:fontFamily="@font/bmjua_otf"
             android:layout_marginLeft="30dp"/>

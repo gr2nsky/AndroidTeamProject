@@ -2,11 +2,14 @@ package com.example.mogastyle.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +38,10 @@ public class LoginBasicActivity extends AppCompatActivity {
 
     ArrayList<User> userInfo;
 
+    CheckBox chk_login_auto;
+
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor sharedPreferencesEdit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +58,9 @@ public class LoginBasicActivity extends AppCompatActivity {
 
         btn_login_login = findViewById(R.id.btn_login_login);
         btn_login_login.setOnClickListener(onClickListener);
+
+        chk_login_auto = findViewById(R.id.chk_login_auto);
+
 
     }
 
@@ -76,6 +86,8 @@ public class LoginBasicActivity extends AppCompatActivity {
                     LoginInApp loginInApp = new LoginInApp(LoginBasicActivity.this , urlAddr + "Home/userLoginInApp.jsp" , loginUserId , loginUserPw);
 
                     Object object = null;
+
+                    //Result == userNo
                     String result = "0";
                     try{
                         object = loginInApp.execute().get();
@@ -105,12 +117,37 @@ public class LoginBasicActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
+                        // 로그인 시  Bean 저장
+                        LoginedUserInfo.user.setNo(userInfo.get(0).getNo());
                         LoginedUserInfo.user.setName(userInfo.get(0).getName());
+                        LoginedUserInfo.user.setId(userInfo.get(0).getId());
+                        LoginedUserInfo.user.setJoinType(userInfo.get(0).getJoinType());
+                        LoginedUserInfo.user.setUserCheck(userInfo.get(0).getUserCheck());
+                        LoginedUserInfo.user.setUserPhone(userInfo.get(0).getUserPhone());
+                        LoginedUserInfo.user.setUserImage(userInfo.get(0).getUserImage());
+                        // 로그인 시  Bean 저장--
+
+                        //자동로그인시에 .. check 일때
+
+                        if(chk_login_auto.isChecked()) {
+                            sharedPreferences = getSharedPreferences("autoLogined", Activity.MODE_PRIVATE);
+                            sharedPreferencesEdit = sharedPreferences.edit();
+                            sharedPreferencesEdit.putString("userNo", Integer.toString(userInfo.get(0).getNo()));
+                            sharedPreferencesEdit.commit();
+                        }else{
+                            Intent intent = new Intent(LoginBasicActivity.this , MainActivity.class);
+                            startActivity(intent);
+                        }
+
+
+                        //
+
                         Log.d("userName" ,userInfo.get(0).getName());
                         //성공한 작업을 가지고 MainActivity 에 넣어줌
                         Intent intent = new Intent(LoginBasicActivity.this , MainActivity.class);
                         intent.putExtra("userNo" , result);
                         intent.putExtra("userName" , userInfo.get(0).getName());
+                        intent.putExtra("userId" , userInfo.get(0).getId());
                         startActivity(intent);
                     }
 

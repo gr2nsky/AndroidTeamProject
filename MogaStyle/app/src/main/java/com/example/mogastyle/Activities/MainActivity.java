@@ -14,6 +14,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -23,6 +24,7 @@ import com.example.mogastyle.Activities.Diary.DiaryMainActivity;
 import com.example.mogastyle.Activities.Hair.HairMainActivity;
 import com.example.mogastyle.Activities.MyPage.MyPageMainActivity;
 import com.example.mogastyle.Adapters.Home.HomePageAdapter;
+import com.example.mogastyle.Common.LoginedUserInfo;
 import com.example.mogastyle.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -43,7 +45,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        this.setFinishOnTouchOutside(false);
 
+        // main 에서 3개의 프레그먼트 이동
         ViewPager viewPager = findViewById(R.id.viewPager_main_loginSuccess);
         fragmentPagerAdapter = new HomePageAdapter(getSupportFragmentManager());
         viewPager.setAdapter(fragmentPagerAdapter);
@@ -51,7 +55,15 @@ public class MainActivity extends AppCompatActivity {
 
         CircleIndicator indicator = findViewById(R.id.main_indicator);
         indicator.setViewPager(viewPager);
+        // -- 프레그 먼트 이동 끝
 
+
+        //getPhoneDialog 두둥 등장
+        // null -> 4자리 나오면 ...
+        if(LoginedUserInfo.user.getUserPhone().length() == 4) {
+            openPhoneDialog();
+        }
+        //--getPhoneDialog 두둥 등장 end
 
         //KAKAO LOGIN GET INFO --
 
@@ -108,4 +120,12 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "앱을 종료합니다.", Toast.LENGTH_SHORT).show();
         ActivityCompat.finishAffinity(this);
     }
+
+    public void openPhoneDialog(){
+        MainGetPhoneDialog mainGetPhoneDialog = new MainGetPhoneDialog();
+        mainGetPhoneDialog.show(getSupportFragmentManager(),"example dialog");
+        mainGetPhoneDialog.setCancelable(false);
+
+    }
+
 }

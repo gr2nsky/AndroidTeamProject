@@ -9,7 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -22,6 +24,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mogastyle.Common.LoginedUserInfo;
+import com.example.mogastyle.Common.ShareVar;
+import com.example.mogastyle.NetworkTasks.Login.SignUpInKaKaoInsert;
+import com.example.mogastyle.NetworkTasks.Login.SignUpInKakao;
 import com.example.mogastyle.R;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -66,6 +71,15 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     Intent intent;
 
+    String urlAddr = ShareVar.hostRootAddr ;
+
+    String userCheckResult;
+
+    String insertResult;
+
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor sharedPreferencesEdit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,9 +117,60 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                         intent.putExtra("userKakaoName" , result.getKakaoAccount().getProfile().getNickname());
                         intent.putExtra("userKakaoImage" , result.getKakaoAccount().getProfile().getProfileImageUrl());
                         intent.putExtra("userKakaoPhone" , result.getKakaoAccount().getPhoneNumber());
-                        //User 저장
+                        //User 저장 LoginedUserInfo
+
                         LoginedUserInfo.user.setName(result.getKakaoAccount().getProfile().getNickname());
-                        //User 저장 end --
+                        LoginedUserInfo.user.setUserImage(result.getKakaoAccount().getProfile().getThumbnailImageUrl());
+                        LoginedUserInfo.user.setId(result.getKakaoAccount().getEmail());
+                        LoginedUserInfo.user.setJoinType("1");
+
+                        // 카카오 계정 db 에 저장하기
+                        SignUpInKakao signUpInKakao = new SignUpInKakao(LoginActivity.this, urlAddr + "Home/userCheckInDB.jsp", result.getKakaoAccount().getProfile().getNickname());
+                        Object object = null;
+                        try {
+                            object = signUpInKakao.execute().get();
+                            }catch(Exception e){
+                                e.printStackTrace();
+                            }
+                        userCheckResult = (String) object;
+
+                        if(userCheckResult.equals("0")){
+                            //먼저 db 에 없다면..
+                            SignUpInKaKaoInsert signUpInKaKaoInsert = new SignUpInKaKaoInsert(LoginActivity.this , urlAddr + "Home/userSignUpInKaKao.jsp" , result.getKakaoAccount().getEmail() , result.getKakaoAccount().getProfile().getNickname(),result.getKakaoAccount().getProfile().getThumbnailImageUrl());
+                            Object object1 = null;
+                            try {
+                                object1 = signUpInKaKaoInsert.execute().get();
+                            }catch(Exception e){
+                                e.printStackTrace();
+                            }
+                            insertResult = (String) object1;
+                            if(insertResult.equals("1")){
+                                SignUpInKakao signUpInKakao1 = new SignUpInKakao(LoginActivity.this, urlAddr + "Home/userCheckInDB.jsp", result.getKakaoAccount().getProfile().getNickname());
+                                Object object2 = null;
+                                try {
+                                    object2 = signUpInKakao1.execute().get();
+                                }catch(Exception e){
+                                    e.printStackTrace();
+                                }
+                                userCheckResult = (String) object2;
+                                LoginedUserInfo.user.setNo(Integer.parseInt(userCheckResult));
+                                Log.d("KKFG" , userCheckResult);
+                                sharedPreferences = getSharedPreferences("autoLogined" , Activity.MODE_PRIVATE);
+                                sharedPreferencesEdit = sharedPreferences.edit();
+                                sharedPreferencesEdit.putString("userNo" , userCheckResult);
+                                sharedPreferencesEdit.commit();
+                            }
+
+                        }else{
+                            LoginedUserInfo.user.setNo(Integer.parseInt(userCheckResult));
+                            Log.d("KKFG" , userCheckResult);
+                            sharedPreferences = getSharedPreferences("autoLogined" , Activity.MODE_PRIVATE);
+                            sharedPreferencesEdit = sharedPreferences.edit();
+                            sharedPreferencesEdit.putString("userNo" , userCheckResult);
+                            sharedPreferencesEdit.commit();
+                        }
+
+
                         startActivity(intent);
                         Toast.makeText(LoginActivity.this, "로그인 성공!", Toast.LENGTH_SHORT).show();
                     }
@@ -154,6 +219,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 case R.id.btn_login_goMain:
                     intent = new Intent(LoginActivity.this , MainActivity.class);
                     startActivity(intent);
+                    LoginedUserInfo.user.setJoinType("0");
                     break;
 
                 case R.id.tv_login_another_way_login:
@@ -223,10 +289,62 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
                             intent = new Intent(getApplicationContext() , MainActivity.class);
                             intent.putExtra("nickName" , googleSignInAccount.getDisplayName());
-                            // 이름 저장
+                            // USER BEAN 저장
                             LoginedUserInfo.user.setName(googleSignInAccount.getDisplayName());
+                            LoginedUserInfo.user.setUserImage(googleSignInAccount.getPhotoUrl().toString());
+                            LoginedUserInfo.user.setId(googleSignInAccount.getEmail());
+                            LoginedUserInfo.user.setJoinType("2");
+
                             // --
-                            intent.putExtra("photo" , googleSignInAccount.getPhotoUrl());
+
+
+
+                            //User DB 저장
+                            SignUpInKakao signUpInKakao = new SignUpInKakao(LoginActivity.this, urlAddr + "Home/userCheckInDB.jsp", googleSignInAccount.getDisplayName());
+                            Object object = null;
+                            try {
+                                object = signUpInKakao.execute().get();
+                            }catch(Exception e){
+                                e.printStackTrace();
+                            }
+                            userCheckResult = (String) object;
+
+                            if(userCheckResult.equals("0")){
+                                //먼저 db 에 없다면..
+                                SignUpInKaKaoInsert signUpInKaKaoInsert = new SignUpInKaKaoInsert(LoginActivity.this , urlAddr + "Home/userSignUpInKaKao.jsp" , googleSignInAccount.getEmail() , googleSignInAccount.getDisplayName(),googleSignInAccount.getPhotoUrl().toString());
+                                Object object1 = null;
+                                try {
+                                    object1 = signUpInKaKaoInsert.execute().get();
+                                }catch(Exception e){
+                                    e.printStackTrace();
+                                }
+                                insertResult = (String) object1;
+                                if(insertResult.equals("1")){
+                                    SignUpInKakao signUpInKakao1 = new SignUpInKakao(LoginActivity.this, urlAddr + "Home/userCheckInDB.jsp", googleSignInAccount.getDisplayName());
+                                    Object object2 = null;
+                                    try {
+                                        object2 = signUpInKakao1.execute().get();
+                                    }catch(Exception e){
+                                        e.printStackTrace();
+                                    }
+                                    userCheckResult = (String) object2;
+                                    LoginedUserInfo.user.setNo(Integer.parseInt(userCheckResult));
+                                    Log.d("KKFG" , userCheckResult);
+                                    sharedPreferences = getSharedPreferences("autoLogined" , Activity.MODE_PRIVATE);
+                                    sharedPreferencesEdit = sharedPreferences.edit();
+                                    sharedPreferencesEdit.putString("userNo" , userCheckResult);
+                                    sharedPreferencesEdit.commit();
+                                }
+
+                            }else{
+                                LoginedUserInfo.user.setNo(Integer.parseInt(userCheckResult));
+                                Log.d("KKFG" , userCheckResult);
+                                sharedPreferences = getSharedPreferences("autoLogined" , Activity.MODE_PRIVATE);
+                                sharedPreferencesEdit = sharedPreferences.edit();
+                                sharedPreferencesEdit.putString("userNo" , userCheckResult);
+                                sharedPreferencesEdit.commit();
+                            }
+                            //User DB 저장 --
 
                             startActivity(intent);
                         }else{
