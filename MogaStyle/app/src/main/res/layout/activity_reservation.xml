@@ -68,7 +68,7 @@
                     android:layout_height="match_parent"
                     android:text="매장"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/bmjua_otf"
+                    android:fontFamily="@font/nexon_gothic_r"
                     android:gravity="right|center"
                     android:paddingRight="20dp"/>
                 <TextView
@@ -78,7 +78,7 @@
                     android:gravity="left|center"
                     android:text="매장이름"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/bmjua_otf"/>
+                    android:fontFamily="@font/nexon_gothic_r"/>
             </LinearLayout><!-- //shop tv area-->
             <LinearLayout
                 android:layout_weight="1"
@@ -92,7 +92,7 @@
                     android:gravity="right|center"
                     android:text="메뉴"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/bmjua_otf"
+                    android:fontFamily="@font/nexon_gothic_r"
                     android:paddingRight="20dp"/>
                 <TextView
                     android:id="@+id/tv_reservation_menu_name"
@@ -101,7 +101,7 @@
                     android:gravity="left|center"
                     android:text="메뉴이름"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/bmjua_otf"/>
+                    android:fontFamily="@font/nexon_gothic_r"/>
             </LinearLayout><!-- //menu tv area-->
             <LinearLayout
                 android:layout_weight="1"
@@ -115,7 +115,7 @@
                     android:gravity="right|center"
                     android:text="메뉴가격"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/bmjua_otf"
+                    android:fontFamily="@font/nexon_gothic_r"
                     android:paddingRight="20dp"/>
                 <TextView
                     android:id="@+id/tv_reservation_shop_price"
@@ -124,7 +124,7 @@
                     android:gravity="left|center"
                     android:text="가격"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/bmjua_otf"/>
+                    android:fontFamily="@font/nexon_gothic_r"/>
             </LinearLayout><!-- //price tv area-->
         </LinearLayout>
         <View
@@ -205,7 +205,8 @@
                         android:text="직책 + 이름"
                         android:textSize="20dp"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/bmjua_otf"
+                        android:fontFamily="@font/nexon_gothic_r"
+                        android:textStyle="bold"
                         android:gravity="left|bottom"/>
                     <TextView
                         android:id="@+id/tv_reservation_designer_intro"
@@ -214,7 +215,7 @@
                         android:layout_height="0dp"
                         android:text="간단한 소개"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/bmjua_otf"
+                        android:fontFamily="@font/nexon_gothic_r"
                         android:gravity="left|top"/>
                 </LinearLayout><!-- //inner text lin-->
             </LinearLayout><!-- //inner img lin-->
