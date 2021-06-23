@@ -6,27 +6,68 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activities.MyPage.MyPageUpdateActivity"
-    android:gravity="center"
+    android:background="@color/main_color"
     >
-
-    <ImageView
-        android:id="@+id/my_page_update_image"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp"
+        >
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/main_icon"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CHANGE YOUR PROFILE IMAGE"
+            android:fontFamily="@font/bmjua_otf"
+            android:layout_marginTop="30dp"
+            android:textSize="20dp"
+            android:layout_marginBottom="10dp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        >
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_my_page_update_image"
         android:layout_width="200dp"
-        android:layout_height="200dp"/>
+        android:layout_height="200dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:shapeAppearanceOverlay="@style/roundimageview"
+        />
 
     <Button
-        android:id="@+id/my_page_update_image_find"
+        android:id="@+id/btn_my_page_update_image_find"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:text="이미지 업로드"/>
+        android:text="이미지 업로드"
+        android:layout_marginBottom="60dp"
+        android:backgroundTint="@color/btn_positive"
+        android:textColor="@color/black"
+        android:fontFamily="@font/bmjua_otf"/>
 
 
     <Button
-        android:id="@+id/my_page_update_image_update"
+        android:id="@+id/btn_my_page_update_image_update"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:text="이미지 업데이트"/>
-
+        android:text="이미지 업데이트"
+        android:backgroundTint="@color/btn_super_positive"
+        android:textColor="@color/black"
+        android:fontFamily="@font/bmjua_otf"/>
+    </LinearLayout>
 
 
 </LinearLayout>

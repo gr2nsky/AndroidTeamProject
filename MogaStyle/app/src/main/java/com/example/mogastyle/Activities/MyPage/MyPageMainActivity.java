@@ -55,9 +55,7 @@ public class MyPageMainActivity extends AppCompatActivity {
 
         iv_my_page_user_image = findViewById(R.id.iv_my_page_user_image);
 
-        //이미지뷰 둥글게~
 
-        //
         tv_my_page_user_name = findViewById(R.id.tv_my_page_user_name);
         tv_my_page_user_id = findViewById(R.id.tv_my_page_user_id);
 
