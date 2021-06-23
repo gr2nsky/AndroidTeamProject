@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.MyPage.MyPageUpdateActivity"
+    tools:context=".Activities.MyPage.MyPageUpdatePwActivity"
     android:background="@color/main_color"
     >
     <LinearLayout
@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CHANGE YOUR PROFILE IMAGE"
+            android:text="CHANGE YOUR PASSWORD"
             android:fontFamily="@font/bmjua_otf"
             android:layout_marginTop="30dp"
             android:textSize="20dp"
@@ -36,38 +36,45 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="20dp"
         >
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/iv_my_page_update_image"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        app:shapeAppearanceOverlay="@style/roundimageview"
+    <EditText
+        android:id="@+id/et_my_page_update_pw1"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="변경하려는 비밀번호 !"
+        android:layout_marginBottom="30dp"/>
+
+    <EditText
+        android:id="@+id/et_my_page_update_pw2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="변경하려는 비밀번호 한번더 !"
         />
-
+        <TextView
+            android:id="@+id/tv_my_page_pw_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="비밀번호를 입력해 주세요!!"
+            android:layout_gravity="left"
+            android:layout_marginLeft="60dp"
+            android:textColor="#ff0000"
+            android:fontFamily="@font/bmjua_otf"
+            android:layout_marginBottom="90dp"
+            android:layout_marginTop="5dp"/>
     <Button
-        android:id="@+id/btn_my_page_update_image_find"
-        android:layout_width="160dp"
+        android:id="@+id/btn_my_page_update_pw"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="이미지 업로드"
-        android:layout_marginBottom="60dp"
-        android:backgroundTint="@color/btn_positive"
-        android:textColor="@color/black"
-        android:fontFamily="@font/bmjua_otf"/>
-
-
-    <Button
-        android:id="@+id/btn_my_page_update_image_update"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:text="이미지 업데이트"
+        android:text="비밀번호 변경하기 !"
+        android:fontFamily="@font/bmjua_otf"
         android:backgroundTint="@color/btn_super_positive"
         android:textColor="@color/black"
-        android:fontFamily="@font/bmjua_otf"/>
-    </LinearLayout>
+        />
 
+    </LinearLayout>
 
 </LinearLayout>

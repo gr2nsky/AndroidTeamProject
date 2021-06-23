@@ -18,13 +18,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MogaStyle">
+        <activity android:name=".Activities.MyPage.MyPageUpdatePwActivity"></activity>
+        <activity android:name=".Activities.MyPage.MyPageAddMoreInfoActivity" />
         <activity
             android:name=".Activities.MyPage.MyPageUpdateActivity"
             android:label="@string/title_activity_my_page_update"
-            android:theme="@style/Theme.MogaStyle.NoActionBar"></activity>
+            android:theme="@style/Theme.MogaStyle.NoActionBar" />
         <activity android:name=".Activities.FindIdPwActivity" />
         <activity android:name=".Activities.SignUpActivity" />
         <activity android:name=".Activities.Hair.Reservation.ReservationCheckActivity" />
+<<<<<<< HEAD
         <activity android:name=".Activities.Hair.Reservation.PaymentActivity"/>
         <activity android:name=".Activities.Hair.Reservation.ReservationActivity">
             <intent-filter>
@@ -33,6 +36,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+=======
+        <activity android:name=".Activities.Hair.Reservation.PaymentActivity" />
+        <activity android:name=".Activities.Hair.Reservation.ReservationActivity" />
+>>>>>>> myInfoUpdate2
         <activity android:name=".Activities.LoginBasicActivity" />
         <activity android:name=".Activities.MyPage.MyPageMainActivity" />
         <activity android:name=".Activities.Hair.HairMainActivity" />
