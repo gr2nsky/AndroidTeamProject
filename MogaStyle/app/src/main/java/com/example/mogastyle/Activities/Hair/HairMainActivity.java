@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.mogastyle.Activities.Consult.ConsultMainActivity;
 import com.example.mogastyle.Activities.Diary.DiaryMainActivity;
 import com.example.mogastyle.Activities.Hair.Shop.ShopDetailActivity;
+import com.example.mogastyle.Activities.Hair.Shop.ShopHomeFragment;
 import com.example.mogastyle.Activities.MainActivity;
 import com.example.mogastyle.Activities.MyPage.MyPageMainActivity;
 import com.example.mogastyle.Adapters.Hair.Shop.ShopList;
@@ -137,7 +138,7 @@ public class HairMainActivity extends AppCompatActivity {
         Intent intent = null;
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            intent = new Intent(HairMainActivity.this, ShopDetailActivity.class);
+            intent = new Intent(HairMainActivity.this, ShopHomeFragment.class);
             intent.putExtra("name", shops.get(position).getName());
             intent.putExtra("tel", shops.get(position).getTel());
             intent.putExtra("address", shops.get(position).getAddress());
