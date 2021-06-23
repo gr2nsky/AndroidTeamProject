@@ -74,7 +74,7 @@ public class LoginInApp extends AsyncTask<Integer , String, Object> {
 
             if (httpURLConnection.getResponseCode() == httpURLConnection.HTTP_OK){
 
-                inputStreamReader = new InputStreamReader(httpURLConnection.getInputStream(),"EUC-KR");
+                inputStreamReader = new InputStreamReader(httpURLConnection.getInputStream(),"UTF-8");
                 bufferedReader = new BufferedReader(inputStreamReader);
 
 

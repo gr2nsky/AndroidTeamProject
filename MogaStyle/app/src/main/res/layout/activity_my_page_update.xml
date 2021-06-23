@@ -5,13 +5,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.MyPage.MyPageUpdateActivity">
+    tools:context=".Activities.MyPage.MyPageUpdateActivity"
+    android:gravity="center"
+    >
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="유저 인포 변경"
-        android:gravity="center"/>
+    <ImageView
+        android:id="@+id/my_page_update_image"
+        android:layout_width="200dp"
+        android:layout_height="200dp"/>
+
+    <Button
+        android:id="@+id/my_page_update_image_find"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:text="이미지 업로드"/>
+
+
+    <Button
+        android:id="@+id/my_page_update_image_update"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:text="이미지 업데이트"/>
+
 
 
 </LinearLayout>

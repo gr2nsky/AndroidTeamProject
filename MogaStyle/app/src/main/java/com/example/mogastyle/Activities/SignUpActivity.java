@@ -193,8 +193,8 @@ public class SignUpActivity extends AppCompatActivity {
         PhoneAuthOptions phoneAuthOptions = PhoneAuthOptions.newBuilder(firebaseAuth)
                 .setPhoneNumber(userPhone)
                 .setTimeout(60L , TimeUnit.SECONDS)
-                .setCallbacks(mCallBack)
                 .setActivity(this)
+                .setCallbacks(mCallBack)
                 .build();
 
         PhoneAuthProvider.verifyPhoneNumber(phoneAuthOptions);

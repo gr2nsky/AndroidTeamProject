@@ -12,19 +12,23 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.channels.AsynchronousChannelGroup;
 
-public class SignUpInKakao extends AsyncTask<Integer , String, Object> {
+public class SignUpInKaKaoInsert extends AsyncTask<Integer , String, Object> {
     Context context;
     String mAddr;
     ProgressDialog progressDialog;
+    String userId;
     String userName;
+    String userImage;
 
-    public SignUpInKakao(Context context, String mAddr, String userName) {
+    public SignUpInKaKaoInsert(Context context, String mAddr, String userId, String userName, String userImage) {
         this.context = context;
         this.mAddr = mAddr;
+        this.userId = userId;
         this.userName = userName;
+        this.userImage = userImage;
     }
-
 
     @Override
     protected void onPreExecute() {
@@ -65,7 +69,7 @@ public class SignUpInKakao extends AsyncTask<Integer , String, Object> {
             httpURLConnection.setRequestMethod("POST");
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(httpURLConnection.getOutputStream());
 
-            String sendMSG = "userName="+userName;
+            String sendMSG = "userId="+userId + "&userName="+userName + "&userImage="+userImage;
             outputStreamWriter.write(sendMSG);
             outputStreamWriter.flush();
 
