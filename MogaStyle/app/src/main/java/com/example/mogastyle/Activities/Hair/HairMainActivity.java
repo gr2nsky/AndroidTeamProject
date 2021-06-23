@@ -39,7 +39,7 @@ public class HairMainActivity extends AppCompatActivity {
 
     String urlAddr = null;
     ArrayList<Shop> shops;
-    ShopList adapter;
+    ShopList adapters;
     ListView listView;
     String desktopIP = "192.168.2.30";
 
@@ -109,6 +109,7 @@ public class HairMainActivity extends AppCompatActivity {
         });
 
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -124,9 +125,9 @@ public class HairMainActivity extends AppCompatActivity {
             Object obj = networkTask.execute().get();
             shops = (ArrayList<Shop>) obj;
 
-            adapter = new ShopList(HairMainActivity.this, R.layout.activity_hair_layout, shops);
-            listView.setAdapter(adapter);
-//            listView.setOnItemClickListener(onItemClickListener);
+            adapters = new ShopList(HairMainActivity.this, R.layout.activity_hair_layout, shops);
+            listView.setAdapter(adapters);
+            listView.setOnItemClickListener(onItemClickListener);
 //            listView.setOnItemLongClickListener(onItemLongClickListener);
 
         }catch (Exception e){
