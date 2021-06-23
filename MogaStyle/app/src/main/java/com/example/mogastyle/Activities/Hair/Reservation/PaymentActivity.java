@@ -39,6 +39,7 @@ public class PaymentActivity extends AppCompatActivity {
     TextView tv_res_time;
     TextView tv_res_shop_name;
     TextView tv_res_designer_name;
+    TextView tv_res_mene_name;
     TextView tv_res_total_price;
     Button btn_request_auth_code;
     Button btn_check_auth_code;
@@ -89,6 +90,7 @@ public class PaymentActivity extends AppCompatActivity {
         tv_res_time = findViewById(R.id.tv_payment_res_time);
         tv_res_shop_name = findViewById(R.id.tv_payment_res_shop);
         tv_res_designer_name = findViewById(R.id.tv_payment_res_designer);
+        tv_res_mene_name = findViewById(R.id.tv_payment_res_menu);
         tv_res_total_price = findViewById(R.id.tv_payment_res_total_price);
 
         btn_request_auth_code = findViewById(R.id.btn_payment_request_auth_code);
@@ -103,11 +105,12 @@ public class PaymentActivity extends AppCompatActivity {
         //
         //           data + Layout resource
         //
-        tv_res_date.setText(resDateData.print());
-        tv_res_time.setText(Integer.toString(resTime));
-        tv_res_shop_name.setText(shopBean.getName());
-        tv_res_designer_name.setText(designerBean.getName());
-        tv_res_total_price.setText(styleBean.getPrice());
+        tv_res_date.setText("날짜          " + resDateData.print());
+        tv_res_time.setText("시간          " + Integer.toString(resTime));
+        tv_res_shop_name.setText("매장          " + shopBean.getName());
+        tv_res_designer_name.setText("담당          " + designerBean.getName());
+        tv_res_mene_name.setText("메          " + styleBean.getTitle());
+        tv_res_total_price.setText("금액          " + styleBean.getPrice());
     }
     CompoundButton.OnCheckedChangeListener onCheckedChangeListener = new CompoundButton.OnCheckedChangeListener() {
         @Override

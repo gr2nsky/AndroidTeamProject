@@ -89,7 +89,7 @@
                 android:layout_marginBottom="10dp"
                 android:hint="예약자명"
                 android:textColor="@color/black"
-                android:fontFamily="@font/bmjua_otf" />
+                android:fontFamily="@font/nexon_gothic_r" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -106,7 +106,7 @@
                     android:background="@drawable/background_rounded_conner_border"
                     android:hint="핸드폰 번호"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/bmjua_otf" />
+                    android:fontFamily="@font/nexon_gothic_r" />
                 <Button
                     android:id="@+id/btn_payment_request_auth_code"
                     android:layout_weight="1"
@@ -131,7 +131,7 @@
                     android:background="@drawable/background_rounded_conner_border"
                     android:hint="인증번호 입력"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/bmjua_otf" />
+                    android:fontFamily="@font/nexon_gothic_r" />
                 <Button
                     android:id="@+id/btn_payment_check_auth_code"
                     android:layout_weight="1"
@@ -165,11 +165,11 @@
             android:id="@+id/tv_payment_res_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="날짜"
+            android:text="날짜          "
             android:textColor="@color/black"
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="5dp"
-            android:fontFamily="@font/bmjua_otf"/>
+            android:fontFamily="@font/nexon_gothic_r"/>
         <TextView
             android:id="@+id/tv_payment_res_time"
             android:layout_width="match_parent"
@@ -178,7 +178,7 @@
             android:textColor="@color/black"
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="5dp"
-            android:fontFamily="@font/bmjua_otf"/>
+            android:fontFamily="@font/nexon_gothic_r"/>
         <TextView
             android:id="@+id/tv_payment_res_shop"
             android:layout_width="match_parent"
@@ -187,7 +187,7 @@
             android:textColor="@color/black"
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="5dp"
-            android:fontFamily="@font/bmjua_otf"/>
+            android:fontFamily="@font/nexon_gothic_r"/>
         <TextView
             android:id="@+id/tv_payment_res_designer"
             android:layout_width="match_parent"
@@ -196,7 +196,7 @@
             android:textColor="@color/black"
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="5dp"
-            android:fontFamily="@font/bmjua_otf"/>
+            android:fontFamily="@font/nexon_gothic_r"/>
         <TextView
             android:id="@+id/tv_payment_res_menu"
             android:layout_width="match_parent"
@@ -204,7 +204,7 @@
             android:text="메뉴"
             android:textColor="@color/black"
             android:layout_marginLeft="10dp"
-            android:fontFamily="@font/bmjua_otf"/>
+            android:fontFamily="@font/nexon_gothic_r"/>
     </LinearLayout>
     <!--#####################payment info########################### -->
     <LinearLayout
@@ -235,7 +235,7 @@
                 android:textSize="15dp"
                 android:textColor="@color/black"
                 android:layout_marginLeft="10dp"
-                android:fontFamily="@font/bmjua_otf"/>
+                android:fontFamily="@font/nexon_gothic_r"/>
             <View
                 android:layout_weight="1"
                 android:layout_width="0dp"
@@ -246,7 +246,7 @@
                 android:layout_height="match_parent"
                 android:text="77,000"
                 android:textColor="@color/black"
-                android:fontFamily="@font/bmjua_otf"/>
+                android:fontFamily="@font/nexon_gothic_r"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

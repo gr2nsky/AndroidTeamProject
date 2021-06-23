@@ -27,7 +27,11 @@
         <activity android:name=".Activities.Hair.Reservation.ReservationCheckActivity" />
         <activity android:name=".Activities.Hair.Reservation.PaymentActivity"/>
         <activity android:name=".Activities.Hair.Reservation.ReservationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".Activities.LoginBasicActivity" />
         <activity android:name=".Activities.MyPage.MyPageMainActivity" />
@@ -35,11 +39,7 @@
         <activity android:name=".Activities.Diary.DiaryMainActivity" />
         <activity android:name=".Activities.Consult.ConsultMainActivity" />
         <activity android:name=".Activities.LogoActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Activities.LoginActivity" />
         <activity android:name=".Activities.MainActivity" />
