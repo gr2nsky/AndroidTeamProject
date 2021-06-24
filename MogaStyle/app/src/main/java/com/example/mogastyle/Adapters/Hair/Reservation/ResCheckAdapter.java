@@ -1,7 +1,9 @@
 package com.example.mogastyle.Adapters.Hair.Reservation;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.media.Image;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,19 +12,32 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.mogastyle.Activities.Hair.Reservation.ReservationCheckActivity;
+import com.example.mogastyle.Activities.Hair.Reservation.Retrofit.RetrofitCall;
+import com.example.mogastyle.Activities.Hair.Reservation.Retrofit.RetrofitService;
 import com.example.mogastyle.Bean.ReservationBean;
+import com.example.mogastyle.Bean.ReservationList;
 import com.example.mogastyle.Common.ShareVar;
 import com.example.mogastyle.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ResCheckAdapter extends RecyclerView.Adapter<ResCheckAdapter.ResCheckViewHolder>{
+
+    String TAG = "ResCheckAdapter";
+
     public class ResCheckViewHolder extends RecyclerView.ViewHolder{
 
         ImageView shop_img;
@@ -46,6 +61,7 @@ public class ResCheckAdapter extends RecyclerView.Adapter<ResCheckAdapter.ResChe
         }
     } //ResCheckViewHolder
 
+    ReservationCheckActivity ac;
     Context con = null;
     int layout = 0;
     private LayoutInflater inflater = null;
@@ -53,8 +69,9 @@ public class ResCheckAdapter extends RecyclerView.Adapter<ResCheckAdapter.ResChe
     int checkType = 999;
     String btn_text = "";
 
-    public ResCheckAdapter(Context con, int layout, ArrayList<ReservationBean> rbList, int checkType) {
-        this.con = con;
+    public ResCheckAdapter(ReservationCheckActivity ac, int layout, ArrayList<ReservationBean> rbList, int checkType) {
+        this.ac = ac;
+        this.con = ac.getApplication();
         this.layout = layout;
         this.rbList = rbList;
         this.checkType = checkType;
@@ -79,6 +96,7 @@ public class ResCheckAdapter extends RecyclerView.Adapter<ResCheckAdapter.ResChe
     @Override
     public void onBindViewHolder(ResCheckViewHolder holder, int position) {
         ReservationBean rb = rbList.get(position);
+
         Glide.with(con)
                 .load(ShareVar.shopImgPath+rb.getShopImage())
                 .placeholder(R.drawable.jpeg_default_profile_photo)
@@ -109,9 +127,7 @@ public class ResCheckAdapter extends RecyclerView.Adapter<ResCheckAdapter.ResChe
             public void onClick(View v) {
                 switch (checkType){
                     case 0:
-                        /////////////
-                        //  삭제    //
-                        ////////////
+                        resCancelDialog(rb.getNo());
                         break;
                     case 1:
                         /////////////
@@ -133,5 +149,54 @@ public class ResCheckAdapter extends RecyclerView.Adapter<ResCheckAdapter.ResChe
         String time = rb.getReservationTime() + ":00";
         String[] pDate = date.split("-");
         return pDate[0] + "년 " + pDate[1] + "월 " + pDate[2] + "일\n" + time;
+    }
+
+    public void resCancelDialog(int resNo){
+        AlertDialog.Builder dialog = new AlertDialog.Builder(ac);
+        dialog.setTitle("예약취소");
+        dialog.setMessage("예약취소 하시겠습니까?");
+        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                resCancel(resNo);
+                dialog.dismiss();
+            }
+        });
+        dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+    public void resCancel(int resNo){
+        RetrofitService retrofitService = RetrofitCall.reservationService();
+        retrofitService.getCancelResult(resNo).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                String result = response.body();
+                Log.d(TAG, "onResponse:성공");
+                Log.d(TAG, "결과 reservationList: " + result);
+                AlertDialog.Builder dialog = new AlertDialog.Builder(ac);
+                dialog.setTitle("예약취소 완료");
+                dialog.setMessage("예약취소가 완료되었습니다.");
+                dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ac.getData();
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.d(TAG, "onResponse:실패");
+                Log.d(TAG, "결과 : " + t.toString());
+            }
+        });
     }
 }

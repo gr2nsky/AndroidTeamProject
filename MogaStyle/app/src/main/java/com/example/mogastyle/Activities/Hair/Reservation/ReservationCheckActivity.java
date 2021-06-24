@@ -83,7 +83,7 @@ public class ReservationCheckActivity extends AppCompatActivity {
         usedRbList = new ArrayList<>();
         cancelRbList = new ArrayList<>();
 
-        retrofitService = RetrofitCall.getReservationList();
+        retrofitService = RetrofitCall.reservationService();
     }
 
     @Override
@@ -168,7 +168,7 @@ public class ReservationCheckActivity extends AppCompatActivity {
         Log.d(TAG, "현재 보여줄 자료 \n" + zz.print());
         lm = new LinearLayoutManager(ReservationCheckActivity.this);
         list_res_check.setLayoutManager(lm);
-        adapter = new ResCheckAdapter(ReservationCheckActivity.this, R.layout.list_item_reservation_check, list, checkType);
+        adapter = new ResCheckAdapter(this, R.layout.list_item_reservation_check, list, checkType);
         list_res_check.setAdapter(adapter);
     }
 
