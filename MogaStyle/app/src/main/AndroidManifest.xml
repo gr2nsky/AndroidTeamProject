@@ -19,6 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MogaStyle">
         <activity android:name=".Activities.MyPage.MyPageUpdatePwActivity"></activity>
+
         <activity
             android:name=".Activities.MyPage.MyPageUpdateActivity"
             android:label="@string/title_activity_my_page_update"
@@ -42,6 +43,7 @@
         </activity>
         <activity android:name=".Activities.LoginActivity"/>
         <activity android:name=".Activities.MainActivity"/>
+
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="d501006782a521eb40a06174fe0acf07"/>
