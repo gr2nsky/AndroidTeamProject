@@ -3,6 +3,7 @@ package com.example.mogastyle.Bean;
 import java.util.ArrayList;
 
 public class Shop {
+    private int no;
     private String name;
     private String tel;
     private String address;
@@ -11,7 +12,8 @@ public class Shop {
     private String holiday;
     private String image;
 
-    public Shop(String name, String tel, String address, String postcode, String introduction, String holiday, String image) {
+    public Shop(int no, String name, String tel, String address, String postcode, String introduction, String holiday, String image) {
+        this.no = no;
         this.name = name;
         this.tel = tel;
         this.address = address;
@@ -20,6 +22,14 @@ public class Shop {
         this.holiday = holiday;
         this.image = image;
 
+    }
+
+    public int getNo() {
+        return no;
+    }
+
+    public void setNo(int no) {
+        this.no = no;
     }
 
     public String getName() {

@@ -1,12 +1,14 @@
 package com.example.mogastyle.Adapters.Hair.Shop;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.mogastyle.Activities.Hair.Shop.ShopHomeFragment;
 import com.example.mogastyle.Bean.Shop;
 import com.example.mogastyle.R;
 
@@ -14,13 +16,17 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class ShopList extends BaseAdapter {
+public class ShopListAdapter extends BaseAdapter {
     private Context mContext = null;
     private  int layout = 0;
     private ArrayList<Shop> data = null;
     private LayoutInflater inflater = null;
+    private int no;
 
-    public ShopList(Context mContext, int layout, ArrayList<Shop> data) {
+    public ShopListAdapter() {
+    }
+
+    public ShopListAdapter(Context mContext, int layout, ArrayList<Shop> data) {
         this.mContext = mContext;
         this.layout = layout;
         this.data = data;
@@ -63,6 +69,21 @@ public class ShopList extends BaseAdapter {
         tv_holiday.setText("쉬는 날 : " + data.get(position).getHoliday());
         tv_phone.setText("사진 : "+ data.get(position).getImage());
 
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                no = data.get(position).getNo();
+                Intent intent = new Intent(mContext, ShopHomeFragment.class);
+                mContext.startActivity(intent);
+            }
+        });
+
         return convertView;
     }
+
+    public int selectedShopNo(){
+        return no;
+    }
+
+
 }

@@ -17,13 +17,11 @@ import com.example.mogastyle.Activities.Diary.DiaryMainActivity;
 import com.example.mogastyle.Activities.Hair.Shop.ShopHomeFragment;
 import com.example.mogastyle.Activities.MainActivity;
 import com.example.mogastyle.Activities.MyPage.MyPageMainActivity;
-import com.example.mogastyle.Adapters.Hair.Shop.ShopList;
+import com.example.mogastyle.Adapters.Hair.Shop.ShopListAdapter;
 import com.example.mogastyle.Bean.Shop;
 import com.example.mogastyle.NetworkTasks.Hair.ShopNetworkTask;
 import com.example.mogastyle.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import net.daum.android.map.MapView;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -37,7 +35,7 @@ public class HairMainActivity extends AppCompatActivity {
 
     String urlAddr = null;
     ArrayList<Shop> shops;
-    ShopList adapters;
+    ShopListAdapter adapters;
     ListView listView;
     String desktopIP = "192.168.2.30";
 
@@ -122,9 +120,9 @@ public class HairMainActivity extends AppCompatActivity {
             Object obj = networkTask.execute().get();
             shops = (ArrayList<Shop>) obj;
 
-            adapters = new ShopList(HairMainActivity.this, R.layout.activity_hair_layout, shops);
+            adapters = new ShopListAdapter(HairMainActivity.this, R.layout.activity_hair_layout, shops);
             listView.setAdapter(adapters);
-            listView.setOnItemClickListener(onItemClickListener);
+          listView.setOnItemClickListener(onItemClickListener);
 //            listView.setOnItemLongClickListener(onItemLongClickListener);
 
         }catch (Exception e){
