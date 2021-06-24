@@ -8,11 +8,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.mogastyle.Activities.Hair.Shop.ShopHomeFragment;
 import com.example.mogastyle.Bean.Shop;
 import com.example.mogastyle.R;
+import com.example.mogastyle.ShareVar.ShareVar;
 
 import java.util.ArrayList;
+import java.util.logging.ErrorManager;
 
 public class ShopHomeAdapter extends BaseAdapter {
 
@@ -79,4 +82,6 @@ public class ShopHomeAdapter extends BaseAdapter {
     public int selectedShopNo(){
         return no;
     }
+
+
 }

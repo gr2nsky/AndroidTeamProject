@@ -9,13 +9,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/shop_detail_ridious"
             android:orientation="horizontal"
             android:gravity="bottom">
 
-            <ImageView
-                android:layout_width="134dp"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher" />
+                <ImageView
+                    android:layout_width="149dp"
+                    android:layout_height="99dp"
+                    android:src="@drawable/jpeg_default_profile_photo" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -50,13 +51,13 @@
         <TextView
             android:id="@+id/tv_home_holiday"
             android:layout_width="0px"
-            android:layout_height="0px" />
+            android:layout_height="0px"
+            android:layout_marginBottom="30dp"/>
 
         <TextView
             android:id="@+id/img_home_image"
             android:layout_width="0px"
-            android:layout_height="0px"
-            android:layout_marginBottom="30dp"/>
+            android:layout_height="0px" />
 
         </LinearLayout>
         </LinearLayout>
