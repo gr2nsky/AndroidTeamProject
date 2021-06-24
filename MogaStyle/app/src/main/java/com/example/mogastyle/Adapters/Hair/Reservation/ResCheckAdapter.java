@@ -152,7 +152,7 @@ public class ResCheckAdapter extends RecyclerView.Adapter<ResCheckAdapter.ResChe
     }
 
     public void resCancelDialog(int resNo){
-        AlertDialog.Builder dialog = new AlertDialog.Builder(con);
+        AlertDialog.Builder dialog = new AlertDialog.Builder(ac);
         dialog.setTitle("예약취소");
         dialog.setMessage("예약취소 하시겠습니까?");
         dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -179,7 +179,7 @@ public class ResCheckAdapter extends RecyclerView.Adapter<ResCheckAdapter.ResChe
                 String result = response.body();
                 Log.d(TAG, "onResponse:성공");
                 Log.d(TAG, "결과 reservationList: " + result);
-                AlertDialog.Builder dialog = new AlertDialog.Builder(con);
+                AlertDialog.Builder dialog = new AlertDialog.Builder(ac);
                 dialog.setTitle("예약취소 완료");
                 dialog.setMessage("예약취소가 완료되었습니다.");
                 dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {

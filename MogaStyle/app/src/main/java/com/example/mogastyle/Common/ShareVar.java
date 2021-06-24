@@ -15,3 +15,4 @@ public class ShareVar {
     public final static String shopImgPath = hostRootAddr + "img/shop/";
 
 }
+ 
