@@ -117,9 +117,9 @@ public class User {
     //추
     public String getUserImage() {
         if(joinType.equals("0")){
-            return userImage;
+            return ShareVar.userImgPath + userImage;
         }
-        return ShareVar.userImgPath + userImage;
+        return userImage;
     }
 
     public void setUserImage(String userImage) {

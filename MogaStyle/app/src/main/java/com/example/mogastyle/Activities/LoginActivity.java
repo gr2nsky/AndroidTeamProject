@@ -23,8 +23,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mogastyle.Bean.User;
 import com.example.mogastyle.Common.LoginedUserInfo;
 import com.example.mogastyle.Common.ShareVar;
+import com.example.mogastyle.NetworkTasks.Login.LoginInAppGetUserInfo;
 import com.example.mogastyle.NetworkTasks.Login.SignUpInKaKaoInsert;
 import com.example.mogastyle.NetworkTasks.Login.SignUpInKakao;
 import com.example.mogastyle.R;
@@ -52,6 +54,7 @@ import com.kakao.util.exception.KakaoException;
 import org.jetbrains.annotations.NotNull;
 
 import java.security.MessageDigest;
+import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
@@ -76,6 +79,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     String userCheckResult;
 
     String insertResult;
+
+    ArrayList<User> userInfo;
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor sharedPreferencesEdit;
@@ -159,6 +164,24 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                 sharedPreferencesEdit = sharedPreferences.edit();
                                 sharedPreferencesEdit.putString("userNo" , userCheckResult);
                                 sharedPreferencesEdit.commit();
+
+                                try {
+                                    LoginInAppGetUserInfo loginInAppGetUserInfo = new LoginInAppGetUserInfo(LoginActivity.this, urlAddr + "Home/userLoginGetInfo.jsp",userCheckResult);
+                                    Object userObject = loginInAppGetUserInfo.execute().get();
+                                    userInfo = (ArrayList<User>) userObject;
+
+                                    }catch (Exception e){
+                                        e.printStackTrace();
+                                    }
+
+                                // 로그인 시  Bean 저장
+                                LoginedUserInfo.user.setNo(userInfo.get(0).getNo());
+                                LoginedUserInfo.user.setName(userInfo.get(0).getName());
+                                LoginedUserInfo.user.setId(userInfo.get(0).getId());
+                                LoginedUserInfo.user.setJoinType(userInfo.get(0).getJoinType());
+                                LoginedUserInfo.user.setUserCheck(userInfo.get(0).getUserCheck());
+                                LoginedUserInfo.user.setUserPhone(userInfo.get(0).getUserPhone());
+                                LoginedUserInfo.user.setUserImage(userInfo.get(0).getUserImage());
                             }
 
                         }else{
@@ -168,6 +191,25 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             sharedPreferencesEdit = sharedPreferences.edit();
                             sharedPreferencesEdit.putString("userNo" , userCheckResult);
                             sharedPreferencesEdit.commit();
+
+                            try {
+                                LoginInAppGetUserInfo loginInAppGetUserInfo = new LoginInAppGetUserInfo(LoginActivity.this, urlAddr + "Home/userLoginGetInfo.jsp",userCheckResult);
+                                Object userObject = loginInAppGetUserInfo.execute().get();
+                                userInfo = (ArrayList<User>) userObject;
+
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+
+                            // 로그인 시  Bean 저장
+                            LoginedUserInfo.user.setNo(userInfo.get(0).getNo());
+                            LoginedUserInfo.user.setName(userInfo.get(0).getName());
+                            LoginedUserInfo.user.setId(userInfo.get(0).getId());
+                            LoginedUserInfo.user.setJoinType(userInfo.get(0).getJoinType());
+                            LoginedUserInfo.user.setUserCheck(userInfo.get(0).getUserCheck());
+                            LoginedUserInfo.user.setUserPhone(userInfo.get(0).getUserPhone());
+                            LoginedUserInfo.user.setUserImage(userInfo.get(0).getUserImage());
+
                         }
 
 
@@ -319,6 +361,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                     e.printStackTrace();
                                 }
                                 insertResult = (String) object1;
+                                //DB 에 잘 저장 되었느냐!
                                 if(insertResult.equals("1")){
                                     SignUpInKakao signUpInKakao1 = new SignUpInKakao(LoginActivity.this, urlAddr + "Home/userCheckInDB.jsp", googleSignInAccount.getDisplayName());
                                     Object object2 = null;
@@ -334,6 +377,29 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                     sharedPreferencesEdit = sharedPreferences.edit();
                                     sharedPreferencesEdit.putString("userNo" , userCheckResult);
                                     sharedPreferencesEdit.commit();
+
+
+                                    //구글로 로그인했으면 이제 모든 정보 빼와서 BEAN 에 넣기 ( 첫 로그인 해서 이용하는 유저를 위해 )
+
+                                    try {
+                                        LoginInAppGetUserInfo loginInAppGetUserInfo = new LoginInAppGetUserInfo(LoginActivity.this, urlAddr + "Home/userLoginGetInfo.jsp",userCheckResult);
+                                        Object userObject = loginInAppGetUserInfo.execute().get();
+                                        userInfo = (ArrayList<User>) userObject;
+
+                                    }catch (Exception e){
+                                        e.printStackTrace();
+                                    }
+
+                                    // 로그인 시  Bean 저장
+                                    LoginedUserInfo.user.setNo(userInfo.get(0).getNo());
+                                    LoginedUserInfo.user.setName(userInfo.get(0).getName());
+                                    LoginedUserInfo.user.setId(userInfo.get(0).getId());
+                                    LoginedUserInfo.user.setJoinType(userInfo.get(0).getJoinType());
+                                    LoginedUserInfo.user.setUserCheck(userInfo.get(0).getUserCheck());
+                                    LoginedUserInfo.user.setUserPhone(userInfo.get(0).getUserPhone());
+                                    LoginedUserInfo.user.setUserImage(userInfo.get(0).getUserImage());
+
+                                    //
                                 }
 
                             }else{
@@ -343,6 +409,24 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                 sharedPreferencesEdit = sharedPreferences.edit();
                                 sharedPreferencesEdit.putString("userNo" , userCheckResult);
                                 sharedPreferencesEdit.commit();
+
+                                try {
+                                    LoginInAppGetUserInfo loginInAppGetUserInfo = new LoginInAppGetUserInfo(LoginActivity.this, urlAddr + "Home/userLoginGetInfo.jsp",userCheckResult);
+                                    Object userObject = loginInAppGetUserInfo.execute().get();
+                                    userInfo = (ArrayList<User>) userObject;
+
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
+
+                                // 로그인 시  Bean 저장
+                                LoginedUserInfo.user.setNo(userInfo.get(0).getNo());
+                                LoginedUserInfo.user.setName(userInfo.get(0).getName());
+                                LoginedUserInfo.user.setId(userInfo.get(0).getId());
+                                LoginedUserInfo.user.setJoinType(userInfo.get(0).getJoinType());
+                                LoginedUserInfo.user.setUserCheck(userInfo.get(0).getUserCheck());
+                                LoginedUserInfo.user.setUserPhone(userInfo.get(0).getUserPhone());
+                                LoginedUserInfo.user.setUserImage(userInfo.get(0).getUserImage());
                             }
                             //User DB 저장 --
 
