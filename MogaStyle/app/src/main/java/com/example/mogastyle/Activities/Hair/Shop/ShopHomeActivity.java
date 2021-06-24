@@ -22,6 +22,7 @@ import com.example.mogastyle.Adapters.Hair.Shop.ShopPagerAdapter;
 import com.example.mogastyle.Bean.Shop;
 import com.example.mogastyle.NetworkTasks.Hair.ShopNetworkTask;
 import com.example.mogastyle.R;
+import com.example.mogastyle.ShareVar.ShareVar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
@@ -43,7 +44,7 @@ public class ShopHomeActivity extends AppCompatActivity {
     String urlAddr = null;
     ArrayList<Shop> shops;
     ShopListAdapter adapters;
-    String desktopIP = "192.168.2.30";
+    String desktopIP = ShareVar.WindowIP;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +60,7 @@ public class ShopHomeActivity extends AppCompatActivity {
         imageButton = findViewById(R.id.btn_home_goHome);
 
         desktopIP = intent.getStringExtra("desktopIP");
-        urlAddr = "http://192.168.2.30:8080/test/shop_select.jsp";
+        urlAddr = ShareVar.hostRootAddr;
         Log.v("Message",urlAddr);
 
         ShopTitle = findViewById(R.id.tv_shopmain_title);
