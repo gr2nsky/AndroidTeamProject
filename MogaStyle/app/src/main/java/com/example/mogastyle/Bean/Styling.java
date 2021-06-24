@@ -25,14 +25,6 @@ public class Styling {
         this.leadTime = leadTime;
     }
 
-    // Styling List : 생성자(Constructor)
-    public Styling(String title, int price, String typeCode) {
-        this.title = title;
-        this.price = price;
-        this.typeCode = typeCode;
-    }
-
-
     public int getNo() {
         return no;
     }
