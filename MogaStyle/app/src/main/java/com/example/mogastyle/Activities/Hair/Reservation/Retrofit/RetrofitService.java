@@ -11,4 +11,7 @@ public interface RetrofitService {
     @GET("reservationListLoad.jsp?")
     Call<ReservationList> getList(@Query("userNo") int userNo);
 
+    @GET("reservationListCancel.jsp?")
+    Call<String> getCancelResult(@Query("resNo") int resNo);
+
 }
