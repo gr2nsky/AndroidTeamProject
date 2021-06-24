@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.mogastyle.Adapters.Hair.Shop.ShopList;
+import com.example.mogastyle.Bean.Shop;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -21,17 +22,18 @@ public class ShopNetworkTask extends AsyncTask<Integer,String,Object> {
     Context context = null;
     String mAddr = null;
     ProgressDialog progressDialog = null;
-    ArrayList<ShopList> shopLists;
+    ArrayList<Shop> shops;
     //NetworkTask를 검색, 입력, 수정, 삭제 구분 없이 하나로 사용하기 위해 생성자 변수 추가
     String where = null;
 
     public ShopNetworkTask(Context context, String mAddr, String where) {
         this.context = context;
         this.mAddr = mAddr;
-        this.progressDialog = progressDialog;
-        this.shopLists = shopLists;
+        this.shops = shops;
+        this.shops = new ArrayList<Shop>();
         this.where = where;
     }
+
     @Override
     protected void onPreExecute() {
         progressDialog = new ProgressDialog(context);
@@ -99,7 +101,7 @@ public class ShopNetworkTask extends AsyncTask<Integer,String,Object> {
             }
         }
         if (where.equals("select")){
-            return shopLists;
+            return shops;
         }else {
             return result;
         }
@@ -109,7 +111,7 @@ public class ShopNetworkTask extends AsyncTask<Integer,String,Object> {
         try{
             JSONObject jsonObject = new JSONObject(str);
             JSONArray jsonArray = new JSONArray(jsonObject.getString("shop_info"));
-            shopLists.clear(); //기존에 쌓일 수 있는 데이터를 삭제함
+            shops.clear(); //기존에 쌓일 수 있는 데이터를 삭제함
 
             for (int i=0; i<jsonArray.length(); i++){
                 JSONObject jsonObject1 = (JSONObject) jsonArray.get(i);
@@ -119,18 +121,18 @@ public class ShopNetworkTask extends AsyncTask<Integer,String,Object> {
                 Log.v("Status", "tel : "+tel);
                 String address = jsonObject1.getString("address");
                 Log.v("Status", "address : "+address);
-                String postcode = jsonObject1.getString("postcode");
-                Log.v("Status", "postcode : "+postcode);
+                String postcode = jsonObject1.getString("postCode");
+                Log.v("Status", "postCode : "+postcode);
                 String introduction = jsonObject1.getString("introduction");
                 Log.v("Status","introduction: " +introduction);
                 String holiday = jsonObject1.getString("holiday");
                 Log.v("Status","holiday: " +holiday);
-                int image = jsonObject1.getInt("image");
+                String image = jsonObject1.getString("image");
                 Log.v("Status","image : " + image);
 
 
-                ShopList shopList = new ShopList(name,tel,address,postcode,introduction,holiday,image);
-                shopLists.add(shopList);
+                Shop shop = new Shop(name,tel,address,postcode,introduction,holiday,image);
+                shops.add(shop);
             }
         }catch (Exception e){
             e.printStackTrace();

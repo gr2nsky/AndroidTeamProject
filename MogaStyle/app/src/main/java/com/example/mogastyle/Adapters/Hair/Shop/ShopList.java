@@ -27,8 +27,6 @@ public class ShopList extends BaseAdapter {
         this.inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    public ShopList(String name, String tel, String address, String postcode, String introduction, String holiday, int image) {
-    }
 
 
     @Override
