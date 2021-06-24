@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.Hair.Styling.StylingDetailActivity">
+
+    <ImageView
+        android:id="@+id/style_detail_image"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:src="@mipmap/ic_launcher"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1">
+
+    <EditText
+        android:id="@+id/style_detail_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:background="#F5F6F8"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/bmjua_otf"
+        android:hint="NAME"/>
+
+    <EditText
+         android:id="@+id/style_detail_price"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:focusable="false"
+         android:background="#F5F6F8"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/bmjua_otf"
+         android:hint="PRICE"/>
+
+        <EditText
+            android:id="@+id/style_detail_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:background="#F5F6F8"
+            android:textSize="30dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/bmjua_otf"
+            android:hint="CONTENT"/>
+
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabMode="scrollable"
+                android:background="#F5F6F8"
+                app:tabGravity="center"/>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/shop_pager"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        </androidx.viewpager.widget.ViewPager>
+
+    </LinearLayout>
+
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+
+<!--        <com.google.android.material.tabs.TabLayout-->
+<!--            android:id="@+id/tab_layout"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:tabMode="scrollable"-->
+<!--            android:background="#F5F6F8"-->
+<!--            app:tabGravity="center"/>-->
+
+<!--    </com.google.android.material.appbar.AppBarLayout>-->
+
+<!--    <androidx.viewpager.widget.ViewPager-->
+<!--        android:id="@+id/shop_pager"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0px"-->
+<!--        android:layout_weight="1"-->
+<!--        app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
+
+<!--        &lt;!&ndash;            <ListView&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:id="@+id/lv_shop"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:layout_height="0px"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:layout_weight="5"/>&ndash;&gt;-->
+
+<!--    </androidx.viewpager.widget.ViewPager>-->
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:menu="@menu/menu" />
+
+
+
+
+</LinearLayout>

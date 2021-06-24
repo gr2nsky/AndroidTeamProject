@@ -3,19 +3,33 @@ package com.example.mogastyle.Bean;
 import java.util.ArrayList;
 
 public class Shop {
+    private int no;
     private String name;
     private String tel;
     private String address;
     private String postcode;
-    private int image;
+    private String introduction;
+    private String holiday;
+    private String image;
 
-    public Shop(String name, String tel, String address, String postcode, int image) {
+    public Shop(int no, String name, String tel, String address, String postcode, String introduction, String holiday, String image) {
+        this.no = no;
         this.name = name;
         this.tel = tel;
         this.address = address;
         this.postcode = postcode;
+        this.introduction = introduction;
+        this.holiday = holiday;
         this.image = image;
 
+    }
+
+    public int getNo() {
+        return no;
+    }
+
+    public void setNo(int no) {
+        this.no = no;
     }
 
     public String getName() {
@@ -50,11 +64,27 @@ public class Shop {
         this.postcode = postcode;
     }
 
-    public int getImage() {
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public String getHoliday() {
+        return holiday;
+    }
+
+    public void setHoliday(String holiday) {
+        this.holiday = holiday;
+    }
+
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }

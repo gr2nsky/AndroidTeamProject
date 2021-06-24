@@ -8,7 +8,7 @@
     tools:context=".Activities.Hair.Shop.ShopDetailActivity">
 
     <LinearLayout
-            android:id="@+id/Linear_reservation_topper"
+            android:id="@+id/Linear_shopdetail_topper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -20,11 +20,13 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"/>
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Shop"
         android:gravity="center"
+        android:background="#FDF3F6"
+        android:focusableInTouchMode="false"
         android:textSize="50dp"
         android:textStyle="bold"
         android:textColor="@color/black"
@@ -34,6 +36,8 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="0dp"/>
+
+            // 사진 올리기 아직 안함 glide를 어떻게 사용할 지 모르겠음
             <ImageView
                 android:layout_weight="1"
                 android:layout_width="0dp"
@@ -42,6 +46,24 @@
 
         </LinearLayout>
 
+
+    <LinearLayout
+        android:id="@+id/Linear_shopdetail_image"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="2"
+            android:src="@mipmap/ic_launcher"/>
+
+    </LinearLayout>
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,40 +71,84 @@
         android:padding="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="@drawable/background_rounded_bottom_corners_white"
+        android:background="#F5F6F8"
         android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="tel : "
-        android:textSize="20dp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/bmjua_otf"/>
+        <EditText
+            android:id="@+id/edt_shopdetail_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="shopname"
+            android:background="#F5F6F8"
+            android:focusableInTouchMode="false"
+            android:textSize="30dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/bmjua_otf"
+            android:layout_marginBottom="20dp"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="address : "
-        android:textSize="20dp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/bmjua_otf"/>
+
+
+
+        <EditText
+            android:id="@+id/edt_shopdetail_gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="대상"
+            android:textSize="30dp"
+            android:focusableInTouchMode="false"
+            android:background="#F5F6F8"
+            android:textColor="@color/black"
+            android:fontFamily="@font/bmjua_otf"
+            android:layout_marginBottom="20dp"/>
+
+        <EditText
+            android:id="@+id/edt_shopdetail_typecode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="구성"
+            android:textSize="30dp"
+            android:focusableInTouchMode="false"
+            android:background="#F5F6F8"
+            android:textColor="@color/black"
+            android:fontFamily="@font/bmjua_otf"
+            android:layout_marginBottom="20dp"/>
+
+        <EditText
+            android:id="@+id/edt_shopdetail_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="소개"
+            android:textSize="30dp"
+            android:focusableInTouchMode="false"
+            android:background="#F5F6F8"
+            android:textColor="@color/black"
+            android:fontFamily="@font/bmjua_otf"
+            android:layout_marginBottom="20dp"/>
+
+        <EditText
+            android:id="@+id/edt_shopdetail_designer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="디자이너"
+            android:focusableInTouchMode="false"
+            android:textSize="30dp"
+            android:background="#F5F6F8"
+            android:textColor="@color/black"
+            android:fontFamily="@font/bmjua_otf"
+            android:layout_marginBottom="20dp"/>
+
     </LinearLayout>
 
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="0px"
-        android:layout_weight="1"
-        android:src="@mipmap/ic_launcher"/>
-
-    <TextView
+    <Button
+        android:id="@+id/btn_reservation1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="소개글 : 당신의 머리를 책임집니다!"
-        android:textSize="30dp"
+        android:padding="20dp"
+        android:backgroundTint="#FDF3F6"
+        android:text="예약하기"
         android:textColor="@color/black"
-        android:fontFamily="@font/bmjua_otf"/>
+        android:fontFamily="@font/bmjua_otf"
+        android:layout_marginBottom="20dp"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"

@@ -17,7 +17,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class ShopNetworkTask extends AsyncTask<Integer,String,Object> {
+public class ShopHomeDetailNetworkTask extends AsyncTask<Integer,String,Object> {
     Context context = null;
     String mAddr = null;
     ProgressDialog progressDialog = null;
@@ -25,10 +25,10 @@ public class ShopNetworkTask extends AsyncTask<Integer,String,Object> {
     //NetworkTask를 검색, 입력, 수정, 삭제 구분 없이 하나로 사용하기 위해 생성자 변수 추가
     String where = null;
 
-    public ShopNetworkTask(Context context, String mAddr, String where) {
+    public ShopHomeDetailNetworkTask(Context context, String mAddr, ProgressDialog progressDialog, ArrayList<Shop> shops, String where) {
         this.context = context;
         this.mAddr = mAddr;
-        this.shops = shops;
+        this.progressDialog = progressDialog;
         this.shops = new ArrayList<Shop>();
         this.where = where;
     }
@@ -105,11 +105,10 @@ public class ShopNetworkTask extends AsyncTask<Integer,String,Object> {
             return result;
         }
     }
-
     private void parserSelect(String str) {
         try{
             JSONObject jsonObject = new JSONObject(str);
-            JSONArray jsonArray = new JSONArray(jsonObject.getString("shop_info"));
+            JSONArray jsonArray = new JSONArray(jsonObject.getString("shophome_info"));
             shops.clear(); //기존에 쌓일 수 있는 데이터를 삭제함
 
             for (int i=0; i<jsonArray.length(); i++){

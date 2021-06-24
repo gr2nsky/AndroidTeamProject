@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.mogastyle.Bean.Shop;
+import com.example.mogastyle.Bean.Styling;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -17,19 +18,19 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class ShopNetworkTask extends AsyncTask<Integer,String,Object> {
+public class StyleDetailNetworkTask extends AsyncTask<Integer,String,Object> {
     Context context = null;
     String mAddr = null;
     ProgressDialog progressDialog = null;
-    ArrayList<Shop> shops;
+    ArrayList<Styling> stylings;
     //NetworkTask를 검색, 입력, 수정, 삭제 구분 없이 하나로 사용하기 위해 생성자 변수 추가
     String where = null;
 
-    public ShopNetworkTask(Context context, String mAddr, String where) {
+    public StyleDetailNetworkTask(Context context, String mAddr, String where) {
         this.context = context;
         this.mAddr = mAddr;
-        this.shops = shops;
-        this.shops = new ArrayList<Shop>();
+        this.stylings = stylings;
+        this.stylings = new ArrayList<Styling>();
         this.where = where;
     }
 
@@ -100,7 +101,7 @@ public class ShopNetworkTask extends AsyncTask<Integer,String,Object> {
             }
         }
         if (where.equals("select")){
-            return shops;
+            return stylings;
         }else {
             return result;
         }
@@ -110,30 +111,32 @@ public class ShopNetworkTask extends AsyncTask<Integer,String,Object> {
         try{
             JSONObject jsonObject = new JSONObject(str);
             JSONArray jsonArray = new JSONArray(jsonObject.getString("shop_info"));
-            shops.clear(); //기존에 쌓일 수 있는 데이터를 삭제함
+            stylings.clear(); //기존에 쌓일 수 있는 데이터를 삭제함
 
             for (int i=0; i<jsonArray.length(); i++){
                 JSONObject jsonObject1 = (JSONObject) jsonArray.get(i);
-                String name = jsonObject1.getString("name");
-                Log.v("Status", "name : "+name);
-                String tel = jsonObject1.getString("tel");
-                Log.v("Status", "tel : "+tel);
-                String address = jsonObject1.getString("address");
-                Log.v("Status", "address : "+address);
-                String postcode = jsonObject1.getString("postCode");
-                Log.v("Status", "postCode : "+postcode);
-                String introduction = jsonObject1.getString("introduction");
-                Log.v("Status","introduction: " +introduction);
-                String holiday = jsonObject1.getString("holiday");
-                Log.v("Status","holiday: " +holiday);
-                String image = jsonObject1.getString("image");
-                Log.v("Status","image : " + image);
+                String typecode = jsonObject1.getString("typeCode");
+                Log.v("Status", "typeCode : "+typecode);
+                String submitDate = jsonObject1.getString("submitDate");
+                Log.v("Status", "submitDate : "+submitDate);
+                String deleteDate = jsonObject1.getString("deleteDate");
+                Log.v("Status", "deleteDate : "+deleteDate);
+                String title = jsonObject1.getString("title");
+                Log.v("Status", "title : "+title);
+                String content = jsonObject1.getString("content");
+                Log.v("Status","content : " +content);
+                String gender = jsonObject1.getString("gender");
+                Log.v("Status","gender: " + gender);
+                int price = jsonObject1.getInt("price");
+                Log.v("Status","price : " + price);
+                String leadTime = jsonObject1.getString("leadTime");
+                Log.v("Status","leadTime : " + leadTime);
                 int no = jsonObject1.getInt("no");
                 Log.v("Status", "no : "+no);
 
 
-                Shop shop = new Shop(no,name,tel,address,postcode,introduction,holiday,image);
-                shops.add(shop);
+                Styling styling = new Styling(no,typecode,submitDate,deleteDate,title,content,gender,price,leadTime,no);
+                stylings.add(styling);
             }
         }catch (Exception e){
             e.printStackTrace();

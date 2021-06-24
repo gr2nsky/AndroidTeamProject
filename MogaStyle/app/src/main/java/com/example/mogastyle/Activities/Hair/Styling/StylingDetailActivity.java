@@ -1,4 +1,4 @@
-package com.example.mogastyle.Activities.Hair.Shop;
+package com.example.mogastyle.Activities.Hair.Styling;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,13 +16,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.jetbrains.annotations.NotNull;
 
-public class ShopListActivity extends AppCompatActivity {
+public class StylingDetailActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shop_list);
+        setContentView(R.layout.activity_styling_detail_info);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
@@ -63,11 +64,5 @@ public class ShopListActivity extends AppCompatActivity {
             }
         });
 
-    }
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        startActivity(new Intent(getApplicationContext() , MainActivity.class));
-        overridePendingTransition(0,0);
     }
 }

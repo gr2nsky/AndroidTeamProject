@@ -42,7 +42,6 @@
         </activity>
         <activity android:name=".Activities.LoginActivity"/>
         <activity android:name=".Activities.MainActivity"/>
-
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="d501006782a521eb40a06174fe0acf07"/>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:padding="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#F5F6F8"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/edt_shop_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="name : "
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:focusable="false"
+            android:background="#F5F6F8"
+            android:fontFamily="@font/bmjua_otf"
+            android:layout_marginBottom="20dp"/>
+
+        <EditText
+            android:id="@+id/edt_shop_tel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="tel : "
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:focusable="false"
+            android:background="#F5F6F8"
+            android:fontFamily="@font/bmjua_otf"
+            android:layout_marginBottom="20dp"/>
+
+        <EditText
+            android:id="@+id/edt_shop_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="address : "
+            android:textSize="20dp"
+            android:background="#F5F6F8"
+            android:focusable="false"
+            android:textColor="@color/black"
+            android:fontFamily="@font/bmjua_otf"
+            android:layout_marginBottom="20dp"/>
+
+<!--        <EditText-->
+<!--            android:id="@+id/shop_postcode"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="postcode : "-->
+<!--            android:textSize="20dp"-->
+<!--            android:background="#F5F6F8"-->
+<!--            android:focusable="false"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:fontFamily="@font/bmjua_otf"-->
+<!--            android:layout_marginBottom="20dp"/>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
+
+            <EditText
+                android:id="@+id/edt_shop_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="별점 :"
+                android:textSize="20dp"
+                android:background="#F5F6F8"
+                android:focusable="false"
+                android:layout_marginRight="40dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/bmjua_otf"/>
+
+            <EditText
+                android:id="@+id/edt_shop_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="리뷰 :"
+                android:textSize="20dp"
+                android:background="#F5F6F8"
+                android:focusable="false"
+                android:textColor="@color/black"
+                android:fontFamily="@font/bmjua_otf"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    //shop_image 올리기 부분
+
+    <LinearLayout
+        android:id="@+id/Linear_shop_image"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/edt_shop_img"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="2"
+            android:src="@mipmap/ic_launcher"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edt_shop_introduction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="소개글 : 당신의 머리를 책임집니다!"
+        android:textSize="30dp"
+        android:focusable="false"
+        android:textColor="@color/black"
+        android:fontFamily="@font/bmjua_otf"
+        android:background="#F5F6F8"
+        android:layout_marginBottom="20dp"/>
+
+</LinearLayout>
