@@ -48,13 +48,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp">
+
         <ImageView
             android:id="@+id/img_list_item_res_check_designer"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/jpeg_default_profile_photo"
+            android:layout_gravity="center"
             android:scaleType="fitCenter"
-            android:layout_gravity="center"/>
+            android:src="@drawable/jpeg_default_profile_photo" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="80dp"

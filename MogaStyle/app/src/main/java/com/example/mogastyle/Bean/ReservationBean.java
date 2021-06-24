@@ -1,21 +1,62 @@
 package com.example.mogastyle.Bean;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class ReservationBean {
 
+    @SerializedName("no")
+    @Expose
     int no;
+    @SerializedName("reservationDate")
+    @Expose
     String reservationDate;
+    @SerializedName("reservationTime")
+    @Expose
     int reservationTime;
+    @SerializedName("totalPrice")
+    @Expose
     int totalPrice;
+    @SerializedName("cancelDate")
+    @Expose
     String cancelDate;
+    @SerializedName("designer_no")
+    @Expose
+    int designer_no;
+    @SerializedName("shop_no")
+    @Expose
+    int shop_no;
+    @SerializedName("user_no")
+    @Expose
+    int user_no;
+    @SerializedName("styling_no")
+    @Expose
+    int styling_no;
 
+    //-------------------//ㄹㅣ뷰//---------------------------------
     String reviewPhoto;
     int reviewScore;
     String reviewContent;
 
-    int designer_no;
-    int shop_no;
-    int user_no;
-    int styling_no;
+    //-------------------//reservationCheck//---------------------------
+    @SerializedName("stylingTitle")
+    @Expose
+    String stylingTitle;
+    @SerializedName("shopName")
+    @Expose
+    String shopName;
+    @SerializedName("designerName")
+    @Expose
+    String designerName;
+    @SerializedName("shopImage")
+    @Expose
+    String shopImage;
+    @SerializedName("designerImage")
+    @Expose
+    String designerImage;
+    @SerializedName("shopAddress")
+    @Expose
+    String shopAddress;
 
     //등록용
     public ReservationBean(String reservationDate, int reservationTime, int totalPrice,
@@ -123,5 +164,61 @@ public class ReservationBean {
 
     public void setStyling_no(int styling_no) {
         this.styling_no = styling_no;
+    }
+
+    public String getStylingTitle() {
+        return stylingTitle;
+    }
+
+    public void setStylingTitle(String stylingTitle) {
+        this.stylingTitle = stylingTitle;
+    }
+
+    public String getShopName() {
+        return shopName;
+    }
+
+    public void setShopName(String shopName) {
+        this.shopName = shopName;
+    }
+
+    public String getDesignerName() {
+        return designerName;
+    }
+
+    public void setDesignerName(String designerName) {
+        this.designerName = designerName;
+    }
+
+    public String getShopImage() {
+        return shopImage;
+    }
+
+    public void setShopImage(String shopImage) {
+        this.shopImage = shopImage;
+    }
+
+    public String getDesignerImage() {
+        return designerImage;
+    }
+
+    public void setDesignerImage(String designerImage) {
+        this.designerImage = designerImage;
+    }
+
+    public String getShopAddress() {
+        return shopAddress;
+    }
+
+    public void setShopAddress(String shopAddress) {
+        this.shopAddress = shopAddress;
+    }
+
+    public String ResToString(){
+        return "no :" + no + " reservationDate : " + reservationDate + " reservationTime : "
+                + reservationTime  + " totalPrice : " + totalPrice  + " stylingTitle : "
+                + stylingTitle + " shopName : " + shopName + " designerName : " + designerName
+                + " shopImage : " + shopImage + "  designerImage : " + designerImage + "  shopAddress : " + shopAddress
+                + " cancelDate : " + cancelDate;
     }
 }

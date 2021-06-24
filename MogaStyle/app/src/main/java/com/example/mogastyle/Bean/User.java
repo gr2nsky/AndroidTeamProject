@@ -6,6 +6,9 @@
 
 package com.example.mogastyle.Bean;
 
+import com.example.mogastyle.Common.LoginedUserInfo;
+import com.example.mogastyle.Common.ShareVar;
+
 public class User {
 
     int no;
@@ -113,7 +116,10 @@ public class User {
 
     //추
     public String getUserImage() {
-        return userImage;
+        if(joinType.equals("0")){
+            return userImage;
+        }
+        return ShareVar.userImgPath + userImage;
     }
 
     public void setUserImage(String userImage) {

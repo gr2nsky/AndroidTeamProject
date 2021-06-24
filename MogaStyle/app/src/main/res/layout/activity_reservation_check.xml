@@ -39,12 +39,13 @@
                 android:textColor="@color/black"
                 android:fontFamily="@font/bmjua_otf"/>
             <View
+                android:id="@+id/view_res_check_pre_use"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@color/btn_super_negative"/>
+                android:background="@color/menu_nomal"/>
         </LinearLayout><!--이용전-->
         <LinearLayout
             android:id="@+id/lin_res_check_used"
@@ -63,6 +64,7 @@
                 android:textColor="@color/black"
                 android:fontFamily="@font/bmjua_otf"/>
             <View
+                android:id="@+id/view_res_check_used"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -87,6 +89,7 @@
                 android:textColor="@color/black"
                 android:fontFamily="@font/bmjua_otf"/>
             <View
+                android:id="@+id/view_res_check_canceled"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -98,6 +101,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_res_check"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"

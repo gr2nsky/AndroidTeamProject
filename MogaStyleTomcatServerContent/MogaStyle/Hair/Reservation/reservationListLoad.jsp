@@ -10,11 +10,11 @@
 	String id_mysql = "root";
 	String pw_mysql = "qwer1234";
 
-  String q1 = "SELECT r.no reservationNo, r.reservationTime, r.totalPrice, r.cancelDate, st.title stylingName, sp.name shopName, d.name designerName ";
+  String q1 = "SELECT r.no reservationNo, r.reservationDate, r.reservationTime, r.totalPrice, r.cancelDate, st.title stylingName, sp.name shopName, d.name designerName, sp.sImage, d.uImage, sp.address ";
   String q2 = "FROM (SELECT * FROM reservation WHERE user_no = ?) r, ";
   String q3 =	"(SELECT r.no, s.title FROM styling s, reservation r WHERE r.styling_no = s.no) st, ";
-  String q4 = "(SELECT r.no, s.name FROM shop s, reservation r WHERE r.shop_no = s.no) sp, ";
-  String q5 = "(SELECT r.no, u.name FROM designer d, user u, reservation r WHERE r.designer_no = d.dno AND d.user_no = u.no) d ";
+  String q4 = "(SELECT r.no, s.name, s.image sImage, s.address FROM shop s, reservation r WHERE r.shop_no = s.no) sp, ";
+  String q5 = "(SELECT r.no, u.name, u.image uImage FROM designer d, user u, reservation r WHERE r.designer_no = d.dno AND d.user_no = u.no) d ";
   String q6 = "WHERE r.no = st.no AND st.no = sp.no AND sp.no = d.no ";
   String q7 = "ORDER BY r.reservationDate DESC, r.reservationTime DESC";
   String query = q1 + q2 + q3 + q4 + q5 + q6 + q7;
@@ -25,7 +25,7 @@
   ResultSet rs = null;
 
   try {
-        Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
+        conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
         pstmt = conn_mysql.prepareStatement(query);
 
         pstmt.setInt(1, userNo);
@@ -49,9 +49,12 @@
 			"reservationTime" : "<%=rs.getInt(3) %>",
 			"totalPrice" : "<%=rs.getInt(4) %>",
       "cancelDate" : "<%=rs.getString(5) %>",
-      "designerName" : "<%=rs.getString(6) %>",
+      "stylingTitle" : "<%=rs.getString(6) %>",
       "shopName" : "<%=rs.getString(7) %>",
-      "stylingTitle" : "<%=rs.getString(8) %>",
+      "designerName" : "<%=rs.getString(8) %>",
+      "shopImage" : "<%=rs.getString(9) %>",
+      "designerImage" : "<%=rs.getString(10) %>",
+      "shopAddress" : "<%=rs.getString(11) %>"
       }
 
 <%
