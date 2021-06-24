@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.mogastyle.Activities.Hair.Designer.DesignerDetailPageActivity;
 import com.example.mogastyle.Bean.Designer;
 import com.example.mogastyle.R;
 
@@ -61,16 +62,16 @@ public class DesignerAdapter extends BaseAdapter {
         tv_name.setText("이름 : " + data.get(position).getName());
         tv_introduction.setText("소개 : " + data.get(position).getIntroduction());
 
-//        // listView 클릭시
-//        convertView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Log.v("Message", "click");
-//                Intent intent = new Intent(mContext, DesignerDetailPageActivity.class);
-//                intent.putExtra("dno", data.get(position).getNo());
-//                mContext.startActivity(intent);
-//            }
-//        });
+        // listView 클릭시
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v("Message", "click");
+                Intent intent = new Intent(mContext, DesignerDetailPageActivity.class);
+                intent.putExtra("dno", data.get(position).getNo());
+                mContext.startActivity(intent);
+            }
+        });
 
         return convertView;
     }
