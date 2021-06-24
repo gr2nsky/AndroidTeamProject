@@ -27,6 +27,7 @@ import com.example.mogastyle.Activities.MainActivity;
 import com.example.mogastyle.Common.LoginedUserInfo;
 
 import com.example.mogastyle.Common.ShareVar;
+import com.example.mogastyle.NetworkTasks.MyPage.MyPageGetImage;
 import com.example.mogastyle.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -45,6 +46,7 @@ public class MyPageMainActivity extends AppCompatActivity {
 
     ImageView iv_my_page_user_image;
     //
+    String urlAddr = ShareVar.hostRootAddr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +69,20 @@ public class MyPageMainActivity extends AppCompatActivity {
         // -- 유저 정보 출력
         tv_my_page_user_name.setText(LoginedUserInfo.user.getName());
         tv_my_page_user_id.setText(LoginedUserInfo.user.getId());
+
+        //마이페이지 이미지 수정후 반영하기 위해
+        MyPageGetImage myPageGetImage = new MyPageGetImage(MyPageMainActivity.this , urlAddr + "MyPage/MyPageGetUserImage.jsp",Integer.toString(LoginedUserInfo.user.getNo()));
+        Object object = null;
+        try {
+            object = myPageGetImage.execute().get();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        String userImageName = (String) object;
+
+        LoginedUserInfo.user.setUserImage(userImageName);
+        //
 
         if(LoginedUserInfo.user.getJoinType().equals("1") || LoginedUserInfo.user.getJoinType().equals("2")) {
             Glide.with(this)
@@ -211,6 +227,7 @@ public class MyPageMainActivity extends AppCompatActivity {
 
                     intent = new Intent(MyPageMainActivity.this , MyPageUpdateActivity.class);
                     startActivity(intent);
+
                     break;
 
                 case R.id.linear_layout_my_page_bottom_update_pw:
@@ -235,6 +252,7 @@ public class MyPageMainActivity extends AppCompatActivity {
             }
         }
     };
+
 
 
 
