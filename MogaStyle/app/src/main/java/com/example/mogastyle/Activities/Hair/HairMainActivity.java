@@ -5,18 +5,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mogastyle.Activities.Consult.ConsultMainActivity;
 import com.example.mogastyle.Activities.Diary.DiaryMainActivity;
-import com.example.mogastyle.Activities.Hair.Shop.ShopDetailActivity;
 import com.example.mogastyle.Activities.Hair.Shop.ShopHomeFragment;
 import com.example.mogastyle.Activities.MainActivity;
 import com.example.mogastyle.Activities.MyPage.MyPageMainActivity;
@@ -48,12 +45,6 @@ public class HairMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        listView = findViewById(R.id.lv_shoplist);
-
-        Intent intent = getIntent();
-        desktopIP = intent.getStringExtra("desktopIP");
-        urlAddr = "http://192.168.2.30:8080/test/shop_select.jsp";
-        Log.v("Message",urlAddr);
 
 //        adapter1 = ArrayAdapter.createFromResource(this,R.array.hair,
 //                android.R.layout.simple_spinner_dropdown_item);
@@ -68,6 +59,13 @@ public class HairMainActivity extends AppCompatActivity {
        // mapViewContainer.addView(mapView);
 
         setContentView(R.layout.activity_hair_main);
+
+        listView = findViewById(R.id.lv_shoplist);
+
+        Intent intent = getIntent();
+        desktopIP = intent.getStringExtra("desktopIP");
+        urlAddr = "http://192.168.2.30:8080/test/shop_select.jsp";
+        Log.v("Message",urlAddr);
 
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);

@@ -121,11 +121,15 @@ public class ShopNetworkTask extends AsyncTask<Integer,String,Object> {
                 Log.v("Status", "address : "+address);
                 String postcode = jsonObject1.getString("postcode");
                 Log.v("Status", "postcode : "+postcode);
+                String introduction = jsonObject1.getString("introduction");
+                Log.v("Status","introduction: " +introduction);
+                String holiday = jsonObject1.getString("holiday");
+                Log.v("Status","holiday: " +holiday);
                 int image = jsonObject1.getInt("image");
                 Log.v("Status","image : " + image);
 
 
-                ShopList shopList = new ShopList(name,tel,address,postcode,image);
+                ShopList shopList = new ShopList(name,tel,address,postcode,introduction,holiday,image);
                 shopLists.add(shopList);
             }
         }catch (Exception e){
