@@ -252,7 +252,7 @@ public class MyPageMainActivity extends AppCompatActivity {
             }
         }
     };
-    
+
 
 
 
