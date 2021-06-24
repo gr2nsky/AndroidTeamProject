@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,7 +33,7 @@ import java.util.ArrayList;
 public class HairMainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     //MapView mapView = new MapView(this);
-    //private Spinner spinner;
+    private Spinner spinner;
 
 
     String urlAddr = null;
@@ -61,6 +62,7 @@ public class HairMainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         desktopIP = intent.getStringExtra("desktopIP");
         urlAddr = ShareVar.hostRootAddr;
+        Log.v("Message",ShareVar.WindowIP);
         Log.v("Message",urlAddr);
 
 

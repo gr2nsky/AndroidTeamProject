@@ -79,35 +79,6 @@
 
     </LinearLayout>
 
-<!--    <com.google.android.material.appbar.AppBarLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content">-->
-
-<!--        <com.google.android.material.tabs.TabLayout-->
-<!--            android:id="@+id/tab_layout"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:tabMode="scrollable"-->
-<!--            android:background="#F5F6F8"-->
-<!--            app:tabGravity="center"/>-->
-
-<!--    </com.google.android.material.appbar.AppBarLayout>-->
-
-<!--    <androidx.viewpager.widget.ViewPager-->
-<!--        android:id="@+id/shop_pager"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0px"-->
-<!--        android:layout_weight="1"-->
-<!--        app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
-
-<!--        &lt;!&ndash;            <ListView&ndash;&gt;-->
-<!--        &lt;!&ndash;            android:id="@+id/lv_shop"&ndash;&gt;-->
-<!--        &lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
-<!--        &lt;!&ndash;            android:layout_height="0px"&ndash;&gt;-->
-<!--        &lt;!&ndash;            android:layout_weight="5"/>&ndash;&gt;-->
-
-<!--    </androidx.viewpager.widget.ViewPager>-->
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"

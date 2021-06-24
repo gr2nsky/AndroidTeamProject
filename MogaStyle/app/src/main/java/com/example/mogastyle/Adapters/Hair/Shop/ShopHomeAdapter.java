@@ -2,6 +2,7 @@ package com.example.mogastyle.Adapters.Hair.Shop;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.Target;
 import com.example.mogastyle.Activities.Hair.Shop.ShopHomeFragment;
 import com.example.mogastyle.Bean.Shop;
 import com.example.mogastyle.R;
@@ -64,7 +66,13 @@ public class ShopHomeAdapter extends BaseAdapter {
         tv_postcode.setText("우편번호 : "+ data.get(position).getPostcode());
         tv_introduce.setText("소개 : " + data.get(position).getIntroduction());
         tv_holiday.setText("쉬는 날 : " + data.get(position).getHoliday());
-        tv_image.setText("사진 : "+ data.get(position).getImage());
+
+        Glide.with(mContext)
+                .load(ShareVar.shopImgPath + data.get(position).getImage())
+                .placeholder(R.drawable.jpeg_default_profile_photo)
+                .error(R.drawable.jpeg_default_profile_photo)
+                .fallback(R.drawable.jpeg_default_profile_photo);
+//                .into(convertView.tv_image);
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override

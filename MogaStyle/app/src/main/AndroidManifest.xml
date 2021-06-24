@@ -33,7 +33,8 @@
         <activity android:name=".Activities.LogoActivity"/>
         <activity android:name=".Activities.Diary.DiaryMainActivity"/>
         <activity android:name=".Activities.Consult.ConsultMainActivity"/>
-        <activity android:name=".Activities.Hair.Shop.ShopHomeActivity">
+        <activity android:name=".Activities.Hair.Shop.ShopHomeActivity"/>
+        <activity android:name=".Activities.Hair.HairMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
