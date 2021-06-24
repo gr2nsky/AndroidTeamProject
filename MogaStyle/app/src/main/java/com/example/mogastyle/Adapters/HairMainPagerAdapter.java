@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.mogastyle.Activities.Consult.ConsultFragment;
+import com.example.mogastyle.Activities.Review.ReviewFragment;
 import com.example.mogastyle.Activities.Hair.Designer.DesignerFragment;
 import com.example.mogastyle.Activities.Hair.Menu.MenuFragment;
 import com.example.mogastyle.Activities.Hair.Shop.ShopHomeFragment;
@@ -21,7 +21,7 @@ class HairMainAdapter extends FragmentPagerAdapter {
         arrayList.add(new ShopHomeFragment());
         arrayList.add(new MenuFragment());
         arrayList.add(new DesignerFragment());
-        arrayList.add(new ConsultFragment());
+        arrayList.add(new ReviewFragment());
 
         name.add("홈");
         name.add("메뉴");

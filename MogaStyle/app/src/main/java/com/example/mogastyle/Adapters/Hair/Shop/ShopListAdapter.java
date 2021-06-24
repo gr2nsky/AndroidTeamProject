@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.mogastyle.Activities.Hair.Shop.ShopHomeActivity;
 import com.example.mogastyle.Activities.Hair.Shop.ShopHomeFragment;
 import com.example.mogastyle.Bean.Shop;
 import com.example.mogastyle.R;
@@ -53,13 +54,13 @@ public class ShopListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = inflater.inflate(this.layout, parent, false);
-        TextView tv_name = convertView.findViewById(R.id.tv_name_list);
-        TextView tv_tel = convertView.findViewById(R.id.tv_tel_list);
-        TextView tv_address = convertView.findViewById(R.id.tv_address_list);
-        TextView tv_postcode = convertView.findViewById(R.id.tv_postcode_list);
-        TextView tv_introduce = convertView.findViewById(R.id.tv_introduction_list);
-        TextView tv_holiday = convertView.findViewById(R.id.tv_holiday_list);
-        TextView tv_phone = convertView.findViewById(R.id.img_image_list);
+        TextView tv_name = convertView.findViewById(R.id.tv_home_name);
+        TextView tv_tel = convertView.findViewById(R.id.tv_home_tel);
+        TextView tv_address = convertView.findViewById(R.id.tv_home_address);
+        TextView tv_postcode = convertView.findViewById(R.id.tv_home_postcode);
+        TextView tv_introduce = convertView.findViewById(R.id.tv_home_introduction);
+        TextView tv_holiday = convertView.findViewById(R.id.tv_home_holiday);
+        TextView tv_phone = convertView.findViewById(R.id.img_home_image);
 
         tv_name.setText("이름 : "+ data.get(position).getName());
         tv_tel.setText("전화번호 : " + data.get(position).getTel());
@@ -73,7 +74,8 @@ public class ShopListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 no = data.get(position).getNo();
-                Intent intent = new Intent(mContext, ShopHomeFragment.class);
+                Intent intent = new Intent(mContext, ShopHomeActivity.class);
+                intent.putExtra("smo",data.get(position).getNo());
                 mContext.startActivity(intent);
             }
         });

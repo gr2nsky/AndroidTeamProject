@@ -7,25 +7,47 @@
     android:layout_height="match_parent"
     tools:context=".Activities.Hair.HairMainActivity">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="0.3">
     <SearchView
         android:id="@+id/search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:queryHint="검색어를 입력하시오" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="2">
+
 <!--        <RelativeLayout-->
 <!--            android:id="@+id/map_view"-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="match_parent" >-->
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1">
+
     <ListView
         android:id="@+id/lv_shoplist"
         android:layout_width="match_parent"
-        android:layout_height="371dp"
-        android:layout_gravity="center"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
         android:fontFamily="@font/bmjua_otf"
         android:textColor="@color/black" />
+
+    </LinearLayout>
 
 <!--        </RelativeLayout>-->
 

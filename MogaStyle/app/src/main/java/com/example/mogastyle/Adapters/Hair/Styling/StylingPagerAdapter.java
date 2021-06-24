@@ -1,34 +1,26 @@
-package com.example.mogastyle.Adapters.Hair.Shop;
+package com.example.mogastyle.Adapters.Hair.Styling;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-
 import com.example.mogastyle.Activities.Review.ReviewFragment;
-import com.example.mogastyle.Activities.Hair.Designer.DesignerFragment;
-import com.example.mogastyle.Activities.Hair.Menu.MenuFragment;
-import com.example.mogastyle.Activities.Hair.Shop.ShopHomeFragment;
+import com.example.mogastyle.Activities.Hair.Styling.StylingInfoFragment;
 
 import java.util.ArrayList;
 
-public class ShopPagerAdapter extends FragmentPagerAdapter {
-
+public class StylingPagerAdapter extends FragmentPagerAdapter {
     private ArrayList<String> name = new ArrayList<>();
     private ArrayList<Fragment> arrayList = new ArrayList<>();
 
-    public ShopPagerAdapter(FragmentManager fm) {
+    public StylingPagerAdapter(FragmentManager fm) {
         super(fm);
-        arrayList.add(new ShopHomeFragment());
-        arrayList.add(new MenuFragment());
-        arrayList.add(new DesignerFragment());
+        arrayList.add(new StylingInfoFragment());
         arrayList.add(new ReviewFragment());
 
-        name.add("홈");
-        name.add("메뉴");
-        name.add("디자이너");
+        name.add("정보");
         name.add("리뷰");
-    
+
     }
 
     @Override
@@ -47,3 +39,4 @@ public class ShopPagerAdapter extends FragmentPagerAdapter {
         return arrayList.size();
     }
 }
+
