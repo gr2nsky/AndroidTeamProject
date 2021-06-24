@@ -18,8 +18,12 @@ import com.example.mogastyle.Common.ShareVar;
 import com.example.mogastyle.NetworkTasks.Login.LoginCheckUserId;
 import com.example.mogastyle.NetworkTasks.Login.SignUpInApp;
 import com.example.mogastyle.R;
+import com.example.mogastyle.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskExecutors;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,8 +46,14 @@ public class SignUpActivity extends AppCompatActivity {
     String userName,userId ,userPw , userPhone , userToken , userCheck , joinType;
 
     //FireBase Phone Auth
+
+    private ActivityMainBinding binding;
+
+    private PhoneAuthProvider.ForceResendingToken forceResendingToken;
+
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBacks;
     FirebaseAuth firebaseAuth;
-    String verificationId ;
+    String mVerificationId ;
     // FireBase Phone Auth End --
 
 
@@ -81,6 +91,32 @@ public class SignUpActivity extends AppCompatActivity {
 
         //FireBase Phone Auth
         firebaseAuth = FirebaseAuth.getInstance();
+
+        mCallBacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+            @Override
+            public void onVerificationCompleted(@NonNull @NotNull PhoneAuthCredential phoneAuthCredential) {
+                signInWithPhoneAuthCredential(phoneAuthCredential);
+            }
+
+            @Override
+            public void onVerificationFailed(@NonNull @NotNull FirebaseException e) {
+
+            }
+
+            @Override
+            public void onCodeSent(@NonNull @NotNull String verificationId, @NonNull @NotNull PhoneAuthProvider.ForceResendingToken token) {
+                super.onCodeSent(verificationId, forceResendingToken);
+
+                Log.d("TAG" , "onCodeSending" + verificationId);
+                mVerificationId = verificationId;
+                forceResendingToken = token;
+
+
+            }
+        };
+
+
+
         //FireBase Phone Auth End --
     }
 
@@ -121,7 +157,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                     }else{
                         userPhone = et_sign_up_phone.getText().toString();
-                        sendVerificationCode(userPhone);
+                        startPhoneNumberVerification(userPhone);
                     }
 
 
@@ -134,7 +170,8 @@ public class SignUpActivity extends AppCompatActivity {
                     if(TextUtils.isEmpty(userToken)){
                         Toast.makeText(SignUpActivity.this, "인증 번호를 입력해주세요!", Toast.LENGTH_SHORT).show();
                     }else{
-//                        verifyCode(userToken);
+
+                            verifyPhoneNumberWithCode(mVerificationId ,userToken);
 
 
                     }
@@ -186,68 +223,70 @@ public class SignUpActivity extends AppCompatActivity {
             }
         }
     };
+
+
     // -- Button Click Listener end
+    //FireBase Auth
 
-    //FireBase Phone Auth
-    private void sendVerificationCode(String userPhone){
-        PhoneAuthOptions phoneAuthOptions = PhoneAuthOptions.newBuilder(firebaseAuth)
-                .setPhoneNumber(userPhone)
-                .setTimeout(60L , TimeUnit.SECONDS)
-                .setActivity(this)
-                .setCallbacks(mCallBack)
-                .build();
+    private void startPhoneNumberVerification(String phone) {
+        PhoneAuthOptions options =
+                PhoneAuthOptions.newBuilder(firebaseAuth)
+                        .setPhoneNumber(phone)
+                        .setTimeout(60L , TimeUnit.SECONDS)
+                        .setActivity(this)
+                        .setCallbacks(mCallBacks)
+                        .build();
 
-        PhoneAuthProvider.verifyPhoneNumber(phoneAuthOptions);
-    }
-
-    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBack = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-
-        @Override
-        public void onCodeSent(@NonNull @NotNull String s, @NonNull @NotNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-            super.onCodeSent(s, forceResendingToken);
-            verificationId = s;
-        }
-
-        @Override
-        public void onVerificationCompleted(@NonNull @NotNull PhoneAuthCredential phoneAuthCredential) {
-            final String code = phoneAuthCredential.getSmsCode();
-            Log.d("SHHHHH" , code);
-            verifyCode(code);
-            et_sign_up_token.setText(code);
-            tv_sign_up_token_check.setVisibility(View.VISIBLE);
-            tv_sign_up_token_check.setText("인증번호 일치");
-        }
-
-        @Override
-        public void onVerificationFailed(@NonNull @NotNull FirebaseException e) {
-            Toast.makeText(SignUpActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-    };
-
-    private void verifyCode(String code){
-        PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.getCredential(verificationId ,code);
-        signInWithCredential(phoneAuthCredential);
+        PhoneAuthProvider.verifyPhoneNumber(options);
 
     }
+    /*
+        private void resendVerificationCode(String phone , PhoneAuthProvider.ForceResendingToken token){
+            PhoneAuthOptions options =
+                PhoneAuthOptions.newBuilder(firebaseAuth)
+                        .setPhoneNumber(phone)
+                        .setTimeout(60L , TimeUnit.SECONDS)
+                        .setActivity(this)
+                        .setCallbacks(mCallBacks)
+                        .setForceResendingToken(token)
+                        .build();
 
-    private void signInWithCredential(PhoneAuthCredential credential){
+        PhoneAuthProvider.verifyPhoneNumber(options);
 
-        firebaseAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    // 성공했을 경우 나오는 것
-                    // 뭔가 로그인이 완료됬을때 보여주는거 같은데..
+        }
 
+     */
 
-
-                }else{
-                    Toast.makeText(SignUpActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+    private void verifyPhoneNumberWithCode(String verificationId, String userToken) {
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId,userToken);
+        signInWithPhoneAuthCredential(credential);
     }
 
-    //FireBase Phone Auth-- End
+    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
+
+        firebaseAuth.signInWithCredential(credential)
+                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                        String phone = firebaseAuth.getCurrentUser().getPhoneNumber();
+                        Toast.makeText(SignUpActivity.this, phone , Toast.LENGTH_SHORT).show();
+                        // 회원가입 완료
+
+
+                        // --
+                        startActivity(new Intent(SignUpActivity.this , LoginBasicActivity.class));
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull @NotNull Exception e) {
+                        startActivity(new Intent(SignUpActivity.this , SignUpActivity.class));
+                    }
+                });
+
+
+    }
+
 
 }
