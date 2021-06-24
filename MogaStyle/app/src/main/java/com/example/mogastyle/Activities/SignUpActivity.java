@@ -39,7 +39,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     EditText et_sign_up_name ,et_sign_up_userid , et_sign_up_userpw , et_sign_up_phone , et_sign_up_token;
 
-    Button btn_sign_up_check_user_id, btn_sign_up_phone_check ,btn_sign_up_token_check ,btn_sign_up_final;
+    Button btn_sign_up_check_user_id, btn_sign_up_phone_check ,btn_sign_up_token_check ;
 
     TextView tv_sign_up_token_check;
 
@@ -75,7 +75,7 @@ public class SignUpActivity extends AppCompatActivity {
         btn_sign_up_check_user_id = findViewById(R.id.btn_sign_up_check_user_id);
         btn_sign_up_phone_check = findViewById(R.id.btn_sign_up_phone_check);
         btn_sign_up_token_check = findViewById(R.id.btn_sign_up_token_check);
-        btn_sign_up_final = findViewById(R.id.btn_sign_up_final);
+
 
         //TextView Binding
         tv_sign_up_token_check = findViewById(R.id.tv_sign_up_token_check);
@@ -84,7 +84,7 @@ public class SignUpActivity extends AppCompatActivity {
         btn_sign_up_check_user_id.setOnClickListener(onClickListener);
         btn_sign_up_phone_check.setOnClickListener(onClickListener);
         btn_sign_up_token_check.setOnClickListener(onClickListener);
-        btn_sign_up_final.setOnClickListener(onClickListener);
+
 
         //정보 가져오기
 
@@ -167,7 +167,21 @@ public class SignUpActivity extends AppCompatActivity {
                 case R.id.btn_sign_up_token_check:
                     //인증하기
                     userToken = et_sign_up_token.getText().toString();
-                    if(TextUtils.isEmpty(userToken)){
+
+                    userName = et_sign_up_name.getText().toString();
+                    userId = et_sign_up_userid.getText().toString();
+                    userPw = et_sign_up_userpw.getText().toString();
+                    userPhone = et_sign_up_phone.getText().toString();
+                    if(TextUtils.isEmpty(userName)){
+                        Toast.makeText(SignUpActivity.this, "이름을 입력해주세요!", Toast.LENGTH_SHORT).show();
+                    }else if(TextUtils.isEmpty(userId)){
+                        Toast.makeText(SignUpActivity.this, "아이디를 입력해주세요!", Toast.LENGTH_SHORT).show();
+                    }else if(TextUtils.isEmpty(userPw)){
+                        Toast.makeText(SignUpActivity.this, "비밀번호를 입력해주세요!", Toast.LENGTH_SHORT).show();
+                    }else if(TextUtils.isEmpty(userPhone)){
+                        Toast.makeText(SignUpActivity.this, "전화번호 입력해주세요!", Toast.LENGTH_SHORT).show();
+                    }
+                    else if(TextUtils.isEmpty(userToken)){
                         Toast.makeText(SignUpActivity.this, "인증 번호를 입력해주세요!", Toast.LENGTH_SHORT).show();
                     }else{
 
@@ -178,47 +192,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                     break;
 
-                case R.id.btn_sign_up_final:
-                    //마지막 화원가입 완료
-                    userName = et_sign_up_name.getText().toString();
-                    userId = et_sign_up_userid.getText().toString();
-                    userPw = et_sign_up_userpw.getText().toString();
-                    userToken = et_sign_up_token.getText().toString();
-                    userPhone = et_sign_up_phone.getText().toString();
-                    userCheck = "0";
-                    joinType = "0";
 
-                    SignUpInApp signUpInApp = new SignUpInApp(SignUpActivity.this , urlAddr + "Home/userSignUpInApp.jsp" , userName,userId , userPw , userPhone ,userCheck,joinType);
-
-                    Object object = null;
-                    String result = "0";
-                    try{
-                        object = signUpInApp.execute().get();
-                    }catch (Exception e){
-                        e.printStackTrace();
-
-                    }
-
-                    result = (String) object;
-
-                    Log.d("result" , result);
-
-                    if (result.equals("1")){
-                        Toast.makeText(SignUpActivity.this, userId + " 님 회원가입 완료!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(SignUpActivity.this , LoginBasicActivity.class);
-//                        intent.putExtra("userId",userId);
-//                        intent.putExtra("userPw",userPw);
-//                        //회원가입 에서 왔어요~
-//                        intent.putExtra("login","1");
-                        startActivity(intent);
-
-                    }else if(result.equals("2")) {
-                        Toast.makeText(SignUpActivity.this, "이미 로그인 되어있는 아이디입니다", Toast.LENGTH_SHORT).show();
-                    }
-                    else{
-                        Toast.makeText(SignUpActivity.this, "회원가입 실패!", Toast.LENGTH_SHORT).show();
-                    }
-                    break;
 
             }
         }
@@ -271,7 +245,45 @@ public class SignUpActivity extends AppCompatActivity {
                         String phone = firebaseAuth.getCurrentUser().getPhoneNumber();
                         Toast.makeText(SignUpActivity.this, phone , Toast.LENGTH_SHORT).show();
                         // 회원가입 완료
+                        //DB 저~장
+                        userName = et_sign_up_name.getText().toString();
+                        userId = et_sign_up_userid.getText().toString();
+                        userPw = et_sign_up_userpw.getText().toString();
+                        userToken = et_sign_up_token.getText().toString();
+                        userPhone = et_sign_up_phone.getText().toString();
+                        userCheck = "0";
+                        joinType = "0";
 
+                        SignUpInApp signUpInApp = new SignUpInApp(SignUpActivity.this , urlAddr + "Home/userSignUpInApp.jsp" , userName,userId , userPw , userPhone ,userCheck,joinType);
+
+                        Object object = null;
+                        String result = "0";
+                        try{
+                            object = signUpInApp.execute().get();
+                        }catch (Exception e){
+                            e.printStackTrace();
+
+                        }
+
+                        result = (String) object;
+
+                        Log.d("result" , result);
+
+                        if (result.equals("1")){
+                            Toast.makeText(SignUpActivity.this, userId + " 님 회원가입 완료!", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(SignUpActivity.this , LoginBasicActivity.class);
+//                        intent.putExtra("userId",userId);
+//                        intent.putExtra("userPw",userPw);
+//                        //회원가입 에서 왔어요~
+//                        intent.putExtra("login","1");
+                            startActivity(intent);
+
+                        }else if(result.equals("2")) {
+                            Toast.makeText(SignUpActivity.this, "이미 로그인 되어있는 아이디입니다", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Toast.makeText(SignUpActivity.this, "회원가입 실패!", Toast.LENGTH_SHORT).show();
+                        }
 
                         // --
                         startActivity(new Intent(SignUpActivity.this , LoginBasicActivity.class));
