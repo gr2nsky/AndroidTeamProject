@@ -19,6 +19,7 @@ import com.example.mogastyle.Adapters.Hair.Shop.ShopHomeAdapter;
 import com.example.mogastyle.Bean.Shop;
 import com.example.mogastyle.NetworkTasks.Hair.ShopNetworkTask;
 import com.example.mogastyle.R;
+import com.example.mogastyle.ShareVar.ShareVar;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -31,7 +32,7 @@ public class ShopHomeFragment extends Fragment {
     EditText ShopName,ShopTel,ShopAddress,ShopIntroduction;
     String urlAddr = null;
     ArrayList<Shop> shops;
-    String desktopIP = "192.168.2.30";
+    String desktopIP = ShareVar.WindowIP;
 
     @Nullable
     @org.jetbrains.annotations.Nullable
@@ -40,7 +41,7 @@ public class ShopHomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_shop_home,container,false);
         shopNo = ShopHomeActivity.shopNo;
 
-        urlAddr = "http://192.168.2.30:8080/test/shop_select.jsp";
+        urlAddr = ShareVar.hostRootAddr;
         Log.v("Message",urlAddr);
 
         ShopName = view.findViewById(R.id.edt_shop_name);

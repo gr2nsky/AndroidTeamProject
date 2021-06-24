@@ -22,6 +22,7 @@ import com.example.mogastyle.Adapters.Hair.Shop.ShopListAdapter;
 import com.example.mogastyle.Bean.Shop;
 import com.example.mogastyle.NetworkTasks.Hair.ShopNetworkTask;
 import com.example.mogastyle.R;
+import com.example.mogastyle.ShareVar.ShareVar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.jetbrains.annotations.NotNull;
@@ -32,25 +33,21 @@ public class HairMainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     //MapView mapView = new MapView(this);
     //private Spinner spinner;
-    ArrayAdapter<CharSequence> adapter1 = null;
+
 
     String urlAddr = null;
     ArrayList<Shop> shops;
     ShopListAdapter adapters;
     ListView listView;
-    String desktopIP = "192.168.2.30";
+    String desktopIP = ShareVar.WindowIP;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        adapter1 = ArrayAdapter.createFromResource(this,R.array.hair,
-//                android.R.layout.simple_spinner_dropdown_item);
-//        spinner = findViewById(R.id.sp_select);
-//        spinner.setAdapter(adapter1);
-
-//        ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
+        //MapView를 보이게 하기 위해서 해 놓은 코드 그러나 지워도 됨.
+//       ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
 //        mapViewContainer.addView(mapView);
 
 
@@ -63,7 +60,7 @@ public class HairMainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         desktopIP = intent.getStringExtra("desktopIP");
-        urlAddr = "http://192.168.2.30:8080/test/shop_select.jsp";
+        urlAddr = ShareVar.hostRootAddr;
         Log.v("Message",urlAddr);
 
 
@@ -135,7 +132,7 @@ public class HairMainActivity extends AppCompatActivity {
         Intent intent = null;
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            intent = new Intent(HairMainActivity.this, ShopHomeFragment.class);
+            intent = new Intent(HairMainActivity.this, ShopHomeActivity.class);
             intent.putExtra("name", shops.get(position).getName());
             intent.putExtra("tel", shops.get(position).getTel());
             intent.putExtra("address", shops.get(position).getAddress());
