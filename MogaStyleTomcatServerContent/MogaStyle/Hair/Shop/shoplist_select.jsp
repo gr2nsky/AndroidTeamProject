@@ -33,7 +33,7 @@
 			"tel" : "<%=rs.getString(2) %>",   
 			"address" : "<%=rs.getString(3) %>",  
 			"introduction" : "<%=rs.getString(4) %>",
-			"no"  : " <%=rs.getInt(5)%>"
+			"no"  : "<%=rs.getInt(5)%>"
 			}
 
 <%		
