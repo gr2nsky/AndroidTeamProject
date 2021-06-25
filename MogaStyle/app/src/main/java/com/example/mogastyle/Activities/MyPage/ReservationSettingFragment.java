@@ -4,11 +4,18 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.transition.Fade;
+import android.transition.Transition;
+import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 
 import com.example.mogastyle.R;
+import com.google.android.material.radiobutton.MaterialRadioButton;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +32,13 @@ public class ReservationSettingFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    SwitchMaterial switch_reservation_setting;
+
+    LinearLayout linear_layout_reservation_setting_radio;
+
+    MaterialRadioButton rb_reservation_setting_1,rb_reservation_setting_2,rb_reservation_setting_3;
+
 
     public ReservationSettingFragment() {
         // Required empty public constructor
@@ -61,6 +75,32 @@ public class ReservationSettingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_reservation_setting, container, false);
+        View view =  inflater.inflate(R.layout.fragment_reservation_setting, container, false);
+
+        switch_reservation_setting = view.findViewById(R.id.switch_reservation_setting);
+       linear_layout_reservation_setting_radio =  view.findViewById(R.id.linear_layout_reservation_setting_radio);
+        rb_reservation_setting_1 = view.findViewById(R.id.rb_reservation_setting_1);
+        rb_reservation_setting_2 = view.findViewById(R.id.rb_reservation_setting_2);
+        rb_reservation_setting_3 = view.findViewById(R.id.rb_reservation_setting_3);
+
+        if(!switch_reservation_setting.isChecked()){
+            linear_layout_reservation_setting_radio.setVisibility(View.GONE);
+        }
+
+       switch_reservation_setting.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+           @Override
+           public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+               if(isChecked) {
+
+                   linear_layout_reservation_setting_radio.setVisibility(View.VISIBLE);
+               }else {
+                   linear_layout_reservation_setting_radio.setVisibility(View.GONE);
+               }
+           }
+       });
+
+
+
+        return view;
     }
 }

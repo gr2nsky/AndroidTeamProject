@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/phoneDialog"
-            android:fontFamily="@font/bmjua_otf"
+            android:fontFamily="@font/nexon_gothic_r"
             android:textSize="30dp"
             android:layout_marginBottom="20dp"
             />
@@ -22,9 +22,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="취소시 앱이 꺼집니다!"
-            android:fontFamily="@font/bmjua_otf"
             android:textSize="20dp"
             android:layout_marginBottom="20dp"
+            android:fontFamily="@font/nexon_gothic_r"
             />
     </LinearLayout>
     <LinearLayout
@@ -73,7 +73,7 @@
             android:fontFamily="@font/bmjua_otf"
             android:backgroundTint="@color/btn_super_positive"
             android:textColor="@color/black"
-            android:text="체크 !"/>
+            android:text="업로드 !"/>
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -84,22 +84,14 @@
         android:padding="20dp"
         >
         <Button
+            android:id="@+id/btn_main_get_user_phone_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="50dp"
             android:fontFamily="@font/bmjua_otf"
             android:backgroundTint="@color/btn_super_negative"
             android:textColor="@color/black"
             android:text="취소 !"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:fontFamily="@font/bmjua_otf"
-            android:backgroundTint="@color/btn_super_positive"
-            android:textColor="@color/black"
-            android:text="업로드 !"/>
 
     </LinearLayout>
 

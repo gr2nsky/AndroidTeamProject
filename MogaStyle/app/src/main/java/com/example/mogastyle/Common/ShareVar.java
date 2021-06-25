@@ -9,7 +9,7 @@ package com.example.mogastyle.Common;
 
 public class ShareVar {
 
-    public static String hostIP = "";
+    public static String hostIP = "192.168.35.80";
     public final static String hostRootAddr = "http://" + hostIP + ":8080/MogaStyle/";
     public final static String userImgPath = hostRootAddr + "img/user/";
     public final static String shopImgPath = hostRootAddr + "img/shop/";

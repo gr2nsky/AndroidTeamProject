@@ -79,7 +79,6 @@
             android:layout_width="230dp"
             android:layout_height="wrap_content"
             android:hint=" Password 를 입력해주세요 !"
-            android:fontFamily="@font/bmjua_otf"
             android:layout_marginRight="65dp"
             android:layout_marginBottom="10dp"
             android:inputType="textPassword"
@@ -124,16 +123,10 @@
             android:layout_height="wrap_content"
             android:hint=" 인증번호 입력"
             android:fontFamily="@font/bmjua_otf"
-            android:layout_marginRight="40dp"
+            android:layout_marginRight="120dp"
             />
-        <Button
-            android:id="@+id/btn_sign_up_token_check"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="인증 하기"
-            android:fontFamily="@font/bmjua_otf"
-            android:backgroundTint="@color/btn_positive"
-            />
+
+
 
     </LinearLayout>
     <TextView
@@ -146,7 +139,7 @@
         android:visibility="invisible"
         />
     <Button
-        android:id="@+id/btn_sign_up_final"
+        android:id="@+id/btn_sign_up_token_check"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

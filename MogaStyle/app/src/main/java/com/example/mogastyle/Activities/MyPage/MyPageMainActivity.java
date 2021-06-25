@@ -84,15 +84,11 @@ public class MyPageMainActivity extends AppCompatActivity {
         LoginedUserInfo.user.setUserImage(userImageName);
         //
 
-        if(LoginedUserInfo.user.getJoinType().equals("1") || LoginedUserInfo.user.getJoinType().equals("2")) {
+
             Glide.with(this)
                     .load(LoginedUserInfo.user.getUserImage())
                     .into(iv_my_page_user_image);
-        }else{
-            Glide.with(this)
-                    .load(ShareVar.userImgPath + LoginedUserInfo.user.getUserImage())
-                    .into(iv_my_page_user_image);
-        }
+
 
         //
 
