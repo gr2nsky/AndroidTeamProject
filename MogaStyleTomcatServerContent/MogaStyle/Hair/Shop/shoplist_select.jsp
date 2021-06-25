@@ -17,7 +17,7 @@
         ResultSet rs = stmt_mysql.executeQuery(WhereDefault); // 
 %>
 		{ 
-  			"shop_info"  : [ 
+  			"shoplist_info"  : [ 
 <%
         while (rs.next()) {
             if (count == 0) {

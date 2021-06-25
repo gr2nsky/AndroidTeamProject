@@ -107,7 +107,7 @@ public class ShopHomeDetailNetworkTask extends AsyncTask<Integer,String,Object> 
     private void parserSelect(String str) {
         try{
             JSONObject jsonObject = new JSONObject(str);
-            JSONArray jsonArray = new JSONArray(jsonObject.getString("shophome_info"));
+            JSONArray jsonArray = new JSONArray(jsonObject.getString("shoplist_info"));
             shops.clear(); //기존에 쌓일 수 있는 데이터를 삭제함
 
             for (int i=0; i<jsonArray.length(); i++){
