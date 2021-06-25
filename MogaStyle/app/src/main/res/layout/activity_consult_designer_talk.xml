@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activities.Consult.ConsultTalkActivity">
+    tools:context=".Activities.Consult.ConsultDesignerTalkActivity">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -23,7 +23,8 @@
             android:textColor="@color/black"
             android:fontFamily="@font/bmjua_otf"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="140dp"/>
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="120dp"/>
 
         <SearchView
             android:layout_marginLeft="50dp"
@@ -49,18 +50,17 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0px"
-            android:layout_weight="1"
+            android:layout_weight="0.2"
             android:layout_marginTop="10dp"
             android:text="Hair Shop 디자이너 000님과 의견 나누기"
             android:textColor="@color/black"
             android:fontFamily="@font/bmjua_otf"
-            android:textSize="22dp"
-            android:layout_marginLeft="10dp"/>
+            android:textSize="22dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0px"
-            android:layout_weight="1"
+            android:layout_weight="0.6"
             android:orientation="horizontal">
 
             <ImageView
@@ -102,10 +102,11 @@
 
             <TextView
                 android:layout_width="362dp"
-                android:layout_height="96dp"
+                android:layout_height="0px"
+                android:layout_weight="1"
                 android:layout_margin="12dp"
                 android:background="#EAE6DF"
-                android:text="레게머리가 하고싶습니다. 기장은 어깨선까지 내려오는 중단발이고 곱슬입니다. 언제 스타일링 가능할까요?? "
+                android:text=" 레게머리가 하고싶습니다. 기장은 어깨선까지 내려오는 중단발이고 곱슬입니다. 언제 스타일링 가능할까요?? "
                 android:textSize="18dp" />
 
             <LinearLayout
@@ -118,6 +119,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="120dp"
+                    android:layout_marginTop="30dp"
                     android:backgroundTint="@color/btn_super_positive"
                     android:gravity="center"
                     android:text="이미지 올리기" />
@@ -125,6 +127,7 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
                     android:layout_marginLeft="30dp"
                     android:backgroundTint="@color/btn_super_positive"
                     android:gravity="center"

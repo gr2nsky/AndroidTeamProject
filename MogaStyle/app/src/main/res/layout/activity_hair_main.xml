@@ -17,6 +17,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
             android:text="서초구 서초동"
             android:textSize="40dp"
             android:layout_marginRight="55dp"/>

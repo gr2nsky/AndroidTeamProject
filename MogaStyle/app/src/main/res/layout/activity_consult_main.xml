@@ -23,8 +23,9 @@
            android:textSize="40dp"
            android:textColor="@color/black"
            android:fontFamily="@font/bmjua_otf"
+           android:layout_marginLeft="10dp"
            android:layout_marginTop="10dp"
-           android:layout_marginRight="140dp"/>
+           android:layout_marginRight="120dp"/>
 
        <SearchView
            android:layout_marginLeft="50dp"

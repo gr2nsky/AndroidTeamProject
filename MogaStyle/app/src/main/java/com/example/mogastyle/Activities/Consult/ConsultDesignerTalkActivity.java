@@ -7,11 +7,11 @@ import android.os.Bundle;
 
 import com.example.mogastyle.R;
 
-public class ConsultTalkActivity extends AppCompatActivity {
+public class ConsultDesignerTalkActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consult_talk);
+        setContentView(R.layout.activity_consult_designer_talk);
     }
 }

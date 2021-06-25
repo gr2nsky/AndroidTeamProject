@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.Consult.ConsultDesignerListActivity">
+    android:orientation="vertical"
+    tools:context=".Activities.Consult.ConsultListActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -53,14 +53,14 @@
             android:layout_height="0px"
             android:layout_weight="1"
             android:layout_marginTop="10dp"
-            android:text="Consulting 신청하신 디자이너 리스트입니다."
+            android:text="Consulting 신청하신 Consult 리스트입니다."
             android:textColor="@color/black"
             android:fontFamily="@font/bmjua_otf"
             android:textSize="22dp"
             android:layout_marginLeft="10dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_consult_designer_list"
+            android:id="@+id/recycler_view_consult_list"
             android:layout_width="match_parent"
             android:layout_height="0px"
             android:layout_weight="9"/>
