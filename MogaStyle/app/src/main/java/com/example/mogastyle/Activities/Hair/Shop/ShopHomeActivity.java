@@ -10,8 +10,10 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.mogastyle.Activities.Consult.ConsultMainActivity;
 import com.example.mogastyle.Activities.Diary.DiaryMainActivity;
 import com.example.mogastyle.Activities.MainActivity;
@@ -37,6 +39,7 @@ public class ShopHomeActivity extends AppCompatActivity {
     Intent intent;
     ViewPager viewPager;
     ImageButton imageButton;
+    ImageView imageView;
     TextView ShopTitle;
     int shopNo = 0;
     private String name,tel,address,introduction,holiday,postcode,image;
@@ -52,6 +55,8 @@ public class ShopHomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_shop_main);
 
         ShopTitle = findViewById(R.id.tv_shopmain_title);
+
+        imageView = findViewById(R.id.img_hairlist_image);
 
         intent = getIntent();
         shopNo = intent.getIntExtra("smo",0);
@@ -76,6 +81,11 @@ public class ShopHomeActivity extends AppCompatActivity {
 
         TabLayout tabLayout = findViewById(R.id.tab_layout_shopmain);
         tabLayout.setupWithViewPager(viewPager);
+
+
+        ////////////////////////////////////////////////////////////////////////////
+        //      하단 NavigationView 생성                                            //
+        ////////////////////////////////////////////////////////////////////////////
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
@@ -144,6 +154,9 @@ public class ShopHomeActivity extends AppCompatActivity {
         }
     }
 
+    ////////////////////////////////////////////////////////////////////////////
+    //      ImageButton 부분 intent로 메인 홈으로 이동                            //
+    ////////////////////////////////////////////////////////////////////////////
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {

@@ -25,7 +25,7 @@
                 android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_home_name"
+            android:id="@+id/tv_hairlist_name"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,21 +33,21 @@
             android:fontFamily="@font/bmjua_otf"/>
 
         <TextView
-            android:id="@+id/tv_home_tel"
+            android:id="@+id/tv_hairlist_tel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:fontFamily="@font/bmjua_otf"/>
 
         <TextView
-            android:id="@+id/tv_home_address"
+            android:id="@+id/tv_hairlist_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:fontFamily="@font/bmjua_otf"/>
 
         <TextView
-            android:id="@+id/tv_home_postcode"
+            android:id="@+id/tv_hairlist_postcode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
@@ -55,14 +55,14 @@
 
 
         <TextView
-            android:id="@+id/tv_home_introduction"
+            android:id="@+id/tv_hairlist_introduction"
             android:layout_width="0px"
             android:layout_height="0px"
             android:textColor="@color/black"
             android:fontFamily="@font/bmjua_otf"/>
 
         <TextView
-            android:id="@+id/tv_home_holiday"
+            android:id="@+id/tv_hairlist_holiday"
             android:layout_width="0px"
             android:layout_height="0px"
             android:layout_marginBottom="20dp"
@@ -70,7 +70,7 @@
             android:fontFamily="@font/bmjua_otf"/>
 
         <TextView
-            android:id="@+id/img_home_image"
+            android:id="@+id/img_hairlist_image"
             android:layout_width="0px"
             android:layout_height="0px"
             android:textColor="@color/black"

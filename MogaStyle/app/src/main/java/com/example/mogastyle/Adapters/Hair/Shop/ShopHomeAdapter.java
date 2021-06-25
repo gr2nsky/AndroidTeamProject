@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -55,7 +56,7 @@ public class ShopHomeAdapter extends BaseAdapter {
       //  TextView tv_postcode = convertView.findViewById(R.id.tv_home_postcode);
         TextView tv_introduce = convertView.findViewById(R.id.edt_shop_introduction);
       //  TextView tv_holiday = convertView.findViewById(R.id.tv_home_holiday);
-        TextView tv_image = convertView.findViewById(R.id.img_home_image);
+       // ImageView img_image = convertView.findViewById(R.id.img_home_image);
 
         tv_name.setText("이름 : "+ data.get(position).getName());
         tv_tel.setText("전화번호 : " + data.get(position).getTel());
@@ -63,13 +64,6 @@ public class ShopHomeAdapter extends BaseAdapter {
        // tv_postcode.setText("우편번호 : "+ data.get(position).getPostcode());
         tv_introduce.setText("소개 : " + data.get(position).getIntroduction());
       //  tv_holiday.setText("쉬는 날 : " + data.get(position).getHoliday());
-
-//        Glide.with(mContext)
-//                .load(ShareVar.shopImgPath+"Hairmain_chahong.jpeg" + data.get(position).getImage())
-//                .placeholder(R.drawable.jpeg_default_profile_photo)
-//                .error(R.drawable.jpeg_default_profile_photo)
-//                .fallback(R.drawable.jpeg_default_profile_photo)
-//                .into(convertView);
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
