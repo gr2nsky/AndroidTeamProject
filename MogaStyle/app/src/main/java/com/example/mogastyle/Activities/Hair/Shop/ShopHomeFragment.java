@@ -38,7 +38,7 @@ public class ShopHomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_shop_home,container,false);
         shopNo = ShopHomeActivity.shopNo;
 
-        urlAddr = ShareVar.hostRootAddr+"Hair/Shop/shop_select.jsp";
+        urlAddr = ShareVar.hostRootAddr+"Hair/Shop/shoplist_select.jsp";
         Log.v("Message",urlAddr);
 
         ShopName = view.findViewById(R.id.edt_shop_name);
