@@ -69,7 +69,7 @@ public class ShopHomeFragment extends Fragment {
                 ShopTel.setText("tel : "+shops.get(1).getTel());
                 ShopAddress.setText("주소 :"+shops.get(2).getAddress());
               //  ShopPostcode.setText("우편번호 : "+shops.get(3).getPostcode());
-                ShopIntroduction.setText("소개"+shops.get(3).getIntroduction());
+              //  ShopIntroduction.setText("소개"+shops.get(3).getIntroduction());
             }catch (Exception e){
                 e.printStackTrace();
             }
