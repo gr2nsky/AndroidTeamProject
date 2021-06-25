@@ -1,6 +1,5 @@
-package com.example.mogastyle.Activities.Hair.Reservation.Retrofit;
+package com.example.mogastyle.NetworkTasks.Hair.Reservation;
 
-import com.example.mogastyle.Bean.ReservationList;
 import com.example.mogastyle.Common.ShareVar;
 
 public class RetrofitCall {

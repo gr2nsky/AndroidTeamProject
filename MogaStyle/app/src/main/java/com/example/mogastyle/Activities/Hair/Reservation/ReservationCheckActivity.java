@@ -9,20 +9,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.example.mogastyle.Activities.Hair.Reservation.Retrofit.RetrofitCall;
-import com.example.mogastyle.Activities.Hair.Reservation.Retrofit.RetrofitService;
-import com.example.mogastyle.Adapters.Hair.Reservation.RecyclerDecoration;
+import com.example.mogastyle.NetworkTasks.Hair.Reservation.RetrofitCall;
+import com.example.mogastyle.NetworkTasks.Hair.Reservation.RetrofitService;
 import com.example.mogastyle.Adapters.Hair.Reservation.ResCheckAdapter;
-import com.example.mogastyle.Adapters.Hair.Reservation.ResTimeSelectorAdapter;
 import com.example.mogastyle.Bean.ReservationBean;
 import com.example.mogastyle.Bean.ReservationList;
-import com.example.mogastyle.Common.LoginedUserInfo;
 import com.example.mogastyle.R;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 import retrofit2.Call;

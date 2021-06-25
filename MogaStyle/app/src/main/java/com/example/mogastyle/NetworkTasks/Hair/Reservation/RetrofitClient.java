@@ -1,4 +1,4 @@
-package com.example.mogastyle.Activities.Hair.Reservation.Retrofit;
+package com.example.mogastyle.NetworkTasks.Hair.Reservation;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -12,8 +12,8 @@ public class RetrofitClient {
         if (retrofit==null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(baseUrl)
-                    .addConverterFactory(GsonConverterFactory.create())
                     .addConverterFactory(ScalarsConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
         return retrofit;

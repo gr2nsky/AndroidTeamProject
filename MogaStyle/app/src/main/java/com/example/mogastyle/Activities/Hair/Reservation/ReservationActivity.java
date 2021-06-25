@@ -13,12 +13,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.mogastyle.NetworkTasks.Hair.Reservation.GetDesginerResData;
+import com.example.mogastyle.NetworkTasks.Hair.Reservation.RetrofitCall;
+import com.example.mogastyle.NetworkTasks.Hair.Reservation.RetrofitService;
 import com.example.mogastyle.Adapters.Hair.Reservation.RecyclerDecoration;
 import com.example.mogastyle.Adapters.Hair.Reservation.ResDateSelectorAdapter;
 import com.example.mogastyle.Adapters.Hair.Reservation.ResTimeSelectorAdapter;
 import com.example.mogastyle.Bean.PaymentBeanStack;
 import com.example.mogastyle.Bean.ResDateData;
-import com.example.mogastyle.Bean.Shop;
+import com.example.mogastyle.Bean.ReservationBean;
+import com.example.mogastyle.Bean.ReservationList;
 import com.example.mogastyle.Bean.TempDesignerBean;
 import com.example.mogastyle.Bean.TempShopBean;
 import com.example.mogastyle.Bean.TempStyleBean;
@@ -29,6 +33,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.ExecutionException;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ReservationActivity extends AppCompatActivity {
 
@@ -59,6 +68,7 @@ public class ReservationActivity extends AppCompatActivity {
     ///////////////////////////////////
     //            temp data          //
     ///////////////////////////////////
+    ArrayList<ReservationBean> rbList;
     ArrayList<ResDateData> reservedDates;
     ResDateData today;
     TempDesignerBean tempDesignerBean;
@@ -272,26 +282,37 @@ public class ReservationActivity extends AppCompatActivity {
     /////////////////////////////////////////////
     public void tempDataMaker(){
         reservedDates = new ArrayList<>();
+        tempDesignerBean = new TempDesignerBean(2, "최준", "2020-05-26", "tempImg.png", "5");
+        loadDesignerResDatas(tempDesignerBean.getNo());
+        tempDesignerBean.setResDates(reservedDates);
 
-        ResDateData rdd1 = new ResDateData("2021-06-29", 10, 2);
-        ResDateData rdd2 = new ResDateData("2021-06-29", 15, 1);
-        ResDateData rdd3 = new ResDateData("2021-06-29", 16, 1);
-        ResDateData rdd4 = new ResDateData("2021-07-01", 18, 2);
-        ResDateData rdd5 = new ResDateData("2021-06-22", 13, 2);
-        ResDateData rdd6 = new ResDateData("2021-07-9", 10, 20);
-        reservedDates.add(rdd1);
-        reservedDates.add(rdd2);
-        reservedDates.add(rdd3);
-        reservedDates.add(rdd4);
-        reservedDates.add(rdd5);
-        reservedDates.add(rdd6);
-
-        tempDesignerBean = new TempDesignerBean(2, "최준", "2020-05-26", reservedDates, "tempImg.png", "5");
+        ///////////////////////////////////////////////////////////////////
+        //                       진짜 bean 가져오도록 이후 수정                //
+        //////////////////////////////////////////////////////////////////
         tempStyleBean = new TempStyleBean(1, "봄탄소년단", 50000);
         tempShopBean = new TempShopBean(3, "더존미용실 강남점", "1,7");
         PaymentBeanStack.stack.setDesignerBean(tempDesignerBean);
         PaymentBeanStack.stack.setStyleBean(tempStyleBean);
         PaymentBeanStack.stack.setShopBean(tempShopBean);
+    }
 
+    public void loadDesignerResDatas(int dno){
+        GetDesginerResData getDesginerResData = new GetDesginerResData(dno);
+        try {
+            ReservationList sibal = getDesginerResData.execute().get();
+//            parserResDateData(rl);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void parserResDateData(ArrayList<ReservationBean> rbList){
+        for(ReservationBean rb : rbList){
+            ResDateData rdd = new ResDateData(rb.getReservationDate(), rb.getReservationTime(), rb.getLeadTime());
+            reservedDates.add(rdd);
+            Log.v(TAG, reservedDates.toString());
+        }
     }
 }
