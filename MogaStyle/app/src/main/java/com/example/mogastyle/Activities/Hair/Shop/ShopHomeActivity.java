@@ -130,7 +130,8 @@ public class ShopHomeActivity extends AppCompatActivity {
             ShopNetworkTask networkTask = new ShopNetworkTask(ShopHomeActivity.this, urlAddr+"?sno="+shopNo, "select");
             Object obj = networkTask.execute().get();
             shops = (ArrayList<Shop>) obj;
-            ShopTitle.setText(shops.get(0).getName());
+            ShopTitle.setText(shops.get(shopNo-1).getName());
+            Log.v("Message","shopNo");
 
             adapters = new ShopListAdapter(ShopHomeActivity.this, R.layout.activity_shop_main, shops);
 

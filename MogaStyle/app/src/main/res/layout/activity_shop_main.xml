@@ -31,7 +31,8 @@
                 android:fontFamily="@font/bmjua_otf"
                 android:text="Shop"
                 android:textColor="@color/black"
-                android:textSize="40dp"
+                android:layout_marginTop="20dp"
+                android:textSize="30dp"
                 android:textStyle="bold"
                 tools:ignore="InvalidId" />
 

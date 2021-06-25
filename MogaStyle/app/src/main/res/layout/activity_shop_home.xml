@@ -161,7 +161,7 @@
         android:padding="10dp">
 
         <ImageView
-            android:id="@+id/edt_shop_img"
+            android:id="@+id/img_shop_img"
             android:layout_width="match_parent"
             android:layout_height="0px"
             android:layout_weight="1"

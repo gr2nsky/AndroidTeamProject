@@ -64,12 +64,12 @@ public class ShopHomeAdapter extends BaseAdapter {
         tv_introduce.setText("소개 : " + data.get(position).getIntroduction());
       //  tv_holiday.setText("쉬는 날 : " + data.get(position).getHoliday());
 
-        Glide.with(mContext)
-                .load(ShareVar.shopImgPath + data.get(position).getImage())
-                .placeholder(R.drawable.jpeg_default_profile_photo)
-                .error(R.drawable.jpeg_default_profile_photo)
-                .fallback(R.drawable.jpeg_default_profile_photo);
-//                .into(convertView.tv_image);
+//        Glide.with(mContext)
+//                .load(ShareVar.shopImgPath+"Hairmain_chahong.jpeg" + data.get(position).getImage())
+//                .placeholder(R.drawable.jpeg_default_profile_photo)
+//                .error(R.drawable.jpeg_default_profile_photo)
+//                .fallback(R.drawable.jpeg_default_profile_photo)
+//                .into(convertView);
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override

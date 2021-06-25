@@ -48,6 +48,7 @@ public class ShopHomeFragment extends Fragment {
         ShopTel = view.findViewById(R.id.edt_shop_tel);
         ShopAddress = view.findViewById(R.id.edt_shop_address);
         ShopIntroduction = view.findViewById(R.id.edt_shop_introduction);
+        imageView = view.findViewById(R.id.img_shop_img);
         return view;
     }
 
@@ -67,10 +68,12 @@ public class ShopHomeFragment extends Fragment {
                 ShopNetworkTask networkTask = new ShopNetworkTask(getContext(), urlAddr+"?sno="+shopNo, "select");
                 Object obj = networkTask.execute().get();
                 shops = (ArrayList<Shop>) obj;
-                ShopName.setText(shops.get(0).getName());
-                ShopTel.setText("tel : "+shops.get(0).getTel());
-                ShopAddress.setText("주소 :"+shops.get(0).getAddress());
-              ShopIntroduction.setText("소개 : "+shops.get(0).getIntroduction());
+                ShopName.setText(shops.get(shopNo-1).getName());
+                ShopTel.setText("tel : "+shops.get(shopNo-1).getTel());
+                ShopAddress.setText("주소 :"+shops.get(shopNo-1).getAddress());
+              ShopIntroduction.setText("소개 : "+shops.get(shopNo-1).getIntroduction());
+
+                Log.v("Message","shopNo");
             }catch (Exception e){
                 e.printStackTrace();
             }
