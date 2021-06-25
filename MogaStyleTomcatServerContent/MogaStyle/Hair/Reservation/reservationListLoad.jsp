@@ -10,7 +10,7 @@
 	String id_mysql = "root";
 	String pw_mysql = "qwer1234";
 
-  String q1 = "SELECT r.no reservationNo, r.reservationDate, r.reservationTime, r.totalPrice, r.cancelDate, st.title stylingName, sp.name shopName, d.name designerName, sp.sImage, d.uImage, sp.address ";
+  String q1 = "SELECT r.no reservationNo, r.reservationDate, r.reservationTime, r.totalPrice, r.cancelDate, st.title stylingName, sp.name shopName, d.name designerName, sp.sImage, d.uImage, sp.address, r.reviewContent ";
   String q2 = "FROM (SELECT * FROM reservation WHERE user_no = ?) r, ";
   String q3 =	"(SELECT r.no, s.title FROM styling s, reservation r WHERE r.styling_no = s.no) st, ";
   String q4 = "(SELECT r.no, s.name, s.image sImage, s.address FROM shop s, reservation r WHERE r.shop_no = s.no) sp, ";
@@ -54,7 +54,8 @@
       "designerName" : "<%=rs.getString(8) %>",
       "shopImage" : "<%=rs.getString(9) %>",
       "designerImage" : "<%=rs.getString(10) %>",
-      "shopAddress" : "<%=rs.getString(11) %>"
+      "shopAddress" : "<%=rs.getString(11) %>",
+      "reviewContent" : "<%=rs.getString(11) %>"
       }
 
 <%
