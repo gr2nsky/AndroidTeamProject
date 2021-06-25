@@ -30,6 +30,7 @@ public class ShopNetworkTask extends AsyncTask<Integer,String,Object> {
         this.shops = shops;
         this.shops = new ArrayList<Shop>();
         this.where = where;
+        Log.v("######################", "addr : " + mAddr);
     }
 
     @Override

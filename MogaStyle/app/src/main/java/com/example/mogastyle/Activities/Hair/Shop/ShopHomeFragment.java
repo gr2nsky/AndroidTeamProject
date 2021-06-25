@@ -31,12 +31,15 @@ public class ShopHomeFragment extends Fragment {
     ArrayList<Shop> shops;
    String desktopIP = ShareVar.hostIP;
 
+    public ShopHomeFragment(int shopNo) {
+        this.shopNo = shopNo;
+    }
+
     @Nullable
     @org.jetbrains.annotations.Nullable
     @Override
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_shop_home,container,false);
-        shopNo = ShopHomeActivity.shopNo;
 
         urlAddr = ShareVar.hostRootAddr+"Hair/Shop/shop_select.jsp";
         Log.v("Message",urlAddr);
@@ -44,7 +47,6 @@ public class ShopHomeFragment extends Fragment {
         ShopName = view.findViewById(R.id.edt_shop_name);
         ShopTel = view.findViewById(R.id.edt_shop_tel);
         ShopAddress = view.findViewById(R.id.edt_shop_address);
-     //   ShopPostcode = view.findViewById(R.id.shop_postcode);
         ShopIntroduction = view.findViewById(R.id.edt_shop_introduction);
         return view;
     }
@@ -62,14 +64,13 @@ public class ShopHomeFragment extends Fragment {
 
     private void connectGetDate(){
             try{
-                ShopNetworkTask networkTask = new ShopNetworkTask(getContext(), urlAddr, "select");
+                ShopNetworkTask networkTask = new ShopNetworkTask(getContext(), urlAddr+"?sno="+shopNo, "select");
                 Object obj = networkTask.execute().get();
                 shops = (ArrayList<Shop>) obj;
                 ShopName.setText(shops.get(0).getName());
-                ShopTel.setText("tel : "+shops.get(1).getTel());
-                ShopAddress.setText("주소 :"+shops.get(2).getAddress());
-              //  ShopPostcode.setText("우편번호 : "+shops.get(3).getPostcode());
-              //  ShopIntroduction.setText("소개"+shops.get(3).getIntroduction());
+                ShopTel.setText("tel : "+shops.get(0).getTel());
+                ShopAddress.setText("주소 :"+shops.get(0).getAddress());
+              ShopIntroduction.setText("소개 : "+shops.get(0).getIntroduction());
             }catch (Exception e){
                 e.printStackTrace();
             }

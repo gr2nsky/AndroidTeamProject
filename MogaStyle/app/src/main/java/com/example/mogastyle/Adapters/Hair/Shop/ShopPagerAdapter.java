@@ -16,13 +16,18 @@ public class ShopPagerAdapter extends FragmentPagerAdapter {
 
     private ArrayList<String> name = new ArrayList<>();
     private ArrayList<Fragment> arrayList = new ArrayList<>();
+    /////////////////////////////////////////////////////////
+    //       Shop no를 Shop home activity로부터 받아옴        //
+    /////////////////////////////////////////////////////////
+    int sno = 0;
 
-    public ShopPagerAdapter(FragmentManager fm) {
+    public ShopPagerAdapter(FragmentManager fm, int sno) {
         super(fm);
-        arrayList.add(new ShopHomeFragment());
+        arrayList.add(new ShopHomeFragment(sno));
         arrayList.add(new MenuFragment());
         arrayList.add(new DesignerFragment());
         arrayList.add(new ReviewFragment());
+        this.sno = sno;
 
         name.add("홈");
         name.add("메뉴");

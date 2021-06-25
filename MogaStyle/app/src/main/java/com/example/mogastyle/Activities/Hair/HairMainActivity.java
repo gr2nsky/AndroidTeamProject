@@ -34,7 +34,8 @@ public class HairMainActivity extends AppCompatActivity {
     //MapView mapView = new MapView(this);
     private Spinner spinner;
     ArrayAdapter<CharSequence> adapter = null;
-
+    public static int shopNo = 0;
+    Intent intent;
 
     String urlAddr = null;
     ArrayList<Shop> shops;
@@ -64,7 +65,8 @@ public class HairMainActivity extends AppCompatActivity {
         spinner = findViewById(R.id.sp_hairmain_choose);
         spinner.setAdapter(adapter);
 
-        Intent intent = getIntent();
+        intent = getIntent();
+        shopNo = intent.getIntExtra("smo",0);
         desktopIP = intent.getStringExtra("desktopIP");
         urlAddr = ShareVar.hostRootAddr+"Hair/Shop/shop_select.jsp";
         Log.v("Message",urlAddr);

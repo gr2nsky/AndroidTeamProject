@@ -3,10 +3,11 @@
     pageEncoding="UTF-8"%>
 
 <%
+	String sno = request.getParameter("sno");
 	String url_mysql = "jdbc:mysql://localhost/mogastyle?serverTimezone=Asia/Seoul&characterEncoding=utf8&useSSL=false";
  	String id_mysql = "root";
  	String pw_mysql = "qwer1234";
-    String Q1 = "select name,tel,address,postCode,introduction,holiday, image,no from shop";
+    String Q1 = "select name,tel,address,postCode,introduction,holiday, image,no from shop where no="+sno;
     int count = 0;
 
     try {

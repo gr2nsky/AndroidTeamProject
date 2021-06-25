@@ -38,7 +38,8 @@ public class ShopHomeActivity extends AppCompatActivity {
     ViewPager viewPager;
     ImageButton imageButton;
     TextView ShopTitle;
-    public static int shopNo = 0;
+    int shopNo = 0;
+    private String name,tel,address,introduction,holiday,postcode,image;
 
     String urlAddr = null;
     ArrayList<Shop> shops;
@@ -54,21 +55,27 @@ public class ShopHomeActivity extends AppCompatActivity {
 
         intent = getIntent();
         shopNo = intent.getIntExtra("smo",0);
+        Log.v("######################", "sno : " + shopNo);
 
         viewPager = findViewById(R.id.shopmain_pager);
-        ShopPagerAdapter adapters = new ShopPagerAdapter(getSupportFragmentManager());
+        ////////////////////////////////////////////////////////////////////////////
+        //      Shop no를 플레그먼트에 전달하기 위해서 어댑터에 전달                      //
+        ////////////////////////////////////////////////////////////////////////////
+        ShopPagerAdapter adapters = new ShopPagerAdapter(getSupportFragmentManager(), shopNo);
         viewPager.setAdapter(adapters);
+
         imageButton = findViewById(R.id.btn_home_goHome);
 
+        imageButton.setOnClickListener(onClickListener);
+
         desktopIP = intent.getStringExtra("desktopIP");
-        urlAddr = ShareVar.hostRootAddr+"Hair/Shop/shop_home_detail.jsp";
+        urlAddr = ShareVar.hostRootAddr+"Hair/Shop/shop_select.jsp";
         Log.v("Message",urlAddr);
 
 
 
         TabLayout tabLayout = findViewById(R.id.tab_layout_shopmain);
         tabLayout.setupWithViewPager(viewPager);
-        imageButton.setOnClickListener(onClickListener);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
@@ -120,10 +127,11 @@ public class ShopHomeActivity extends AppCompatActivity {
 
     private void connectGetData(){
         try{
-            ShopNetworkTask networkTask = new ShopNetworkTask(ShopHomeActivity.this, urlAddr, "select");
+            ShopNetworkTask networkTask = new ShopNetworkTask(ShopHomeActivity.this, urlAddr+"?sno="+shopNo, "select");
             Object obj = networkTask.execute().get();
             shops = (ArrayList<Shop>) obj;
             ShopTitle.setText(shops.get(0).getName());
+
             adapters = new ShopListAdapter(ShopHomeActivity.this, R.layout.activity_shop_main, shops);
 
      //       listView.setAdapter(adapters);
