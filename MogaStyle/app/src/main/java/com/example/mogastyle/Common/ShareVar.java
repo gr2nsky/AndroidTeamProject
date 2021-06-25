@@ -19,6 +19,7 @@ public class ShareVar {
     public final static String userImgPath = hostRootAddr + "img/user/";
     public final static String shopImgPath = hostRootAddr + "img/shop/";
     public final static String styleImgPath = hostRootAddr + "img/style/";
+    public final static String reviewImgPath = hostRootAddr + "img/review/";
 
     ////////////////////////////////////////////////////////////////////////
     //                        home키에 사용될 친구입니다.                       //

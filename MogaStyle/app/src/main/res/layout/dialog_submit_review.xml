@@ -5,14 +5,68 @@
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:layout_gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/main_color">
 
     <ImageView
+        android:id="@+id/iv_review_submit"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:background="@color/white"
+        android:src="@drawable/ic_no_image"/>
+
+    <RatingBar
+        android:id="@+id/rb_review_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:progressTint="@color/btn_super_positive"
+
+        android:numStars="5"
+        android:stepSize="1"
+        android:isIndicator="false"
+        style="@style/Widget.AppCompat.RatingBar.Indicator"
+        android:rating="3"/>
+
     <EditText
+        android:id="@+id/et_review_submit"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/nexon_gothic_r"
+        android:hint="리뷰를 입력해 주세요"
+        android:minLines="5"
+        android:maxLines="5"
+        android:background="@color/white"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp">
+        <Button
+            android:id="@+id/btn_review_submit_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="취소"/>
+        <View
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+        <Button
+            android:id="@+id/btn_review_submit_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="등록"/>
+
+    </LinearLayout>
+
 
 </LinearLayout>

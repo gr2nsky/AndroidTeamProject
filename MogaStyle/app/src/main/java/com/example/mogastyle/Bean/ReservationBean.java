@@ -32,9 +32,6 @@ public class ReservationBean {
     @SerializedName("styling_no")
     @Expose
     int styling_no;
-    @SerializedName("isReview")
-    @Expose
-    int ç;
 
     //-------------------//ㄹㅣ뷰//---------------------------------
     @SerializedName("reviewPhoto")
@@ -46,6 +43,9 @@ public class ReservationBean {
     @SerializedName("reviewContent")
     @Expose
     String reviewContent;
+    @SerializedName("userName")
+    @Expose
+    String userName;
 
     //-------------------//reservationCheck//---------------------------
     @SerializedName("stylingTitle")
@@ -232,6 +232,14 @@ public class ReservationBean {
 
     public void setLeadTime(int leadTime) {
         this.leadTime = leadTime;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String ResToString(){
