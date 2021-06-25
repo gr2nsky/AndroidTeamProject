@@ -1,5 +1,7 @@
 package com.example.mogastyle.Bean;
 
+import android.os.Build;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -23,7 +25,7 @@ public class ResDateData {
         cal.set(Calendar.YEAR, year);
         cal.set(Calendar.MONTH, month-1);
         cal.set(Calendar.DATE, date);
-        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+        dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
 
         time = new ArrayList<>();
         for (int i = startTime; i <= (startTime + useTime); i++){
@@ -37,6 +39,7 @@ public class ResDateData {
         this.date = date;
         this.dayOfWeek = dayOfWeek;
         this.nowHour = nowHour;
+        time = new ArrayList<>();
     }
 
     public ResDateData(int year, int month, int date, int dayOfWeek) {
@@ -44,6 +47,7 @@ public class ResDateData {
         this.month = month;
         this.date = date;
         this.dayOfWeek = dayOfWeek;
+        time = new ArrayList<>();
     }
 
     public int getYear() {
@@ -71,7 +75,15 @@ public class ResDateData {
     }
 
     public String printAll(){
-        return "year : " + Integer.toString(year) + ", month : " + Integer.toString(month) + ", date : " + Integer.toString(date) + ", day : " + getDay();
+        String result = "year : " + year + ", month : " + month + ", date : " + date + ", day : " + getDay();
+
+        if(!time.isEmpty()){
+            result += ", time : ";
+            for(int i = 0; i < time.size(); i++)
+                result += Integer.toString(time.get(i)) + ",";
+            result.substring(0, result.length()-1);
+        }
+        return result;
     }
 
     public ArrayList<Integer> getTime() {

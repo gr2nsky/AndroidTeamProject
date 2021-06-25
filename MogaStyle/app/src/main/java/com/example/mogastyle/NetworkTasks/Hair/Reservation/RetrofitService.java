@@ -7,7 +7,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface RetrofitService {
-
     @GET("reservationListLoad.jsp?")
     Call<ReservationList> getList(@Query("userNo") int userNo);
 
@@ -24,6 +23,5 @@ public interface RetrofitService {
                            @Query("designer_no") int designer_no,
                            @Query("shop_no") int shop_no,
                            @Query("user_no") int user_no,
-                           @Query("styling_no") int styling_no
-                           );
+                           @Query("styling_no") int styling_no);
 }
