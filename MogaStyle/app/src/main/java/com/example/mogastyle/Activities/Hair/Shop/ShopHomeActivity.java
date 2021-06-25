@@ -56,7 +56,6 @@ public class ShopHomeActivity extends AppCompatActivity {
 
         ShopTitle = findViewById(R.id.tv_shopmain_title);
 
-        imageView = findViewById(R.id.img_hairlist_image);
 
         intent = getIntent();
         shopNo = intent.getIntExtra("smo",0);
