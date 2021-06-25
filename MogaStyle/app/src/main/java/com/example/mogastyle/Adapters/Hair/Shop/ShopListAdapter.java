@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -60,6 +61,7 @@ public class ShopListAdapter extends BaseAdapter {
         TextView tv_homelist_introduce = convertView.findViewById(R.id.tv_hairlist_introduction);
         TextView tv_homelist_holiday = convertView.findViewById(R.id.tv_hairlist_holiday);
         TextView tv_homelist_image = convertView.findViewById(R.id.img_hairlist_image);
+        ImageView img_homelist_imageView = convertView.findViewById(R.id.img_hairlist_image1);
 
         tv_homelist_name.setText("이름 : "+ data.get(position).getName());
         tv_homelist_tel.setText("전화번호 : " + data.get(position).getTel());
@@ -68,6 +70,10 @@ public class ShopListAdapter extends BaseAdapter {
         tv_homelist_introduce.setText("소개 : " + data.get(position).getIntroduction());
         tv_homelist_holiday.setText("쉬는 날 : " + data.get(position).getHoliday());
         tv_homelist_image.setText("사진 : "+ data.get(position).getImage());
+
+        Glide.with(mContext)
+                .load(ShareVar.shopImgPath+data.get(position).getImage())
+                .into(img_homelist_imageView);
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override

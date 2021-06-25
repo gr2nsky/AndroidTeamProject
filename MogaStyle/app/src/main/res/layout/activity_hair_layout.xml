@@ -14,6 +14,7 @@
             android:gravity="bottom">
 
                 <ImageView
+                    android:id="@+id/img_hairlist_image1"
                     android:layout_width="149dp"
                     android:layout_height="99dp"
                     android:layout_margin="10dp"
