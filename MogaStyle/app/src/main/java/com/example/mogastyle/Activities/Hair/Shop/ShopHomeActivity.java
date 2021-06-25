@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.mogastyle.Activities.Consult.ConsultMainActivity;
@@ -20,9 +19,9 @@ import com.example.mogastyle.Activities.MyPage.MyPageMainActivity;
 import com.example.mogastyle.Adapters.Hair.Shop.ShopListAdapter;
 import com.example.mogastyle.Adapters.Hair.Shop.ShopPagerAdapter;
 import com.example.mogastyle.Bean.Shop;
+import com.example.mogastyle.Common.ShareVar;
 import com.example.mogastyle.NetworkTasks.Hair.ShopNetworkTask;
 import com.example.mogastyle.R;
-import com.example.mogastyle.ShareVar.ShareVar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
@@ -44,7 +43,7 @@ public class ShopHomeActivity extends AppCompatActivity {
     String urlAddr = null;
     ArrayList<Shop> shops;
     ShopListAdapter adapters;
-    String desktopIP = ShareVar.WindowIP;
+    String desktopIP = ShareVar.hostIP;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +61,7 @@ public class ShopHomeActivity extends AppCompatActivity {
         imageButton = findViewById(R.id.btn_home_goHome);
 
         desktopIP = intent.getStringExtra("desktopIP");
-        urlAddr = ShareVar.hostRootAddr+"test/shop_home_detail.jsp";
+        urlAddr = ShareVar.hostRootAddr+"Hair/Shop/shop_home_detail.jsp";
         Log.v("Message",urlAddr);
 
 

@@ -16,14 +16,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.mogastyle.Activities.Consult.ConsultMainActivity;
 import com.example.mogastyle.Activities.Diary.DiaryMainActivity;
 import com.example.mogastyle.Activities.Hair.Shop.ShopHomeActivity;
-import com.example.mogastyle.Activities.Hair.Shop.ShopHomeFragment;
 import com.example.mogastyle.Activities.MainActivity;
 import com.example.mogastyle.Activities.MyPage.MyPageMainActivity;
 import com.example.mogastyle.Adapters.Hair.Shop.ShopListAdapter;
 import com.example.mogastyle.Bean.Shop;
+import com.example.mogastyle.Common.ShareVar;
 import com.example.mogastyle.NetworkTasks.Hair.ShopNetworkTask;
 import com.example.mogastyle.R;
-import com.example.mogastyle.ShareVar.ShareVar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.jetbrains.annotations.NotNull;
@@ -41,7 +40,7 @@ public class HairMainActivity extends AppCompatActivity {
     ArrayList<Shop> shops;
     ShopListAdapter adapters;
     ListView listView;
-    String desktopIP = ShareVar.WindowIP;
+    String desktopIP = ShareVar.hostIP;
 
 
     @Override
@@ -67,7 +66,7 @@ public class HairMainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         desktopIP = intent.getStringExtra("desktopIP");
-        urlAddr = ShareVar.hostRootAddr+"test/shop_select.jsp";
+        urlAddr = ShareVar.hostRootAddr+"Hair/Shop/shop_select.jsp";
         Log.v("Message",urlAddr);
 
 

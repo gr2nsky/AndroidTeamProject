@@ -1,7 +1,5 @@
 package com.example.mogastyle.Activities.Hair.Shop;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,11 +13,10 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.example.mogastyle.Adapters.Hair.Shop.ShopHomeAdapter;
 import com.example.mogastyle.Bean.Shop;
+import com.example.mogastyle.Common.ShareVar;
 import com.example.mogastyle.NetworkTasks.Hair.ShopNetworkTask;
 import com.example.mogastyle.R;
-import com.example.mogastyle.ShareVar.ShareVar;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -32,7 +29,7 @@ public class ShopHomeFragment extends Fragment {
     EditText ShopName,ShopTel,ShopAddress,ShopIntroduction;
     String urlAddr = null;
     ArrayList<Shop> shops;
-   String desktopIP = ShareVar.WindowIP;
+   String desktopIP = ShareVar.hostIP;
 
     @Nullable
     @org.jetbrains.annotations.Nullable
@@ -41,7 +38,7 @@ public class ShopHomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_shop_home,container,false);
         shopNo = ShopHomeActivity.shopNo;
 
-        urlAddr = ShareVar.hostRootAddr+"test/shop_select.jsp";
+        urlAddr = ShareVar.hostRootAddr+"Hair/Shop/shop_select.jsp";
         Log.v("Message",urlAddr);
 
         ShopName = view.findViewById(R.id.edt_shop_name);

@@ -10,12 +10,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.mogastyle.Activities.Hair.Shop.ShopHomeActivity;
-import com.example.mogastyle.Activities.Hair.Shop.ShopHomeFragment;
 import com.example.mogastyle.Bean.Shop;
+import com.example.mogastyle.Common.ShareVar;
 import com.example.mogastyle.R;
-import com.example.mogastyle.ShareVar.ShareVar;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -77,7 +74,7 @@ public class ShopListAdapter extends BaseAdapter {
                 .placeholder(R.drawable.jpeg_default_profile_photo)
                 .error(R.drawable.jpeg_default_profile_photo)
                 .fallback(R.drawable.jpeg_default_profile_photo);
-             //  .into(convertView.shopImgPath);
+                //.into(convertView.shopImgPath);
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override

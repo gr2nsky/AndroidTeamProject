@@ -2,7 +2,6 @@ package com.example.mogastyle.Adapters.Hair.Shop;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,14 +9,12 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.Target;
 import com.example.mogastyle.Activities.Hair.Shop.ShopHomeFragment;
 import com.example.mogastyle.Bean.Shop;
+import com.example.mogastyle.Common.ShareVar;
 import com.example.mogastyle.R;
-import com.example.mogastyle.ShareVar.ShareVar;
 
 import java.util.ArrayList;
-import java.util.logging.ErrorManager;
 
 public class ShopHomeAdapter extends BaseAdapter {
 

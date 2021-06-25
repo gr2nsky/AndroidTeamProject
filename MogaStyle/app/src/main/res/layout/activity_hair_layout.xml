@@ -16,7 +16,7 @@
                 <ImageView
                     android:layout_width="149dp"
                     android:layout_height="99dp"
-                    android:layout_margin="20dp"
+                    android:layout_margin="10dp"
                     android:src="@drawable/jpeg_default_profile_photo" />
 
             <LinearLayout
@@ -53,7 +53,7 @@
             android:id="@+id/tv_home_holiday"
             android:layout_width="0px"
             android:layout_height="0px"
-            android:layout_marginBottom="30dp"/>
+            android:layout_marginBottom="20dp"/>
 
         <TextView
             android:id="@+id/img_home_image"
