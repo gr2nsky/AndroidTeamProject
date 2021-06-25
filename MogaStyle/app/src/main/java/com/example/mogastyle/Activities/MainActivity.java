@@ -60,9 +60,11 @@ public class MainActivity extends AppCompatActivity {
 
         //getPhoneDialog 두둥 등장
         // null -> 4자리 나오면 ...
-        if(LoginedUserInfo.user.getUserPhone().length() == 4) {
-            openPhoneDialog();
-        }
+//        if(LoginedUserInfo.user.getUserPhone().length() == 4) {
+//            openPhoneDialog();
+//        }else{
+//
+//        }
         //--getPhoneDialog 두둥 등장 end
 
         //KAKAO LOGIN GET INFO --
