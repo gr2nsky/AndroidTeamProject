@@ -32,7 +32,7 @@ public class ShopHomeFragment extends Fragment {
     EditText ShopName,ShopTel,ShopAddress,ShopIntroduction;
     String urlAddr = null;
     ArrayList<Shop> shops;
-   // String desktopIP = ShareVar.WindowIP;
+   String desktopIP = ShareVar.WindowIP;
 
     @Nullable
     @org.jetbrains.annotations.Nullable

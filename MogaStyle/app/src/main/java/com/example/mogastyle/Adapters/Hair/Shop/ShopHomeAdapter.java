@@ -79,6 +79,7 @@ public class ShopHomeAdapter extends BaseAdapter {
             public void onClick(View v) {
                 no = data.get(position).getNo();
                 Intent intent = new Intent(mContext, ShopHomeFragment.class);
+                intent.putExtra("smo",data.get(position).getNo());
                 mContext.startActivity(intent);
             }
         });

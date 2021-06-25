@@ -77,7 +77,7 @@ public class ShopListAdapter extends BaseAdapter {
                 .placeholder(R.drawable.jpeg_default_profile_photo)
                 .error(R.drawable.jpeg_default_profile_photo)
                 .fallback(R.drawable.jpeg_default_profile_photo);
-//                .into(convertView.tv_image);
+             //  .into(convertView.shopImgPath);
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
