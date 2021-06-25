@@ -61,7 +61,7 @@ public class ShopHomeActivity extends AppCompatActivity {
         imageButton = findViewById(R.id.btn_home_goHome);
 
         desktopIP = intent.getStringExtra("desktopIP");
-        urlAddr = ShareVar.hostRootAddr+"Hair/Shop/shop_home_detail.jsp";
+        urlAddr = ShareVar.hostRootAddr+"Hair/Shop/shoplist_detail.jsp";
         Log.v("Message",urlAddr);
 
 

@@ -28,38 +28,53 @@
             android:id="@+id/tv_home_name"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:fontFamily="@font/bmjua_otf"/>
 
         <TextView
             android:id="@+id/tv_home_tel"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:fontFamily="@font/bmjua_otf"/>
 
         <TextView
             android:id="@+id/tv_home_address"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:fontFamily="@font/bmjua_otf"/>
 
         <TextView
             android:id="@+id/tv_home_postcode"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:fontFamily="@font/bmjua_otf"/>
+
 
         <TextView
             android:id="@+id/tv_home_introduction"
             android:layout_width="0px"
-            android:layout_height="0px" />
+            android:layout_height="0px"
+            android:textColor="@color/black"
+            android:fontFamily="@font/bmjua_otf"/>
 
         <TextView
             android:id="@+id/tv_home_holiday"
             android:layout_width="0px"
             android:layout_height="0px"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/bmjua_otf"/>
 
         <TextView
             android:id="@+id/img_home_image"
             android:layout_width="0px"
-            android:layout_height="0px" />
+            android:layout_height="0px"
+            android:textColor="@color/black"
+            android:fontFamily="@font/bmjua_otf"/>
 
         </LinearLayout>
         </LinearLayout>
