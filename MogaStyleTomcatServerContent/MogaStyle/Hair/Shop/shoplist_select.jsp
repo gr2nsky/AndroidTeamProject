@@ -6,7 +6,7 @@
 	String url_mysql = "jdbc:mysql://localhost/mogastyle?serverTimezone=Asia/Seoul&characterEncoding=utf8&useSSL=false";
  	String id_mysql = "root";
  	String pw_mysql = "Qwer1234";
-    String WhereDefault = "select name,tel,address,introduction,no from shop";
+    String WhereDefault = "select name,tel,address,introduction from shop";
     int count = 0;
     
     try {
@@ -17,7 +17,7 @@
         ResultSet rs = stmt_mysql.executeQuery(WhereDefault); // 
 %>
 		{ 
-  			"shoplist_info"  : [ 
+  			"shop_info"  : [ 
 <%
         while (rs.next()) {
             if (count == 0) {
@@ -33,7 +33,6 @@
 			"tel" : "<%=rs.getString(2) %>",   
 			"address" : "<%=rs.getString(3) %>",  
 			"introduction" : "<%=rs.getString(4) %>",
-			"no"  : "<%=rs.getInt(5)%>"
 			}
 
 <%		
