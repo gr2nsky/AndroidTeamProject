@@ -11,8 +11,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.mogastyle.Bean.User;
+import com.example.mogastyle.Common.LoginedUserInfo;
 import com.example.mogastyle.NetworkTasks.Hair.Reservation.GetDesginerResData;
 import com.example.mogastyle.NetworkTasks.Hair.Reservation.RetrofitCall;
 import com.example.mogastyle.NetworkTasks.Hair.Reservation.RetrofitService;
@@ -95,10 +98,15 @@ public class ReservationActivity extends AppCompatActivity {
         btn_go_payment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), PaymentActivity.class);
-                PaymentBeanStack.stack.setResDateData(dateSelectorAdapter.getSelectedData());
-                PaymentBeanStack.stack.setResTime(timeSelectorAdapter.getSelectedTime());
-                startActivity(intent);
+                if(timeSelectorAdapter.selectedPosition == -1){
+                    Toast.makeText(ReservationActivity.this, "시간을 선택해 주세요", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Intent intent = new Intent(getApplicationContext(), PaymentActivity.class);
+                    PaymentBeanStack.stack.setResDateData(dateSelectorAdapter.getSelectedData());
+                    PaymentBeanStack.stack.setResTime(timeSelectorAdapter.getSelectedTime());
+                    startActivity(intent);
+                }
             }
         });
 
@@ -282,13 +290,16 @@ public class ReservationActivity extends AppCompatActivity {
     /////////////////////////////////////////////
     public void tempDataMaker(){
         reservedDates = new ArrayList<>();
-        tempDesignerBean = new TempDesignerBean(2, "최준", "2020-05-26", "tempImg.png", "5");
+        tempDesignerBean = new TempDesignerBean(1, "최준", "2020-05-26", "tempImg.png", "5");
         loadDesignerResDatas(tempDesignerBean.getNo());
         tempDesignerBean.setResDates(reservedDates);
 
         ///////////////////////////////////////////////////////////////////
         //                       진짜 bean 가져오도록 이후 수정                //
         //////////////////////////////////////////////////////////////////
+        User user = new User(1, "dbswovlf2009", "윤재필", "1.jpg", "01047339270","0", "0");
+        LoginedUserInfo.user = user;
+        
         tempStyleBean = new TempStyleBean(1, "봄탄소년단", 50000);
         tempShopBean = new TempShopBean(3, "더존미용실 강남점", "1,7");
         PaymentBeanStack.stack.setDesignerBean(tempDesignerBean);
@@ -312,6 +323,7 @@ public class ReservationActivity extends AppCompatActivity {
         for(ReservationBean rb : rbList.getReservationList()){
             ResDateData rdd = new ResDateData(rb.getReservationDate(), rb.getReservationTime(), rb.getLeadTime());
             reservedDates.add(rdd);
+            Log.v(TAG, rdd.printAll());
             Log.v(TAG, reservedDates.toString());
         }
     }

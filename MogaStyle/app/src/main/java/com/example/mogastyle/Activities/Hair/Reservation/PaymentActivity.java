@@ -114,9 +114,10 @@ public class PaymentActivity extends AppCompatActivity {
         tv_res_time.setText("시간          " + Integer.toString(resTime));
         tv_res_shop_name.setText("매장          " + shopBean.getName());
         tv_res_designer_name.setText("담당          " + designerBean.getName());
-        tv_res_mene_name.setText("메          " + styleBean.getTitle());
-        tv_res_total_price.setText("금액          " + styleBean.getPrice());
-    }
+        tv_res_mene_name.setText("메뉴          " + styleBean.getTitle());
+        tv_res_total_price.setText(Integer.toString(styleBean.getPrice()));
+    } // onCreate
+
     CompoundButton.OnCheckedChangeListener onCheckedChangeListener = new CompoundButton.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -130,6 +131,11 @@ public class PaymentActivity extends AppCompatActivity {
 
                 btn_request_auth_code.setEnabled(false);
                 btn_check_auth_code.setEnabled(false);
+
+                btn_request_auth_code.setVisibility(View.INVISIBLE);
+                btn_check_auth_code.setVisibility(View.INVISIBLE);
+                et_booker_auth_code.setVisibility(View.INVISIBLE);
+
             }else{
                 useLoginedData = 0;
                 et_booker_name.setText("");
@@ -146,6 +152,10 @@ public class PaymentActivity extends AppCompatActivity {
 
                 btn_request_auth_code.setEnabled(true);
                 btn_check_auth_code.setEnabled(true);
+
+                btn_request_auth_code.setVisibility(View.VISIBLE);
+                btn_check_auth_code.setVisibility(View.VISIBLE);
+                et_booker_auth_code.setVisibility(View.VISIBLE);
             }
         }
     };

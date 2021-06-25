@@ -32,10 +32,19 @@ public class ReservationBean {
     @SerializedName("styling_no")
     @Expose
     int styling_no;
+    @SerializedName("isReview")
+    @Expose
+    int ç;
 
     //-------------------//ㄹㅣ뷰//---------------------------------
+    @SerializedName("reviewPhoto")
+    @Expose
     String reviewPhoto;
+    @SerializedName("reviewScore")
+    @Expose
     int reviewScore;
+    @SerializedName("reviewContent")
+    @Expose
     String reviewContent;
 
     //-------------------//reservationCheck//---------------------------
@@ -225,8 +234,6 @@ public class ReservationBean {
         this.leadTime = leadTime;
     }
 
-
-
     public String ResToString(){
         return "no :" + no + " reservationDate : " + reservationDate + " reservationTime : "
                 + reservationTime  + " totalPrice : " + totalPrice  + " stylingTitle : "
@@ -238,5 +245,12 @@ public class ReservationBean {
     public String desResToString(){
         return "no :" + no + " reservationDate : " + reservationDate + " reservationTime : "
                 + reservationTime  + " leadTime : " + leadTime;
+    }
+
+    public boolean reviewIsNull(){
+        if (reviewContent.equals("null")){
+            return true;
+        }
+        return false;
     }
 }

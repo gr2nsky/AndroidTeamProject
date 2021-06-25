@@ -14,10 +14,11 @@ import java.util.ArrayList;
 public class ShareVar {
 
 
-    public static String hostIP = "";
+    public static String hostIP = "192.168.2.4";
     public final static String hostRootAddr = "http://" + hostIP + ":8080/MogaStyle/";
     public final static String userImgPath = hostRootAddr + "img/user/";
     public final static String shopImgPath = hostRootAddr + "img/shop/";
+    public final static String styleImgPath = hostRootAddr + "img/style/";
 
     ////////////////////////////////////////////////////////////////////////
     //                        home키에 사용될 친구입니다.                       //
