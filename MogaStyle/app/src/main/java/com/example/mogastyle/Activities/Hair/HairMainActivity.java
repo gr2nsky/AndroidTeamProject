@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,7 +33,8 @@ import java.util.ArrayList;
 public class HairMainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     //MapView mapView = new MapView(this);
-    //private Spinner spinner;
+    private Spinner spinner;
+    ArrayAdapter<CharSequence> adapter = null;
 
 
     String urlAddr = null;
@@ -57,6 +59,11 @@ public class HairMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_hair_main);
 
         listView = findViewById(R.id.lv_shoplist);
+
+        adapter = ArrayAdapter.createFromResource(this,R.array.ShopChoose,
+                android.R.layout.simple_spinner_dropdown_item);
+        spinner = findViewById(R.id.sp_hairmain_choose);
+        spinner.setAdapter(adapter);
 
         Intent intent = getIntent();
         desktopIP = intent.getStringExtra("desktopIP");

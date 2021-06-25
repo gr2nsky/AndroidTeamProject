@@ -51,6 +51,8 @@ public class ShopHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_main);
 
+        ShopTitle = findViewById(R.id.tv_shopmain_title);
+
         Intent intent = getIntent();
         shopNo = intent.getIntExtra("smo",0);
 
@@ -63,7 +65,7 @@ public class ShopHomeActivity extends AppCompatActivity {
         urlAddr = ShareVar.hostRootAddr+"test/shop_home_detail.jsp";
         Log.v("Message",urlAddr);
 
-        ShopTitle = findViewById(R.id.tv_shopmain_title);
+
 
         TabLayout tabLayout = findViewById(R.id.tab_layout_shopmain);
         tabLayout.setupWithViewPager(viewPager);

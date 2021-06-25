@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MogaStyle">
-        <activity android:name=".Activities.Consult.ConsultDesignerListActivity"></activity>
+        <activity android:name=".Activities.Consult.ConsultTalkActivity"></activity>
+        <activity android:name=".Activities.Consult.ConsultDesignerListActivity" />
         <activity android:name=".Activities.MyPage.MyPageUpdatePwActivity" />
         <activity
             android:name=".Activities.MyPage.MyPageUpdateActivity"

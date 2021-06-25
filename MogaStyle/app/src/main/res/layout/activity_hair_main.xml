@@ -7,24 +7,47 @@
     android:layout_height="match_parent"
     tools:context=".Activities.Hair.HairMainActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="0.5"
+        android:background="#F5F6F8"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="서초구 서초동"
+            android:textSize="40dp"
+            android:layout_marginRight="55dp"/>
+
+        <SearchView
+            android:layout_marginLeft="55dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
     //map화면 띄우는 곳인데 map을 아직 구현 못 했습니다.
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:layout_weight="2">
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-<!--        <RelativeLayout-->
-<!--            android:id="@+id/map_view"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent" >-->
+        <!--        <RelativeLayout-->
+        <!--            android:id="@+id/map_view"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent" >-->
+        <!--        </RelativeLayout>-->
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0px"
+        android:background="#F5F6F8"
         android:layout_weight="0.5">
 
         <Spinner
@@ -38,6 +61,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0px"
+        android:background="#F5F6F8"
         android:layout_weight="1">
 
     <ListView
@@ -50,7 +74,7 @@
 
     </LinearLayout>
 
-<!--        </RelativeLayout>-->
+
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"

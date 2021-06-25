@@ -16,6 +16,7 @@
                 <ImageView
                     android:layout_width="149dp"
                     android:layout_height="99dp"
+                    android:layout_margin="20dp"
                     android:src="@drawable/jpeg_default_profile_photo" />
 
             <LinearLayout

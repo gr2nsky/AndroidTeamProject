@@ -14,40 +14,39 @@
         <LinearLayout
             android:id="@+id/Linear_shopmain_topper"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_height="101dp"
             android:background="#FDF3F6"
+            android:orientation="horizontal"
             android:padding="10dp">
 
             <View
-                android:layout_weight="2"
                 android:layout_width="0dp"
-                android:layout_height="0dp"/>
+                android:layout_height="0dp"
+                android:layout_weight="2" />
 
             <TextView
                 android:id="@+id/tv_shopmain_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Shop"
-                android:gravity="center"
-                android:textSize="30dp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
                 android:fontFamily="@font/bmjua_otf"
+                android:text="Shop"
+                android:textColor="@color/black"
+                android:textSize="50dp"
+                android:textStyle="bold"
                 tools:ignore="InvalidId" />
 
             <View
-                android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="0dp"/>
+                android:layout_height="0dp"
+                android:layout_weight="1" />
 
             <ImageButton
                 android:id="@+id/btn_home_goHome"
-                android:layout_weight="1"
                 android:layout_width="0dp"
-                android:background="#FDF3F6"
                 android:layout_height="wrap_content"
-                android:src="@drawable/icon_home"/>
+                android:layout_weight="1"
+                android:background="#FDF3F6"
+                android:src="@drawable/icon_home" />
 
         </LinearLayout>
 

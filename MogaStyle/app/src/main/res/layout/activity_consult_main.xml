@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F5F6F8"
     tools:context=".Activities.Consult.ConsultMainActivity">
 
    <LinearLayout
@@ -12,19 +13,21 @@
        android:layout_width="match_parent"
        android:layout_height="0px"
        android:background="#FDF3F6"
-       android:layout_weight="0.5"
-       android:layout_marginBottom="10dp">
+       android:layout_weight="0.2"
+       android:layout_marginBottom="30dp">
 
        <TextView
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:text="Consult"
-           android:textSize="50dp"
+           android:textSize="40dp"
            android:textColor="@color/black"
            android:fontFamily="@font/bmjua_otf"
+           android:layout_marginTop="10dp"
            android:layout_marginRight="140dp"/>
 
        <SearchView
+           android:layout_marginLeft="50dp"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"/>
 
@@ -41,8 +44,8 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:layout_weight="1"
-        android:layout_marginBottom="10dp">
+        android:layout_weight="0.5"
+        android:layout_marginBottom="30dp">
 
         <ImageView
             android:layout_width="match_parent"
