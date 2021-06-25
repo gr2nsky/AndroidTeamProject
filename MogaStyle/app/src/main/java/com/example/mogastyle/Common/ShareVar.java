@@ -7,6 +7,10 @@
 
 package com.example.mogastyle.Common;
 
+import android.app.Activity;
+
+import java.util.ArrayList;
+
 public class ShareVar {
 
 
@@ -14,6 +18,18 @@ public class ShareVar {
     public final static String hostRootAddr = "http://" + hostIP + ":8080/MogaStyle/";
     public final static String userImgPath = hostRootAddr + "img/user/";
     public final static String shopImgPath = hostRootAddr + "img/shop/";
+
+    ////////////////////////////////////////////////////////////////////////
+    //                        home키에 사용될 친구입니다.                       //
+    ///////////////////////////////////////////////////////////////////////
+    public static ArrayList<Activity> stackedActivities = new ArrayList<>();
+    public static void goHome(){
+        if (stackedActivities.isEmpty())
+            return;
+        for(Activity a : stackedActivities){
+            a.finish();
+        }
+    }
 
 }
  

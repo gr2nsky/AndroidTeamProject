@@ -17,27 +17,19 @@
       Class.forName("com.mysql.jdbc.Driver");
       Connection conn_mysql = DriverManager.getConnection(url_mysql,id_mysql,pw_mysql);
 
-      String query = "UPDATE reservation SET cancelDate = now() WHERE no = ?"
+      String query = "UPDATE reservation SET cancelDate = now() WHERE no = ?";
 
       ps = conn_mysql.prepareStatement(query);
       ps.setInt(1, resNo);
 
 		  result = ps.executeUpdate();
-%>
-		{
-			"result" : "<%=result%>"
-		}
 
-<%
+      out.print(1);
 	    conn_mysql.close();
 	}
 	catch (Exception e){
-%>
-		{
-			"result" : "<%=result%>"
-		}
-<%
-	    e.printStackTrace();
+    out.print(0);
+	  e.printStackTrace();
 	}
 
 %>
