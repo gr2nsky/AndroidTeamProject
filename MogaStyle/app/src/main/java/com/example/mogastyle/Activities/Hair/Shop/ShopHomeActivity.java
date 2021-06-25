@@ -52,7 +52,7 @@ public class ShopHomeActivity extends AppCompatActivity {
 
         ShopTitle = findViewById(R.id.tv_shopmain_title);
 
-        Intent intent = getIntent();
+        intent = getIntent();
         shopNo = intent.getIntExtra("smo",0);
 
         viewPager = findViewById(R.id.shopmain_pager);
@@ -61,7 +61,7 @@ public class ShopHomeActivity extends AppCompatActivity {
         imageButton = findViewById(R.id.btn_home_goHome);
 
         desktopIP = intent.getStringExtra("desktopIP");
-        urlAddr = ShareVar.hostRootAddr+"Hair/Shop/shoplist_detail.jsp";
+        urlAddr = ShareVar.hostRootAddr+"Hair/Shop/shop_select.jsp";
         Log.v("Message",urlAddr);
 
 
