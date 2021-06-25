@@ -299,8 +299,8 @@ public class ReservationActivity extends AppCompatActivity {
     public void loadDesignerResDatas(int dno){
         GetDesginerResData getDesginerResData = new GetDesginerResData(dno);
         try {
-            ReservationList sibal = getDesginerResData.execute().get();
-//            parserResDateData(rl);
+            ReservationList rl = getDesginerResData.execute().get();
+            parserResDateData(rl);
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -308,8 +308,8 @@ public class ReservationActivity extends AppCompatActivity {
         }
     }
 
-    public void parserResDateData(ArrayList<ReservationBean> rbList){
-        for(ReservationBean rb : rbList){
+    public void parserResDateData(ReservationList rbList){
+        for(ReservationBean rb : rbList.getReservationList()){
             ResDateData rdd = new ResDateData(rb.getReservationDate(), rb.getReservationTime(), rb.getLeadTime());
             reservedDates.add(rdd);
             Log.v(TAG, reservedDates.toString());

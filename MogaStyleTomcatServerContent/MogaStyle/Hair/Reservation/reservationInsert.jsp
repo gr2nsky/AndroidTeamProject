@@ -38,20 +38,11 @@
 	    ps.setInt(7, styling_no);
 
 		result = ps.executeUpdate();
-%>
-		{
-			"result" : "<%=result%>"
-		}
-
-<%
+      out.print(1);
 	    conn_mysql.close();
 	}
 	catch (Exception e){
-%>
-		{
-			"result" : "<%=result%>"
-		}
-<%
+    out.print(0);
 	    e.printStackTrace();
 	}
 
