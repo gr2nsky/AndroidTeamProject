@@ -1,4 +1,4 @@
-package com.example.mogastyle.Activities.Hair.Reservation.Retrofit;
+package com.example.mogastyle.NetworkTasks.Hair.Reservation;
 
 import com.example.mogastyle.Bean.ReservationList;
 
@@ -10,6 +10,9 @@ public interface RetrofitService {
 
     @GET("reservationListLoad.jsp?")
     Call<ReservationList> getList(@Query("userNo") int userNo);
+
+    @GET("designerResedDateRead.jsp?")
+    Call<ReservationList> getListForResDateData(@Query("dno") int dno);
 
     @GET("reservationListCancel.jsp?")
     Call<String> getCancelResult(@Query("resNo") int resNo);

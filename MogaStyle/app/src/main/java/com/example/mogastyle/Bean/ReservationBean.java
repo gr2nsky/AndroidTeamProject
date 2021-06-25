@@ -57,6 +57,9 @@ public class ReservationBean {
     @SerializedName("shopAddress")
     @Expose
     String shopAddress;
+    @SerializedName("leadTime")
+    @Expose
+    int leadTime;
 
     //등록용
     public ReservationBean(String reservationDate, int reservationTime, int totalPrice,
@@ -214,11 +217,26 @@ public class ReservationBean {
         this.shopAddress = shopAddress;
     }
 
+    public int getLeadTime() {
+        return leadTime;
+    }
+
+    public void setLeadTime(int leadTime) {
+        this.leadTime = leadTime;
+    }
+
+
+
     public String ResToString(){
         return "no :" + no + " reservationDate : " + reservationDate + " reservationTime : "
                 + reservationTime  + " totalPrice : " + totalPrice  + " stylingTitle : "
                 + stylingTitle + " shopName : " + shopName + " designerName : " + designerName
                 + " shopImage : " + shopImage + "  designerImage : " + designerImage + "  shopAddress : " + shopAddress
                 + " cancelDate : " + cancelDate;
+    }
+
+    public String desResToString(){
+        return "no :" + no + " reservationDate : " + reservationDate + " reservationTime : "
+                + reservationTime  + " leadTime : " + leadTime;
     }
 }

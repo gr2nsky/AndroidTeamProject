@@ -2,31 +2,23 @@ package com.example.mogastyle.Adapters.Hair.Reservation;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.mogastyle.Activities.Hair.Reservation.ReservationCheckActivity;
-import com.example.mogastyle.Activities.Hair.Reservation.Retrofit.RetrofitCall;
-import com.example.mogastyle.Activities.Hair.Reservation.Retrofit.RetrofitService;
+import com.example.mogastyle.NetworkTasks.Hair.Reservation.RetrofitCall;
+import com.example.mogastyle.NetworkTasks.Hair.Reservation.RetrofitService;
 import com.example.mogastyle.Bean.ReservationBean;
-import com.example.mogastyle.Bean.ReservationList;
 import com.example.mogastyle.Common.ShareVar;
 import com.example.mogastyle.R;
-import com.google.android.material.snackbar.Snackbar;
-
-import org.jetbrains.annotations.NotNull;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
