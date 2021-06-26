@@ -16,7 +16,6 @@ public class StylingPagerAdapter extends FragmentPagerAdapter {
     public StylingPagerAdapter(FragmentManager fm) {
         super(fm);
         arrayList.add(new StylingInfoFragment());
-        arrayList.add(new ReviewFragment());
 
         name.add("정보");
         name.add("리뷰");

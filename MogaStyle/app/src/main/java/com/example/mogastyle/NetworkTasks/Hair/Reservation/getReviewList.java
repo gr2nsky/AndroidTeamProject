@@ -37,7 +37,7 @@ public class getReviewList extends AsyncTask<Call, Void, ReservationList> {
         RetrofitService retrofitService = RetrofitCall.reservationService();
         Call<ReservationList> call = null;
         if(typeToken == 1){
-            call = retrofitService.getListForReviewByDigner(designerNo);
+            call = retrofitService.getListForReviewByDesigner(designerNo);
         } else if (typeToken == 2){
             call = retrofitService.getListForReviewByShop(shopNo);
         } else {
