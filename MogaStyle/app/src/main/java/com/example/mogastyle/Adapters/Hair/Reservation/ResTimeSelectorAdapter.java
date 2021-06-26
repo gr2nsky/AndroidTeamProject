@@ -38,7 +38,7 @@ public class ResTimeSelectorAdapter extends RecyclerView.Adapter<ResTimeSelector
     private LayoutInflater inflater = null;
     ArrayList<Integer> resableTimeList = null;
     private ArrayList<RecyclerView.ViewHolder> holderList = null;
-    private int selectedPosition = -1;
+    public int selectedPosition = -1;
 
     //휴무날일떈 이걸로 받음. 999 : 샵 휴무일, 888 : 개인 휴무일, 777 : 예약이 꽉 참
     public ResTimeSelectorAdapter(Context con, int layout, int i) {

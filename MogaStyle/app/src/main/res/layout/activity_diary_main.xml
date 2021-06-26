@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.Diary.DiaryMainActivity">
+    tools:context=".Activities.Diary.DiaryMainActivity"
+    android:background="@color/main_color"
+    >
 
 
     <LinearLayout
@@ -14,10 +16,75 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="20dp"
+            >
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/main_icon"
+             />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="DIARY MAIN"/>
+            android:text="항상 꿈만 꿔온 스타일"
+            android:layout_marginTop="40dp"
+            android:textSize="20dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/bmjua_otf"
+            />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="당신의 스타일을 기록하며"
+            android:textSize="20dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/bmjua_otf"/>
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="당신의 스타일로 만드세요!"
+            android:textSize="20dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/bmjua_otf"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="40dp"
+            >
+        <Button
+            android:id="@+id/btn_newStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/btn_super_positive"
+            android:text="새로운 스타일 만들기"
+            android:textColor="@color/black"
+            android:fontFamily="@font/bmjua_otf"
+            android:layout_marginBottom="50dp"
+            />
+        <Button
+            android:id="@+id/btn_originStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/btn_super_negative"
+            android:text="기록한 스타일 보러가기"
+            android:textColor="@color/black"
+            android:fontFamily="@font/bmjua_otf"/>
+        </LinearLayout>
 
     </LinearLayout>
 

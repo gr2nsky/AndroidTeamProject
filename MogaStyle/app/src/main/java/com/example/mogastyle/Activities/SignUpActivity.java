@@ -18,8 +18,12 @@ import com.example.mogastyle.Common.ShareVar;
 import com.example.mogastyle.NetworkTasks.Login.LoginCheckUserId;
 import com.example.mogastyle.NetworkTasks.Login.SignUpInApp;
 import com.example.mogastyle.R;
+import com.example.mogastyle.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskExecutors;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,15 +39,21 @@ public class SignUpActivity extends AppCompatActivity {
 
     EditText et_sign_up_name ,et_sign_up_userid , et_sign_up_userpw , et_sign_up_phone , et_sign_up_token;
 
-    Button btn_sign_up_check_user_id, btn_sign_up_phone_check ,btn_sign_up_token_check ,btn_sign_up_final;
+    Button btn_sign_up_check_user_id, btn_sign_up_phone_check ,btn_sign_up_token_check ;
 
     TextView tv_sign_up_token_check;
 
     String userName,userId ,userPw , userPhone , userToken , userCheck , joinType;
 
     //FireBase Phone Auth
+
+    private ActivityMainBinding binding;
+
+    private PhoneAuthProvider.ForceResendingToken forceResendingToken;
+
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBacks;
     FirebaseAuth firebaseAuth;
-    String verificationId ;
+    String mVerificationId ;
     // FireBase Phone Auth End --
 
 
@@ -65,7 +75,7 @@ public class SignUpActivity extends AppCompatActivity {
         btn_sign_up_check_user_id = findViewById(R.id.btn_sign_up_check_user_id);
         btn_sign_up_phone_check = findViewById(R.id.btn_sign_up_phone_check);
         btn_sign_up_token_check = findViewById(R.id.btn_sign_up_token_check);
-        btn_sign_up_final = findViewById(R.id.btn_sign_up_final);
+
 
         //TextView Binding
         tv_sign_up_token_check = findViewById(R.id.tv_sign_up_token_check);
@@ -74,13 +84,39 @@ public class SignUpActivity extends AppCompatActivity {
         btn_sign_up_check_user_id.setOnClickListener(onClickListener);
         btn_sign_up_phone_check.setOnClickListener(onClickListener);
         btn_sign_up_token_check.setOnClickListener(onClickListener);
-        btn_sign_up_final.setOnClickListener(onClickListener);
+
 
         //정보 가져오기
 
 
         //FireBase Phone Auth
         firebaseAuth = FirebaseAuth.getInstance();
+
+        mCallBacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+            @Override
+            public void onVerificationCompleted(@NonNull @NotNull PhoneAuthCredential phoneAuthCredential) {
+                signInWithPhoneAuthCredential(phoneAuthCredential);
+            }
+
+            @Override
+            public void onVerificationFailed(@NonNull @NotNull FirebaseException e) {
+
+            }
+
+            @Override
+            public void onCodeSent(@NonNull @NotNull String verificationId, @NonNull @NotNull PhoneAuthProvider.ForceResendingToken token) {
+                super.onCodeSent(verificationId, forceResendingToken);
+
+                Log.d("TAG" , "onCodeSending" + verificationId);
+                mVerificationId = verificationId;
+                forceResendingToken = token;
+
+
+            }
+        };
+
+
+
         //FireBase Phone Auth End --
     }
 
@@ -121,7 +157,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                     }else{
                         userPhone = et_sign_up_phone.getText().toString();
-                        sendVerificationCode(userPhone);
+                        startPhoneNumberVerification(userPhone);
                     }
 
 
@@ -131,123 +167,138 @@ public class SignUpActivity extends AppCompatActivity {
                 case R.id.btn_sign_up_token_check:
                     //인증하기
                     userToken = et_sign_up_token.getText().toString();
-                    if(TextUtils.isEmpty(userToken)){
+
+                    userName = et_sign_up_name.getText().toString();
+                    userId = et_sign_up_userid.getText().toString();
+                    userPw = et_sign_up_userpw.getText().toString();
+                    userPhone = et_sign_up_phone.getText().toString();
+                    if(TextUtils.isEmpty(userName)){
+                        Toast.makeText(SignUpActivity.this, "이름을 입력해주세요!", Toast.LENGTH_SHORT).show();
+                    }else if(TextUtils.isEmpty(userId)){
+                        Toast.makeText(SignUpActivity.this, "아이디를 입력해주세요!", Toast.LENGTH_SHORT).show();
+                    }else if(TextUtils.isEmpty(userPw)){
+                        Toast.makeText(SignUpActivity.this, "비밀번호를 입력해주세요!", Toast.LENGTH_SHORT).show();
+                    }else if(TextUtils.isEmpty(userPhone)){
+                        Toast.makeText(SignUpActivity.this, "전화번호 입력해주세요!", Toast.LENGTH_SHORT).show();
+                    }
+                    else if(TextUtils.isEmpty(userToken)){
                         Toast.makeText(SignUpActivity.this, "인증 번호를 입력해주세요!", Toast.LENGTH_SHORT).show();
                     }else{
-//                        verifyCode(userToken);
+
+                            verifyPhoneNumberWithCode(mVerificationId ,userToken);
 
 
                     }
 
                     break;
 
-                case R.id.btn_sign_up_final:
-                    //마지막 화원가입 완료
-                    userName = et_sign_up_name.getText().toString();
-                    userId = et_sign_up_userid.getText().toString();
-                    userPw = et_sign_up_userpw.getText().toString();
-                    userToken = et_sign_up_token.getText().toString();
-                    userPhone = et_sign_up_phone.getText().toString();
-                    userCheck = "0";
-                    joinType = "0";
 
-                    SignUpInApp signUpInApp = new SignUpInApp(SignUpActivity.this , urlAddr + "Home/userSignUpInApp.jsp" , userName,userId , userPw , userPhone ,userCheck,joinType);
 
-                    Object object = null;
-                    String result = "0";
-                    try{
-                        object = signUpInApp.execute().get();
-                    }catch (Exception e){
-                        e.printStackTrace();
+            }
+        }
+    };
 
-                    }
 
-                    result = (String) object;
+    // -- Button Click Listener end
+    //FireBase Auth
 
-                    Log.d("result" , result);
+    private void startPhoneNumberVerification(String phone) {
+        PhoneAuthOptions options =
+                PhoneAuthOptions.newBuilder(firebaseAuth)
+                        .setPhoneNumber(phone)
+                        .setTimeout(60L , TimeUnit.SECONDS)
+                        .setActivity(this)
+                        .setCallbacks(mCallBacks)
+                        .build();
 
-                    if (result.equals("1")){
-                        Toast.makeText(SignUpActivity.this, userId + " 님 회원가입 완료!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(SignUpActivity.this , LoginBasicActivity.class);
+        PhoneAuthProvider.verifyPhoneNumber(options);
+
+    }
+    /*
+        private void resendVerificationCode(String phone , PhoneAuthProvider.ForceResendingToken token){
+            PhoneAuthOptions options =
+                PhoneAuthOptions.newBuilder(firebaseAuth)
+                        .setPhoneNumber(phone)
+                        .setTimeout(60L , TimeUnit.SECONDS)
+                        .setActivity(this)
+                        .setCallbacks(mCallBacks)
+                        .setForceResendingToken(token)
+                        .build();
+
+        PhoneAuthProvider.verifyPhoneNumber(options);
+
+        }
+
+     */
+
+    private void verifyPhoneNumberWithCode(String verificationId, String userToken) {
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId,userToken);
+        signInWithPhoneAuthCredential(credential);
+    }
+
+    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
+
+        firebaseAuth.signInWithCredential(credential)
+                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                        String phone = firebaseAuth.getCurrentUser().getPhoneNumber();
+                        Toast.makeText(SignUpActivity.this, phone , Toast.LENGTH_SHORT).show();
+                        // 회원가입 완료
+                        //DB 저~장
+                        userName = et_sign_up_name.getText().toString();
+                        userId = et_sign_up_userid.getText().toString();
+                        userPw = et_sign_up_userpw.getText().toString();
+                        userToken = et_sign_up_token.getText().toString();
+                        userPhone = et_sign_up_phone.getText().toString();
+                        userCheck = "0";
+                        joinType = "0";
+
+                        SignUpInApp signUpInApp = new SignUpInApp(SignUpActivity.this , urlAddr + "Home/userSignUpInApp.jsp" , userName,userId , userPw , userPhone ,userCheck,joinType);
+
+                        Object object = null;
+                        String result = "0";
+                        try{
+                            object = signUpInApp.execute().get();
+                        }catch (Exception e){
+                            e.printStackTrace();
+
+                        }
+
+                        result = (String) object;
+
+                        Log.d("result" , result);
+
+                        if (result.equals("1")){
+                            Toast.makeText(SignUpActivity.this, userId + " 님 회원가입 완료!", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(SignUpActivity.this , LoginBasicActivity.class);
 //                        intent.putExtra("userId",userId);
 //                        intent.putExtra("userPw",userPw);
 //                        //회원가입 에서 왔어요~
 //                        intent.putExtra("login","1");
-                        startActivity(intent);
+                            startActivity(intent);
 
-                    }else if(result.equals("2")) {
-                        Toast.makeText(SignUpActivity.this, "이미 로그인 되어있는 아이디입니다", Toast.LENGTH_SHORT).show();
+                        }else if(result.equals("2")) {
+                            Toast.makeText(SignUpActivity.this, "이미 로그인 되어있는 아이디입니다", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Toast.makeText(SignUpActivity.this, "회원가입 실패!", Toast.LENGTH_SHORT).show();
+                        }
+
+                        // --
+                        startActivity(new Intent(SignUpActivity.this , LoginBasicActivity.class));
+
                     }
-                    else{
-                        Toast.makeText(SignUpActivity.this, "회원가입 실패!", Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull @NotNull Exception e) {
+                        startActivity(new Intent(SignUpActivity.this , SignUpActivity.class));
                     }
-                    break;
+                });
 
-            }
-        }
-    };
-    // -- Button Click Listener end
-
-    //FireBase Phone Auth
-    private void sendVerificationCode(String userPhone){
-        PhoneAuthOptions phoneAuthOptions = PhoneAuthOptions.newBuilder(firebaseAuth)
-                .setPhoneNumber(userPhone)
-                .setTimeout(60L , TimeUnit.SECONDS)
-                .setActivity(this)
-                .setCallbacks(mCallBack)
-                .build();
-
-        PhoneAuthProvider.verifyPhoneNumber(phoneAuthOptions);
-    }
-
-    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBack = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-
-        @Override
-        public void onCodeSent(@NonNull @NotNull String s, @NonNull @NotNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-            super.onCodeSent(s, forceResendingToken);
-            verificationId = s;
-        }
-
-        @Override
-        public void onVerificationCompleted(@NonNull @NotNull PhoneAuthCredential phoneAuthCredential) {
-            final String code = phoneAuthCredential.getSmsCode();
-            Log.d("SHHHHH" , code);
-            verifyCode(code);
-            et_sign_up_token.setText(code);
-            tv_sign_up_token_check.setVisibility(View.VISIBLE);
-            tv_sign_up_token_check.setText("인증번호 일치");
-        }
-
-        @Override
-        public void onVerificationFailed(@NonNull @NotNull FirebaseException e) {
-            Toast.makeText(SignUpActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-    };
-
-    private void verifyCode(String code){
-        PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.getCredential(verificationId ,code);
-        signInWithCredential(phoneAuthCredential);
 
     }
 
-    private void signInWithCredential(PhoneAuthCredential credential){
-
-        firebaseAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    // 성공했을 경우 나오는 것
-                    // 뭔가 로그인이 완료됬을때 보여주는거 같은데..
-
-
-
-                }else{
-                    Toast.makeText(SignUpActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
-    //FireBase Phone Auth-- End
 
 }

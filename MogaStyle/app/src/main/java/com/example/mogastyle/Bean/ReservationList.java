@@ -25,4 +25,13 @@ public class ReservationList {
         }
         return result;
     }
+
+    public String desPrint(){
+        String result = "";
+        for (int i = 0; i < reservationList.size(); i++){
+            result += "[" + i + "]" + reservationList.get(i).desResToString();
+            result += "\n";
+        }
+        return result;
+    }
 }

@@ -5,10 +5,80 @@
     android:layout_height="match_parent"
     tools:context=".Activities.MyPage.DiarySettingFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        >
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:gravity="center">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="다이어리 알림"
+            android:fontFamily="@font/nexon_gothic_r"
+            android:textSize="20dp"
+            android:layout_marginRight="30dp"/>
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch_diary_setting"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            />
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:text="보다 규칙적으로 다이어리 작성하기 !"
+        android:fontFamily="@font/nexon_gothic_r"
+        />
+
+    <LinearLayout
+        android:id="@+id/linear_layout_diary_setting_radio"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        >
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rb_diary_setting_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 1 주후"
+                android:fontFamily="@font/nexon_gothic_r"
+                android:textSize="20dp"
+                android:layout_marginBottom="10dp"/>
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rb_diary_setting_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 2 주후"
+                android:fontFamily="@font/nexon_gothic_r"
+                android:textSize="20dp"
+                android:layout_marginBottom="10dp"/>
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rb_diary_setting_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 한달 후"
+                android:fontFamily="@font/nexon_gothic_r"
+                android:textSize="20dp"
+                android:layout_marginBottom="10dp"/>
+        </RadioGroup>
+    </LinearLayout>
+    </LinearLayout>
 
 </FrameLayout>

@@ -21,12 +21,17 @@ import android.widget.Toast;
 import com.example.mogastyle.Bean.PaymentBeanStack;
 import com.example.mogastyle.Bean.ResDateData;
 import com.example.mogastyle.Bean.ReservationBean;
+import com.example.mogastyle.Bean.ReservationList;
 import com.example.mogastyle.Bean.TempDesignerBean;
 import com.example.mogastyle.Bean.TempShopBean;
 import com.example.mogastyle.Bean.TempStyleBean;
 import com.example.mogastyle.Bean.User;
 import com.example.mogastyle.Common.LoginedUserInfo;
+import com.example.mogastyle.NetworkTasks.Hair.Reservation.GetDesginerResData;
+import com.example.mogastyle.NetworkTasks.Hair.Reservation.InsertReservation;
 import com.example.mogastyle.R;
+
+import java.util.concurrent.ExecutionException;
 
 public class PaymentActivity extends AppCompatActivity {
 
@@ -109,9 +114,10 @@ public class PaymentActivity extends AppCompatActivity {
         tv_res_time.setText("시간          " + Integer.toString(resTime));
         tv_res_shop_name.setText("매장          " + shopBean.getName());
         tv_res_designer_name.setText("담당          " + designerBean.getName());
-        tv_res_mene_name.setText("메          " + styleBean.getTitle());
-        tv_res_total_price.setText("금액          " + styleBean.getPrice());
-    }
+        tv_res_mene_name.setText("메뉴          " + styleBean.getTitle());
+        tv_res_total_price.setText(Integer.toString(styleBean.getPrice()));
+    } // onCreate
+
     CompoundButton.OnCheckedChangeListener onCheckedChangeListener = new CompoundButton.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -125,6 +131,11 @@ public class PaymentActivity extends AppCompatActivity {
 
                 btn_request_auth_code.setEnabled(false);
                 btn_check_auth_code.setEnabled(false);
+
+                btn_request_auth_code.setVisibility(View.INVISIBLE);
+                btn_check_auth_code.setVisibility(View.INVISIBLE);
+                et_booker_auth_code.setVisibility(View.INVISIBLE);
+
             }else{
                 useLoginedData = 0;
                 et_booker_name.setText("");
@@ -141,6 +152,10 @@ public class PaymentActivity extends AppCompatActivity {
 
                 btn_request_auth_code.setEnabled(true);
                 btn_check_auth_code.setEnabled(true);
+
+                btn_request_auth_code.setVisibility(View.VISIBLE);
+                btn_check_auth_code.setVisibility(View.VISIBLE);
+                et_booker_auth_code.setVisibility(View.VISIBLE);
             }
         }
     };
@@ -161,6 +176,8 @@ public class PaymentActivity extends AppCompatActivity {
         }
     };
     public void submitData(){
+        String result = "0";
+
         if(useLoginedData == 0 && authCheck == 0){
             Toast.makeText(this, "핸드폰 문자 인증을 해주세요.", Toast.LENGTH_SHORT).show();
             return;
@@ -168,6 +185,25 @@ public class PaymentActivity extends AppCompatActivity {
 
         ReservationBean bean = new ReservationBean(resDateData.print(), resTime, designerBean.getNo(),
                 styleBean.getPrice(), shopBean.getNo(), booker.getNo(), styleBean.getNo());
+
+        //////////////////////////////////////////////////////////////////
+        //                           결제 API 작업이 필요함                  //
+        /////////////////////////////////////////////////////////////////
+        InsertReservation insertReservation = new InsertReservation(bean);
+        try {
+            result = insertReservation.execute().get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (result.equals("0")){
+            Toast.makeText(this, "결제실패", Toast.LENGTH_SHORT).show();
+        } else {
+            /////////////////////////////////////////////////////////////////////
+            //                        쌓인 액티비티 다 끄고 메인으로 이동               //
+            /////////////////////////////////////////////////////////////////////
+            Toast.makeText(this, "결제성공", Toast.LENGTH_SHORT).show();
+        }
 
     }
 

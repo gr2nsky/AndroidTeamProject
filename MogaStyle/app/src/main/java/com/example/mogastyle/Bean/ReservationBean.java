@@ -34,9 +34,18 @@ public class ReservationBean {
     int styling_no;
 
     //-------------------//ㄹㅣ뷰//---------------------------------
+    @SerializedName("reviewPhoto")
+    @Expose
     String reviewPhoto;
+    @SerializedName("reviewScore")
+    @Expose
     int reviewScore;
+    @SerializedName("reviewContent")
+    @Expose
     String reviewContent;
+    @SerializedName("userName")
+    @Expose
+    String userName;
 
     //-------------------//reservationCheck//---------------------------
     @SerializedName("stylingTitle")
@@ -57,6 +66,9 @@ public class ReservationBean {
     @SerializedName("shopAddress")
     @Expose
     String shopAddress;
+    @SerializedName("leadTime")
+    @Expose
+    int leadTime;
 
     //등록용
     public ReservationBean(String reservationDate, int reservationTime, int totalPrice,
@@ -214,11 +226,39 @@ public class ReservationBean {
         this.shopAddress = shopAddress;
     }
 
+    public int getLeadTime() {
+        return leadTime;
+    }
+
+    public void setLeadTime(int leadTime) {
+        this.leadTime = leadTime;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     public String ResToString(){
         return "no :" + no + " reservationDate : " + reservationDate + " reservationTime : "
                 + reservationTime  + " totalPrice : " + totalPrice  + " stylingTitle : "
                 + stylingTitle + " shopName : " + shopName + " designerName : " + designerName
                 + " shopImage : " + shopImage + "  designerImage : " + designerImage + "  shopAddress : " + shopAddress
                 + " cancelDate : " + cancelDate;
+    }
+
+    public String desResToString(){
+        return "no :" + no + " reservationDate : " + reservationDate + " reservationTime : "
+                + reservationTime  + " leadTime : " + leadTime;
+    }
+
+    public boolean reviewIsNull(){
+        if (reviewContent.equals("null")){
+            return true;
+        }
+        return false;
     }
 }
