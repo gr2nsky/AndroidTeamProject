@@ -3,14 +3,14 @@
     pageEncoding="UTF-8"%>
 
 <%
-	String url_mysql = "jdbc:mysql://localhost/stylediary?serverTimezone=Asia/Seoul&characterEncoding=utf8&useSSL=false";
+	String url_mysql = "jdbc:mysql://localhost/mogastyle?serverTimezone=Asia/Seoul&characterEncoding=utf8&useSSL=false";
  	String id_mysql = "root";
  	String pw_mysql = "qwer1234";
 
   String userNo = request.getParameter("userNo");
 
     String WhereDefault = "select titleImage , styleTitle , styleLength , no from hair_diary where deletedate is null and user_no ="+userNo;
-    
+
     int count = 0;
 
     try {

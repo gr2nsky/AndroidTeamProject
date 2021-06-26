@@ -19,17 +19,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MogaStyle">
 
+
+
         <activity android:name=".Activities.Consult.ConsultTalkListActivity"></activity>
         <activity android:name=".Activities.Consult.ConsultListActivity" />
         <activity android:name=".Activities.Consult.ConsultDesignerAnswerActivity" />
         <activity android:name=".Activities.Consult.ConsultDesignerTalkActivity" />
         <activity android:name=".Activities.Consult.ConsultDesignerListActivity" />
+
         <activity android:name=".Activities.Diary.DiaryEditStyleActivity"></activity>
 
         <activity android:name=".Activities.Diary.DiaryListDetailActivity"></activity>
         <activity android:name=".Activities.Diary.DiaryWriteActivity" />
         <activity android:name=".Activities.Diary.DiaryPageActivity" />
-
 
         <activity android:name=".Activities.Diary.DiaryShowOriginStyleActivity" />
         <activity android:name=".Activities.Diary.DiaryMakeNewStyleActivity" />
