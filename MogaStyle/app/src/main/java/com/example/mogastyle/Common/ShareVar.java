@@ -13,11 +13,15 @@ import java.util.ArrayList;
 
 public class ShareVar {
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> MyPageAweSome
     public static String hostIP = "";
     public final static String hostRootAddr = "http://" + hostIP + ":8080/MogaStyle/";
     public final static String userImgPath = hostRootAddr + "img/user/";
     public final static String shopImgPath = hostRootAddr + "img/shop/";
+<<<<<<< HEAD
     public final static String styleImgPath = hostRootAddr + "img/style/";
     public final static String reviewImgPath = hostRootAddr + "img/review/";
 
@@ -32,6 +36,9 @@ public class ShareVar {
             a.finish();
         }
     }
+=======
+    public final static String diaryImgPath = hostRootAddr + "img/diary/";
+>>>>>>> MyPageAweSome
 
 }
  
