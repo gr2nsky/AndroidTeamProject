@@ -6,7 +6,7 @@
 <%
     request.setCharacterEncoding("utf-8");
     String diaryNo = request.getParameter("diaryNo");
-	String url_mysql = "jdbc:mysql://localhost/stylediary?serverTimezone=Asia/Seoul&characterEncoding=utf8&useSSL=false";
+	String url_mysql = "jdbc:mysql://localhost/mogastyle?serverTimezone=Asia/Seoul&characterEncoding=utf8&useSSL=false";
  	String id_mysql = "root";
  	String pw_mysql = "qwer1234";
     String WhereDefault = "select no, image , hairShop , designerName , styleDate , contents from hair_diary_page where deletedate is null and hair_diary_no="+diaryNo;
