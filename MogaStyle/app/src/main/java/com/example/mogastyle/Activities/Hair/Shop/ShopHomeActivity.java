@@ -74,8 +74,8 @@ public class ShopHomeActivity extends AppCompatActivity {
         ////////////////////////////////////////////////////////////////////////////
         //      Shop no를 플레그먼트에 전달하기 위해서 어댑터에 값 전달                        //
         ////////////////////////////////////////////////////////////////////////////
-        ShopPagerAdapter adapters = new ShopPagerAdapter(getSupportFragmentManager(), shopBean, con);
-        viewPager.setAdapter(adapters);
+        shopPagerAdapter = new ShopPagerAdapter(getSupportFragmentManager(), shopBean, con);
+        viewPager.setAdapter(shopPagerAdapter);
 
         imageButton = findViewById(R.id.btn_home_goHome);
         imageButton.setOnClickListener(onClickListener);
@@ -99,7 +99,6 @@ public class ShopHomeActivity extends AppCompatActivity {
                 case R.id.btn_home_goHome:
                     Intent intent = new Intent(ShopHomeActivity.this,MainActivity.class);
                     startActivity(intent);
-
             }
         }
     };

@@ -162,14 +162,4 @@
             android:fontFamily="@font/nexon_gothic_r"
             android:layout_marginBottom="20dp"/>
     </LinearLayout>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:itemIconTint="@drawable/selector"
-        app:itemTextColor="@drawable/selector"
-        app:menu="@menu/menu" />
-
-
 </LinearLayout>
