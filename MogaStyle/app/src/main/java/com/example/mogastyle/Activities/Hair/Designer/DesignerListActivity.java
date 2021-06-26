@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mogastyle.Adapters.Hair.Designer.DesignerAdapter;
 import com.example.mogastyle.Bean.Designer;
-import com.example.mogastyle.NetworkTasks.Hair.DesignerNetworkTask;
+import com.example.mogastyle.NetworkTasks.Hair.Designer.DesignerNetworkTask;
 import com.example.mogastyle.R;
 
 import java.util.ArrayList;

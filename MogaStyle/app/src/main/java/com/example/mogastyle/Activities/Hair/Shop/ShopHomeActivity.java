@@ -1,6 +1,5 @@
 package com.example.mogastyle.Activities.Hair.Shop;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -8,29 +7,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.example.mogastyle.Activities.Consult.ConsultMainActivity;
-import com.example.mogastyle.Activities.Diary.DiaryMainActivity;
 import com.example.mogastyle.Activities.MainActivity;
-import com.example.mogastyle.Activities.MyPage.MyPageMainActivity;
-import com.example.mogastyle.Adapters.Hair.Shop.ShopListAdapter;
 import com.example.mogastyle.Adapters.Hair.Shop.ShopPagerAdapter;
 import com.example.mogastyle.Bean.Shop;
 import com.example.mogastyle.Common.ShareVar;
-import com.example.mogastyle.NetworkTasks.Hair.ShopNetworkTask;
 import com.example.mogastyle.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
-
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
 
 //HairMain에서 미용실을 클릭했을 때, 넘어가는 페이지
 

@@ -3,27 +3,18 @@ package com.example.mogastyle.Activities.Hair.Shop;
 import android.content.Context;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.mogastyle.Bean.Shop;
 import com.example.mogastyle.Common.ShareVar;
-import com.example.mogastyle.NetworkTasks.Hair.ShopNetworkTask;
 import com.example.mogastyle.R;
-
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
 
 public class ShopHomeFragment extends Fragment {
     Context con;
