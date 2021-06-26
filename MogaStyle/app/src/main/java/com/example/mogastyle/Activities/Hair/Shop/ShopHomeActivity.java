@@ -35,7 +35,6 @@ import java.util.ArrayList;
 //HairMain에서 미용실을 클릭했을 때, 넘어가는 페이지
 
 public class ShopHomeActivity extends AppCompatActivity {
-    BottomNavigationView bottomNavigationView;
     ShopPagerAdapter shopPagerAdapter;
 
     Context con;
@@ -86,43 +85,6 @@ public class ShopHomeActivity extends AppCompatActivity {
 
         TabLayout tabLayout = findViewById(R.id.tab_layout_shopmain);
         tabLayout.setupWithViewPager(viewPager);
-
-        ////////////////////////////////////////////////////////////////////////////
-        //      하단 NavigationView 생성                                            //
-        ////////////////////////////////////////////////////////////////////////////
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        bottomNavigationView.setSelectedItemId(R.id.page_reservation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.page_home:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        finish();
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.page_consult:
-                        startActivity(new Intent(getApplicationContext(), ConsultMainActivity.class));
-                        finish();
-                        overridePendingTransition(0,0);
-                        return true;
-
-                    case R.id.page_reservation:
-                        return true;
-                    case R.id.page_diary:
-                        startActivity(new Intent(getApplicationContext(), DiaryMainActivity.class));
-                        finish();
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.page_user:
-                        startActivity(new Intent(getApplicationContext(), MyPageMainActivity.class));
-                        finish();
-                        overridePendingTransition(0,0);
-                        return true;
-                }
-                return false;
-            }
-        });
 
     }
 
