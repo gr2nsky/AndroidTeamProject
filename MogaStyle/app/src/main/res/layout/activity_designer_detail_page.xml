@@ -44,10 +44,11 @@
             >
 
             <ImageView
+                android:id="@+id/iv_designer_detail_page_image"
                 android:layout_width="0px"
                 android:layout_height="150dp"
                 android:layout_weight="1.2"
-                android:scaleType="centerInside"
+                android:scaleType="fitXY"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="30dp"
                 />
