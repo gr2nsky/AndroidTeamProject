@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.FindIdFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp"
+        >
+        <EditText
+            android:id="@+id/et_find_id_check_name"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="이름을 입력해주세요 !"
+            android:layout_marginBottom="30dp"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            >
+
+        <EditText
+            android:id="@+id/et_find_id_check_phone"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:hint="당신의 핸드폰 번호!"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="60dp"
+            />
+
+        <Button
+            android:id="@+id/btn_find_id_send_token"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="확인!"
+            android:backgroundTint="@color/btn_super_positive"
+            android:textColor="@color/black"
+            />
+
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/et_find_id_check_token"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:hint="토큰 번호!"
+            android:layout_marginBottom="30dp"
+            />
+        <Button
+            android:id="@+id/btn_find_id_final"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ID 찾기"
+            android:backgroundTint="@color/btn_super_positive"
+            android:textColor="@color/black"
+            />
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
