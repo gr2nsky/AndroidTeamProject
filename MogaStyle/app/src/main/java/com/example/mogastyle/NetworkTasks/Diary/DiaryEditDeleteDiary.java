@@ -3,46 +3,34 @@ package com.example.mogastyle.NetworkTasks.Diary;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.ImageView;
 
 import com.example.mogastyle.Bean.Diary.Diary;
-import com.example.mogastyle.Bean.Diary.DiaryBookList;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-
-public class DiarySelectDiary extends AsyncTask<Integer , String, Object> {
+public class DiaryEditDeleteDiary extends AsyncTask<Integer , String, Object> {
     Context context;
-    String mAddr ;
-    String devicePath;
-    ProgressDialog progressDialog = null;
+    String mAddress;
+    ProgressDialog progressDialog;
     ArrayList<Diary> styles;
 
+    String where = null;
 
-    public DiarySelectDiary(Context context, String mAddr) {
+    public DiaryEditDeleteDiary(Context context, String mAddress, String where) {
         this.context = context;
-        this.mAddr = mAddr;
-        this.devicePath = devicePath;
+        this.mAddress = mAddress;
         this.styles = new ArrayList<Diary>();
-
-
+        this.where = where;
     }
+
     @Override
     protected void onPreExecute() {
         progressDialog = new ProgressDialog(context);
@@ -64,8 +52,6 @@ public class DiarySelectDiary extends AsyncTask<Integer , String, Object> {
         progressDialog.dismiss();
     }
 
-
-
     @Override
     protected Object doInBackground(Integer... integers) {
         StringBuffer stringBuffer = new StringBuffer();
@@ -75,7 +61,7 @@ public class DiarySelectDiary extends AsyncTask<Integer , String, Object> {
         String result = null;
 
         try{
-            URL url = new URL(mAddr);
+            URL url = new URL(mAddress);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setConnectTimeout(10000);
 
@@ -90,7 +76,11 @@ public class DiarySelectDiary extends AsyncTask<Integer , String, Object> {
                     stringBuffer.append(strLine + "\n");
                 }
 
+                if(where.equals("select")){
                     parserSelect(stringBuffer.toString());
+                } else {
+                    result = parserAction(stringBuffer.toString());
+                }
 
             }
 
@@ -107,10 +97,27 @@ public class DiarySelectDiary extends AsyncTask<Integer , String, Object> {
             }
         }
 
-
+        if(where.equals("select")){
             return styles;
+        }else {
+            return result;
+        }
+
+
     }
 
+    private String parserAction(String str){
+        String returnValue = null;
+        try{
+            JSONObject jsonObject = new JSONObject(str);
+            returnValue = jsonObject.getString("result");
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return returnValue;
+    }
 
     private void parserSelect(String str){
         try{
@@ -134,7 +141,6 @@ public class DiarySelectDiary extends AsyncTask<Integer , String, Object> {
             e.printStackTrace();
         }
     }
-
 
 
 }

@@ -3,46 +3,36 @@ package com.example.mogastyle.NetworkTasks.Diary;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.ImageView;
 
-import com.example.mogastyle.Bean.Diary.Diary;
 import com.example.mogastyle.Bean.Diary.DiaryBookList;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+public class DiaryMakeDiaryPage extends AsyncTask<Integer , String, Object> {
 
-public class DiarySelectDiary extends AsyncTask<Integer , String, Object> {
+
     Context context;
-    String mAddr ;
-    String devicePath;
-    ProgressDialog progressDialog = null;
-    ArrayList<Diary> styles;
+    String mAddress;
+    ProgressDialog progressDialog;
+    ArrayList<DiaryBookList> styles;
 
+    String where = null;
 
-    public DiarySelectDiary(Context context, String mAddr) {
+    public DiaryMakeDiaryPage(Context context, String mAddress, String where) {
         this.context = context;
-        this.mAddr = mAddr;
-        this.devicePath = devicePath;
-        this.styles = new ArrayList<Diary>();
-
-
+        this.mAddress = mAddress;
+        this.styles = new ArrayList<DiaryBookList>();
+        this.where = where;
     }
+
     @Override
     protected void onPreExecute() {
         progressDialog = new ProgressDialog(context);
@@ -64,8 +54,6 @@ public class DiarySelectDiary extends AsyncTask<Integer , String, Object> {
         progressDialog.dismiss();
     }
 
-
-
     @Override
     protected Object doInBackground(Integer... integers) {
         StringBuffer stringBuffer = new StringBuffer();
@@ -75,7 +63,7 @@ public class DiarySelectDiary extends AsyncTask<Integer , String, Object> {
         String result = null;
 
         try{
-            URL url = new URL(mAddr);
+            URL url = new URL(mAddress);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setConnectTimeout(10000);
 
@@ -90,8 +78,11 @@ public class DiarySelectDiary extends AsyncTask<Integer , String, Object> {
                     stringBuffer.append(strLine + "\n");
                 }
 
+                if(where.equals("select")){
                     parserSelect(stringBuffer.toString());
-
+                }else {
+                    result = parserAction(stringBuffer.toString());
+                }
             }
 
 
@@ -107,26 +98,44 @@ public class DiarySelectDiary extends AsyncTask<Integer , String, Object> {
             }
         }
 
-
+        if(where.equals("select")){
             return styles;
+        }else {
+            return result;
+        }
     }
 
+    private String parserAction(String str){
+        String returnValue = null;
+        try{
+            JSONObject jsonObject = new JSONObject(str);
+            returnValue = jsonObject.getString("result");
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return returnValue;
+    }
 
     private void parserSelect(String str){
         try{
             JSONObject jsonObject = new JSONObject(str);
 
-            JSONArray jsonArray = new JSONArray(jsonObject.getString("diary_book"));
+            JSONArray jsonArray = new JSONArray(jsonObject.getString("diary_book_list"));
             styles.clear();
 
             for(int i= 0 ; i<jsonArray.length();i++){
                 JSONObject jsonObject1 = (JSONObject) jsonArray.get(i);
                 int no = jsonObject1.getInt("no");
-                String image = jsonObject1.getString("titleimage");
-                String title = jsonObject1.getString("styletitle");
-                String hairLength = jsonObject1.getString("stylelength");
+                String image = jsonObject1.getString("image");
+                String hairshop = jsonObject1.getString("hairshop");
+                String designername = jsonObject1.getString("designername");
+                String styledate = jsonObject1.getString("styledate");
+                String comments = jsonObject1.getString("comments");
 
-                Diary style = new Diary(image,title,hairLength,no);
+
+                DiaryBookList style = new DiaryBookList(no , image,styledate,hairshop,designername,comments);
                 styles.add(style);
 
             }
@@ -134,7 +143,5 @@ public class DiarySelectDiary extends AsyncTask<Integer , String, Object> {
             e.printStackTrace();
         }
     }
-
-
 
 }

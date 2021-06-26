@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.Diary.DiaryPageActivity"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/main_color">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        >
+        <ImageView
+            android:id="@+id/iv_diary_page_main_image"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/tv_diary_list_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/bmjua_otf"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="의 기록입니다"
+            android:layout_gravity="center"
+            android:fontFamily="@font/bmjua_otf"/>
+
+        <Button
+            android:id="@+id/btn_diary_write"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="기록하기"
+            android:layout_gravity="right"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="@color/btn_positive"
+            android:textColor="@color/black"
+            android:fontFamily="@font/bmjua_otf"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <ListView
+            android:id="@+id/lv_style_diary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:dividerHeight="15dp"
+            android:divider="#00000000"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

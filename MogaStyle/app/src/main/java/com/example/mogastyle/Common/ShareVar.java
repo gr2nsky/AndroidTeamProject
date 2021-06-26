@@ -20,11 +20,13 @@ public class ShareVar {
     public final static String shopImgPath = hostRootAddr + "img/shop/";
     public final static String styleImgPath = hostRootAddr + "img/style/";
     public final static String reviewImgPath = hostRootAddr + "img/review/";
+    public final static String diaryImgPath = hostRootAddr + "img/diary/";
 
     ////////////////////////////////////////////////////////////////////////
     //                        home키에 사용될 친구입니다.                       //
     ///////////////////////////////////////////////////////////////////////
     public static ArrayList<Activity> stackedActivities = new ArrayList<>();
+
     public static void goHome(){
         if (stackedActivities.isEmpty())
             return;
@@ -32,6 +34,7 @@ public class ShareVar {
             a.finish();
         }
     }
+
 
 }
  

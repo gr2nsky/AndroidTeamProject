@@ -16,18 +16,16 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.mogastyle.Common.LoginedUserInfo;
 import com.example.mogastyle.Common.ShareVar;
-import com.example.mogastyle.NetworkTasks.Diary.DiaryEditDeleteDiary;
+import com.example.mogastyle.NetworkTasks.Diary.DiaryMakeDiaryPage;
 import com.example.mogastyle.NetworkTasks.Diary.DiaryUpdateDiary;
+import com.example.mogastyle.NetworkTasks.Diary.DiaryUpdateDiaryPage;
 import com.example.mogastyle.R;
 
 import java.io.File;
@@ -36,7 +34,7 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DiaryEditStyleActivity extends AppCompatActivity {
+public class DiaryListDetailActivity extends AppCompatActivity {
 
     //IMAGE UPLOAD CODE --
     private final int REQ_CODE_SELECT_IMAGE = 300; // Gallery Return Code
@@ -48,108 +46,102 @@ public class DiaryEditStyleActivity extends AppCompatActivity {
     String urlAddr = ShareVar.hostRootAddr;
     String devicePath = Environment.getDataDirectory().getAbsolutePath() + "/data/com.example.mogastyle/";
 
-    ImageView selectedImageEdit;
+    ImageView image_selected_detail_diary;
 
-    Button btn_getGalleryPhotoEdit , btn_styleUpdate , btn_styleDelete;
+    Button btn_image_insert_detail_diary ,btn_detail_update,btn_detail_delete;
 
-    EditText styleTitleEdit;
+    EditText et_visit_detail_date, et_shop_detail_name,et_designer_detail_name,et_contents_detail_memo;
 
-    Spinner styleSpinnerEdit;
     Intent intent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_diary_edit_style);
+        setContentView(R.layout.activity_diary_list_detail);
 
+        image_selected_detail_diary = findViewById(R.id.image_selected_detail_diary);
+        btn_image_insert_detail_diary = findViewById(R.id.btn_image_insert_detail_diary);
+        btn_detail_update = findViewById(R.id.btn_detail_update);
+        btn_detail_delete = findViewById(R.id.btn_detail_delete);
 
-
-
-        selectedImageEdit = findViewById(R.id.selectedImageEdit);
+        et_visit_detail_date = findViewById(R.id.et_visit_detail_date);
+        et_shop_detail_name = findViewById(R.id.et_shop_detail_name);
+        et_designer_detail_name = findViewById(R.id.et_designer_detail_name);
+        et_contents_detail_memo = findViewById(R.id.et_contents_detail_memo);
 
         intent = getIntent();
-        String imageName = intent.getStringExtra("image");
+
+        String date = intent.getStringExtra("date");
+        String image = intent.getStringExtra("image");
+        String hairShop = intent.getStringExtra("hairShop");
+        String designer = intent.getStringExtra("designer");
+        String comments = intent.getStringExtra("comments");
+
+        et_visit_detail_date.setText(date);
+        et_shop_detail_name.setText(hairShop);
+        et_designer_detail_name.setText(designer);
+        et_contents_detail_memo.setText(comments);
+
+        //-- button action
+        btn_image_insert_detail_diary.setOnClickListener(onClickListener);
+        btn_detail_update.setOnClickListener(onClickListener);
+        btn_detail_delete.setOnClickListener(onClickListener);
+
         //image 붙이는 작업
         Glide.with(this)
-                .load(ShareVar.diaryImgPath + imageName)
-                .into(selectedImageEdit);
+                .load(ShareVar.diaryImgPath + image)
+                .into(image_selected_detail_diary);
         //image 붙이는 작업 ---
 
-        btn_getGalleryPhotoEdit = findViewById(R.id.btn_getGalleryPhotoEdit);
-        btn_styleUpdate = findViewById(R.id.btn_styleUpdate);
-        btn_styleDelete = findViewById(R.id.btn_styleDelete);
-
-        styleTitleEdit = findViewById(R.id.styleTitleEdit);
-
-        styleSpinnerEdit = findViewById(R.id.styleSpinnerEdit);
-        ArrayAdapter styleEditAdapter = ArrayAdapter.createFromResource(this , R.array.hairStyleArray , android.R.layout.simple_spinner_dropdown_item);
-        styleSpinnerEdit.setAdapter(styleEditAdapter);
-
-
-        intent = getIntent();
-        String hairLength = intent.getStringExtra("hairLength");
-
-        switch(hairLength){
-            case "장발":
-                styleSpinnerEdit.setSelection(0);
-                break;
-            case "단발":
-                styleSpinnerEdit.setSelection(1);
-                break;
-            case "숏컷":
-                styleSpinnerEdit.setSelection(2);
-                break;
-        }
-        btn_getGalleryPhotoEdit.setOnClickListener(onClickListener);
-        btn_styleUpdate.setOnClickListener(onClickListener);
-        btn_styleDelete.setOnClickListener(onClickListener);
-
-        String styleTitle = intent.getStringExtra("title");
-
-        styleTitleEdit.setText(styleTitle);
-
     }
+
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            Intent intent;
+            int no;
             switch(v.getId()){
-                case R.id.btn_getGalleryPhotoEdit:
+                case R.id.btn_image_insert_detail_diary:
+                    /// new Photo for edit diary_page
+                    ActivityCompat.requestPermissions(DiaryListDetailActivity.this, new String[]{ Manifest.permission.WRITE_EXTERNAL_STORAGE}, MODE_PRIVATE);
 
-
-
-                    ActivityCompat.requestPermissions(DiaryEditStyleActivity.this, new String[]{ Manifest.permission.WRITE_EXTERNAL_STORAGE}, MODE_PRIVATE);
-
-                    Intent intent = new Intent(Intent.ACTION_PICK);
+                    intent = new Intent(Intent.ACTION_PICK);
                     intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
                     intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     startActivityForResult(intent, REQ_CODE_SELECT_IMAGE);
 
+
                     break;
 
-                case R.id.btn_styleUpdate:
+                case R.id.btn_detail_update:
+                   // Update diary_page
 
+                    ////////----
                     intent = getIntent();
-                    int no = intent.getIntExtra("no",0);
+                    no = intent.getIntExtra("no",0);
                     String strNo = Integer.toString(no);
-                    String updateTitle = styleTitleEdit.getText().toString();
-                    String hairLength = styleSpinnerEdit.getSelectedItem().toString();
+                    String date = et_visit_detail_date.getText().toString();
+                    String hairShop = et_shop_detail_name.getText().toString();
+                    String designerName = et_designer_detail_name.getText().toString();
+                    String comments = et_contents_detail_memo.getText().toString();
 
-                    DiaryUpdateDiary diaryUpdateDiary = new DiaryUpdateDiary(DiaryEditStyleActivity.this , urlAddr + "Diary/styleDiaryBookUpdate.jsp", img_path, selectedImageEdit, strNo , updateTitle, hairLength);
+                    DiaryUpdateDiaryPage diaryUpdateDiaryPage = new DiaryUpdateDiaryPage(DiaryListDetailActivity.this , urlAddr + "Diary/styleDiaryPageUpdate.jsp", img_path, image_selected_detail_diary, strNo , date ,hairShop, designerName,comments);
 
                     try{
 
-                        Integer result = diaryUpdateDiary.execute().get();
+                        Integer result = diaryUpdateDiaryPage.execute().get();
 
                         switch(result){
                             case 1:
-                                Toast.makeText(DiaryEditStyleActivity.this, updateTitle + " is updated!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(DiaryListDetailActivity.this, hairShop + " is updated!", Toast.LENGTH_SHORT).show();
                                 File file = new File(img_path);
                                 file.delete();
-                                intent = new Intent(DiaryEditStyleActivity.this , DiaryShowOriginStyleActivity.class);
+                                intent = new Intent(DiaryListDetailActivity.this , DiaryShowOriginStyleActivity.class);
                                 startActivity(intent);
                                 break;
                             case 0:
-                                Toast.makeText(DiaryEditStyleActivity.this, "Update Fail !", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(DiaryListDetailActivity.this, "Update Fail !", Toast.LENGTH_SHORT).show();
                                 break;
                         }
 
@@ -157,24 +149,29 @@ public class DiaryEditStyleActivity extends AppCompatActivity {
 
                         e.printStackTrace();
                     }
+                    ////////----
 
                     break;
 
-                case R.id.btn_styleDelete:
-                    intent = getIntent();
-                    int no1 = intent.getIntExtra("no",0);
-                    urlAddr = urlAddr+"Diary/styleDiaryBookDelete.jsp?no="+no1;
 
+                case R.id.btn_detail_delete:
+                    //Delete diary_page
+
+                    intent = getIntent();
+                    no = intent.getIntExtra("no" , 0);
+
+                    urlAddr = urlAddr+"Diary/styleDiaryPageDelete.jsp?no="+no;
+                    String hairShop1 = et_shop_detail_name.getText().toString();
                     String deleteResult = connectDeleteData();
-                    String deleteTitle = styleTitleEdit.getText().toString();
+
                     if(deleteResult.equals("1")){
-                        Toast.makeText(DiaryEditStyleActivity.this, deleteTitle + " is Deleted!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DiaryListDetailActivity.this, hairShop1 + " is Deleted!", Toast.LENGTH_SHORT).show();
                         finish();
                     }else{
-                        Toast.makeText(DiaryEditStyleActivity.this, "Delete Fail !", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DiaryListDetailActivity.this, "Delete Fail !", Toast.LENGTH_SHORT).show();
                     }
-
                     break;
+
 
             }
         }
@@ -184,8 +181,8 @@ public class DiaryEditStyleActivity extends AppCompatActivity {
     private String connectDeleteData(){
         String result = null;
         try{
-            DiaryEditDeleteDiary networkTask = new DiaryEditDeleteDiary(DiaryEditStyleActivity.this,urlAddr,"delete");
-            Object obj = networkTask.execute().get();
+            DiaryMakeDiaryPage networkTaskDiary = new DiaryMakeDiaryPage(DiaryListDetailActivity.this,urlAddr ,"delete");
+            Object obj = networkTaskDiary.execute().get();
             result = (String) obj;
         }catch (Exception e){
             e.printStackTrace();
@@ -210,7 +207,7 @@ public class DiaryEditStyleActivity extends AppCompatActivity {
 
                 //image_bitmap 으로 받아온 이미지의 사이즈를 임의적으로 조절함. width: 400 , height: 300
                 Bitmap image_bitmap_copy = Bitmap.createScaledBitmap(image_bitmap, 400, 300, true);
-                selectedImageEdit.setImageBitmap(image_bitmap_copy);
+                image_selected_detail_diary.setImageBitmap(image_bitmap_copy);
 
                 // 파일 이름 및 경로 바꾸기(임시 저장, 경로는 임의로 지정 가능)
                 String date = new SimpleDateFormat("yyyyMMddHmsS").format(new Date());
@@ -250,4 +247,6 @@ public class DiaryEditStyleActivity extends AppCompatActivity {
 
         return imgPath;
     }
+
+
 }

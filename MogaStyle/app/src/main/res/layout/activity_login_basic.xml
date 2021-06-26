@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.LoginBasicActivity">
+    tools:context=".Activities.LoginBasicActivity"
+    >
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -27,14 +28,20 @@
             android:textSize="20dp"
             android:layout_marginBottom="20dp"
             />
-
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        >
         <EditText
             android:id="@+id/et_login_write_id"
             android:layout_width="300dp"
             android:layout_height="60dp"
             android:hint=" ID 를 입력해주세요!"
             android:layout_marginBottom="20dp"
-            android:fontFamily="@font/bmjua_otf"/>
+            android:fontFamily="@font/bmjua_otf"
+            android:maxLines="1"/>
 
         <EditText
             android:id="@+id/et_login_write_pw"
@@ -42,8 +49,8 @@
             android:layout_height="60dp"
             android:hint=" PW 를 입력해주세요!"
             android:inputType="numberPassword"
-            android:fontFamily="@font/bmjua_otf"/>
-    </LinearLayout>
+            android:maxLines="1"/>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -67,7 +74,8 @@
             android:text="Login"
             android:fontFamily="@font/bmjua_otf"
             android:backgroundTint="@color/btn_super_positive"
-            android:layout_marginLeft="40dp"/>
+            android:layout_marginLeft="40dp"
+            android:textColor="@color/black"/>
 
     </LinearLayout>
     <LinearLayout
@@ -98,7 +106,8 @@
             android:textStyle="italic"
             android:layout_marginLeft="40dp"/>
 
-
+        </LinearLayout>
+    </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
