@@ -13,10 +13,10 @@ public interface RetrofitService {
     @GET("designerResedDateRead.jsp?")
     Call<ReservationList> getListForResDateData(@Query("dno") int dno);
 
-    @GET("designerResedDateRead.jsp?")
+    @GET("reviewListByDesigner.jsp?")
     Call<ReservationList> getListForReviewByDigner(@Query("dno") int dno);
 
-    @GET("designerResedDateRead.jsp?")
+    @GET("reviewListByShop.jsp")
     Call<ReservationList> getListForReviewByShop(@Query("sno") int sno);
 
     @GET("reservationListCancel.jsp?")
