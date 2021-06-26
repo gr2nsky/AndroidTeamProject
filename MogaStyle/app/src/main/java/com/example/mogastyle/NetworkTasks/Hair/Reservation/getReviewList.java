@@ -13,8 +13,8 @@ import retrofit2.Call;
 public class getReviewList extends AsyncTask<Call, Void, ReservationList> {
 
     String TAG = "getReviewList#############";
-    int shopNo;
-    int designerNo;
+    int shopNo = 0;
+    int designerNo = 0;
     //designer : 1, shop : 2
     int typeToken = 0;
 
