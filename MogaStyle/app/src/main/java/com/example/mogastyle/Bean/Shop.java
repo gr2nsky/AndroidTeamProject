@@ -12,7 +12,12 @@ public class Shop {
     private String holiday;
     private String image;
 
-    public Shop(int no, String name, String tel, String address, String postcode, String introduction, String holiday, String image) {
+    ////Additional Info use ShopMain
+    private double rating;
+    private int count;
+
+    public Shop(int no, String name, String tel, String address, String postcode, String introduction,
+                String holiday, String image, double rating, int count) {
         this.no = no;
         this.name = name;
         this.tel = tel;
@@ -21,7 +26,8 @@ public class Shop {
         this.introduction = introduction;
         this.holiday = holiday;
         this.image = image;
-
+        this.rating = rating;
+        this.count = count;
     }
 
     public int getNo() {
@@ -88,4 +94,25 @@ public class Shop {
         this.image = image;
     }
 
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public String print(){
+        return " no : " + no + " name : " + name + " tel : " + tel + " address : " + address +
+                " postcode : " + postcode + " introduction : " + introduction + " holiday : " +
+                holiday + " image : " + image + " rating : " + rating + " count : " + count;
+    }
 }

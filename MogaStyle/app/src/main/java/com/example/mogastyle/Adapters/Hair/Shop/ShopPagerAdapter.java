@@ -1,5 +1,7 @@
 package com.example.mogastyle.Adapters.Hair.Shop;
 
+import android.content.Context;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -9,6 +11,7 @@ import com.example.mogastyle.Activities.Review.ReviewFragment;
 import com.example.mogastyle.Activities.Hair.Designer.DesignerFragment;
 import com.example.mogastyle.Activities.Hair.Menu.MenuFragment;
 import com.example.mogastyle.Activities.Hair.Shop.ShopHomeFragment;
+import com.example.mogastyle.Bean.Shop;
 
 import java.util.ArrayList;
 
@@ -17,17 +20,20 @@ public class ShopPagerAdapter extends FragmentPagerAdapter {
     private ArrayList<String> name = new ArrayList<>();
     private ArrayList<Fragment> arrayList = new ArrayList<>();
     /////////////////////////////////////////////////////////
-    //       Shop no를 Shop home activity로부터 받아옴        //
+    //       Shop을 Shop home activity로부터 받아옴        //
     /////////////////////////////////////////////////////////
-    int sno = 0;
+    Shop shopBean = null;
+    Context con;
 
-    public ShopPagerAdapter(FragmentManager fm, int sno) {
+    public ShopPagerAdapter(FragmentManager fm, Shop shopBean, Context con) {
         super(fm);
-        arrayList.add(new ShopHomeFragment(sno));
+        this.shopBean = shopBean;
+        this.con = con;
+
+        arrayList.add(new ShopHomeFragment(shopBean, con));
         arrayList.add(new MenuFragment());
         arrayList.add(new DesignerFragment());
         arrayList.add(new ReviewFragment());
-        this.sno = sno;
 
         name.add("홈");
         name.add("메뉴");
