@@ -3,18 +3,22 @@
     pageEncoding="UTF-8"%>
 
 <%
-	String sno = request.getParameter("sno");
 	String url_mysql = "jdbc:mysql://localhost/mogastyle?serverTimezone=Asia/Seoul&characterEncoding=utf8&useSSL=false";
  	String id_mysql = "root";
  	String pw_mysql = "qwer1234";
-    String Q1 = "select name,tel,address,postCode,introduction,holiday, image,no from shop where no="+sno;
-    int count = 0;
+
+  String query1 = "SELECT name, tel, address, postCode, introduction, holiday, image, no, avg(reviewScore) rating, ";
+  String query2 = "count(case when reviewScore IS NOT NULL then 1 end) cnt ";
+  String query3 = "FROM shop LEFT JOIN (SELECT reviewContent, reviewPhoto, reviewScore, shop_no FROM reservation) r ";
+  String query4 = "ON shop.no = r.shop_no GROUP BY shop.no";
+  String query = query1 + query2 + query3 + query4;
+  int count = 0;
 
     try {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
         Statement stmt_mysql = conn_mysql.createStatement();
-        ResultSet rs = stmt_mysql.executeQuery(Q1); //
+        ResultSet rs = stmt_mysql.executeQuery(query); //
 %>
 		{
   			"shop_info"  : [
@@ -36,7 +40,9 @@
 			"introduction" : "<%=rs.getString(5)%>",
 			"holiday" : "<%=rs.getString(6)%>",
 			"image" : "<%=rs.getString(7)%>",
-			"no" : "<%=rs.getInt(8) %>"
+			"no" : "<%=rs.getInt(8) %>",
+			"rating" : "<%=rs.getDouble(9) %>",
+			"cnt" : "<%=rs.getInt(10) %>"
 			}
 
 <%
@@ -48,7 +54,7 @@
 <%
         conn_mysql.close();
     } catch (Exception e) {
-        e.printStackTrace();
+        out.print(e);
     }
 
 %>
