@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.Hair.Styling.StylingListRecyclerActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1.5"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="상단 : shop layout"
+            android:textSize="40dp"
+            />
+
+    </LinearLayout>
+
+    <!--<LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/tv_styling_list_view_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bmjua_otf"
+            android:text=" |   전체보기   |"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_styling_list_cut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="   커트   |"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:fontFamily="@font/bmjua_otf"
+            />
+
+        <TextView
+            android:id="@+id/tv_styling_list_view_perm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="   펌   |"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:fontFamily="@font/bmjua_otf"
+            />
+
+        <TextView
+            android:id="@+id/tv_styling_list_view_dyeing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="   염색   |"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:fontFamily="@font/bmjua_otf"
+            />
+
+    </LinearLayout>-->
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="8"
+        android:padding="10dp"
+        >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lv_styling_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#292828"
+            android:layout_margin="10dp"
+            android:dividerHeight="2dp"
+            android:divider="#E3E1DE"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
