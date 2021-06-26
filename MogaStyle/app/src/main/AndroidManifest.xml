@@ -18,7 +18,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MogaStyle">
-        <activity android:name=".Activities.Diary.DiaryEditStyleActivity"></activity>
+        <activity android:name=".Activities.Diary.DiaryListDetailActivity"></activity>
+        <activity android:name=".Activities.Diary.DiaryWriteActivity" />
+        <activity android:name=".Activities.Diary.DiaryPageActivity" />
+        <activity android:name=".Activities.Diary.DiaryEditStyleActivity" />
         <activity android:name=".Activities.Diary.DiaryShowOriginStyleActivity" />
         <activity android:name=".Activities.Diary.DiaryMakeNewStyleActivity" />
         <activity android:name=".Activities.MyPage.MyPageUpdatePwActivity" />
