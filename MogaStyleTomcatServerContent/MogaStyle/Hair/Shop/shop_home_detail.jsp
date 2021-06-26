@@ -5,46 +5,42 @@
 <%
 	String url_mysql = "jdbc:mysql://localhost/mogastyle?serverTimezone=Asia/Seoul&characterEncoding=utf8&useSSL=false";
  	String id_mysql = "root";
- 	String pw_mysql = "Qwer1234";
-    String WhereDefault = "select name,tel,address,introduction from shop";
+ 	String pw_mysql = "qwer1234";
+    String Q1 = "select no from shop where no="+sno;
     int count = 0;
-    
+
     try {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
         Statement stmt_mysql = conn_mysql.createStatement();
-
-        ResultSet rs = stmt_mysql.executeQuery(WhereDefault); // 
+        ResultSet rs = stmt_mysql.executeQuery(Q1); //
 %>
-		{ 
-  			"shop_info"  : [ 
+		{
+  			"shophome_info"  : [
 <%
         while (rs.next()) {
             if (count == 0) {
 
             }else{
 %>
-            , 
+            ,
 <%
             }
-%>            
-			{ 
-			"name" : "<%=rs.getString(1) %>", 
-			"tel" : "<%=rs.getString(2) %>",   
-			"address" : "<%=rs.getString(3) %>",  
-			"introduction" : "<%=rs.getString(4) %>",
+%>
+			{
+			"no" : "<%=rs.getInt(1) %>"
 			}
 
-<%		
+<%
         count++;
         }
 %>
-		  ] 
-		} 
-<%		
+		  ]
+		}
+<%
         conn_mysql.close();
     } catch (Exception e) {
         e.printStackTrace();
     }
-	
+
 %>

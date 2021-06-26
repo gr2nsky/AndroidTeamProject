@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ShopChoose">
+        <item>이용자 순</item>
+        <item>좋아요 순</item>
+        <item>태그</item>
+
+    </string-array>
+
+</resources>

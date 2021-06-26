@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,14 +16,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.mogastyle.Activities.Consult.ConsultMainActivity;
 import com.example.mogastyle.Activities.Diary.DiaryMainActivity;
 import com.example.mogastyle.Activities.Hair.Shop.ShopHomeActivity;
-import com.example.mogastyle.Activities.Hair.Shop.ShopHomeFragment;
 import com.example.mogastyle.Activities.MainActivity;
 import com.example.mogastyle.Activities.MyPage.MyPageMainActivity;
 import com.example.mogastyle.Adapters.Hair.Shop.ShopListAdapter;
 import com.example.mogastyle.Bean.Shop;
+import com.example.mogastyle.Common.ShareVar;
 import com.example.mogastyle.NetworkTasks.Hair.ShopNetworkTask;
 import com.example.mogastyle.R;
-import com.example.mogastyle.ShareVar.ShareVar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.jetbrains.annotations.NotNull;
@@ -32,14 +32,16 @@ import java.util.ArrayList;
 public class HairMainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     //MapView mapView = new MapView(this);
-    //private Spinner spinner;
-
+    private Spinner spinner;
+    ArrayAdapter<CharSequence> adapter = null;
+    public static int shopNo = 0;
+    Intent intent;
 
     String urlAddr = null;
     ArrayList<Shop> shops;
     ShopListAdapter adapters;
     ListView listView;
-    String desktopIP = ShareVar.WindowIP;
+    String desktopIP = ShareVar.hostIP;
 
 
     @Override
@@ -58,9 +60,15 @@ public class HairMainActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.lv_shoplist);
 
-        Intent intent = getIntent();
+        adapter = ArrayAdapter.createFromResource(this,R.array.ShopChoose,
+                android.R.layout.simple_spinner_dropdown_item);
+        spinner = findViewById(R.id.sp_hairmain_choose);
+        spinner.setAdapter(adapter);
+
+        intent = getIntent();
+        shopNo = intent.getIntExtra("smo",0);
         desktopIP = intent.getStringExtra("desktopIP");
-        urlAddr = ShareVar.hostRootAddr;
+        urlAddr = ShareVar.hostRootAddr+"Hair/Shop/shop_select.jsp";
         Log.v("Message",urlAddr);
 
 

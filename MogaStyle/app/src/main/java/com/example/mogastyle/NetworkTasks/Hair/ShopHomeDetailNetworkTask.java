@@ -22,13 +22,12 @@ public class ShopHomeDetailNetworkTask extends AsyncTask<Integer,String,Object> 
     String mAddr = null;
     ProgressDialog progressDialog = null;
     ArrayList<Shop> shops;
-    //NetworkTask를 검색, 입력, 수정, 삭제 구분 없이 하나로 사용하기 위해 생성자 변수 추가
     String where = null;
 
-    public ShopHomeDetailNetworkTask(Context context, String mAddr, ProgressDialog progressDialog, ArrayList<Shop> shops, String where) {
+    public ShopHomeDetailNetworkTask(Context context, String mAddr, String where) {
         this.context = context;
         this.mAddr = mAddr;
-        this.progressDialog = progressDialog;
+        this.shops = shops;
         this.shops = new ArrayList<Shop>();
         this.where = where;
     }
@@ -108,7 +107,7 @@ public class ShopHomeDetailNetworkTask extends AsyncTask<Integer,String,Object> 
     private void parserSelect(String str) {
         try{
             JSONObject jsonObject = new JSONObject(str);
-            JSONArray jsonArray = new JSONArray(jsonObject.getString("shophome_info"));
+            JSONArray jsonArray = new JSONArray(jsonObject.getString("shop_info"));
             shops.clear(); //기존에 쌓일 수 있는 데이터를 삭제함
 
             for (int i=0; i<jsonArray.length(); i++){

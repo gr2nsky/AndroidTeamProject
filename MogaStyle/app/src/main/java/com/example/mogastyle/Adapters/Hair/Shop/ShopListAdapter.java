@@ -6,14 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.mogastyle.Activities.Hair.Shop.ShopHomeActivity;
-import com.example.mogastyle.Activities.Hair.Shop.ShopHomeFragment;
 import com.example.mogastyle.Bean.Shop;
+import com.example.mogastyle.Common.ShareVar;
 import com.example.mogastyle.R;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -54,21 +54,26 @@ public class ShopListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = inflater.inflate(this.layout, parent, false);
-        TextView tv_name = convertView.findViewById(R.id.tv_home_name);
-        TextView tv_tel = convertView.findViewById(R.id.tv_home_tel);
-        TextView tv_address = convertView.findViewById(R.id.tv_home_address);
-        TextView tv_postcode = convertView.findViewById(R.id.tv_home_postcode);
-        TextView tv_introduce = convertView.findViewById(R.id.tv_home_introduction);
-        TextView tv_holiday = convertView.findViewById(R.id.tv_home_holiday);
-        TextView tv_phone = convertView.findViewById(R.id.img_home_image);
+        TextView tv_homelist_name = convertView.findViewById(R.id.tv_hairlist_name);
+        TextView tv_homelist_tel = convertView.findViewById(R.id.tv_hairlist_tel);
+        TextView tv_homelist_address = convertView.findViewById(R.id.tv_hairlist_address);
+        TextView tv_homelist_postcode = convertView.findViewById(R.id.tv_hairlist_postcode);
+        TextView tv_homelist_introduce = convertView.findViewById(R.id.tv_hairlist_introduction);
+        TextView tv_homelist_holiday = convertView.findViewById(R.id.tv_hairlist_holiday);
+        TextView tv_homelist_image = convertView.findViewById(R.id.img_hairlist_image);
+        ImageView img_homelist_imageView = convertView.findViewById(R.id.img_hairlist_image1);
 
-        tv_name.setText("이름 : "+ data.get(position).getName());
-        tv_tel.setText("전화번호 : " + data.get(position).getTel());
-        tv_address.setText("주소 : "+ data.get(position).getAddress());
-        tv_postcode.setText("우편번호 : "+ data.get(position).getPostcode());
-        tv_introduce.setText("소개 : " + data.get(position).getIntroduction());
-        tv_holiday.setText("쉬는 날 : " + data.get(position).getHoliday());
-        tv_phone.setText("사진 : "+ data.get(position).getImage());
+        tv_homelist_name.setText("이름 : "+ data.get(position).getName());
+        tv_homelist_tel.setText("전화번호 : " + data.get(position).getTel());
+        tv_homelist_address.setText("주소 : "+ data.get(position).getAddress());
+        tv_homelist_postcode.setText("우편번호 : "+ data.get(position).getPostcode());
+        tv_homelist_introduce.setText("소개 : " + data.get(position).getIntroduction());
+        tv_homelist_holiday.setText("쉬는 날 : " + data.get(position).getHoliday());
+        tv_homelist_image.setText("사진 : "+ data.get(position).getImage());
+
+        Glide.with(mContext)
+                .load(ShareVar.shopImgPath+data.get(position).getImage())
+                .into(img_homelist_imageView);
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +87,7 @@ public class ShopListAdapter extends BaseAdapter {
 
         return convertView;
     }
+    
 
     public int selectedShopNo(){
         return no;

@@ -10,9 +10,10 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ListView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.mogastyle.Activities.Consult.ConsultMainActivity;
 import com.example.mogastyle.Activities.Diary.DiaryMainActivity;
 import com.example.mogastyle.Activities.MainActivity;
@@ -20,9 +21,9 @@ import com.example.mogastyle.Activities.MyPage.MyPageMainActivity;
 import com.example.mogastyle.Adapters.Hair.Shop.ShopListAdapter;
 import com.example.mogastyle.Adapters.Hair.Shop.ShopPagerAdapter;
 import com.example.mogastyle.Bean.Shop;
+import com.example.mogastyle.Common.ShareVar;
 import com.example.mogastyle.NetworkTasks.Hair.ShopNetworkTask;
 import com.example.mogastyle.R;
-import com.example.mogastyle.ShareVar.ShareVar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
@@ -38,36 +39,52 @@ public class ShopHomeActivity extends AppCompatActivity {
     Intent intent;
     ViewPager viewPager;
     ImageButton imageButton;
+    ImageView imageView;
     TextView ShopTitle;
-    public static int shopNo = 0;
+    int shopNo = 0;
+    private String name,tel,address,introduction,holiday,postcode,image;
 
     String urlAddr = null;
     ArrayList<Shop> shops;
     ShopListAdapter adapters;
-    String desktopIP = ShareVar.WindowIP;
+    String desktopIP = ShareVar.hostIP;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_main);
 
-        Intent intent = getIntent();
+        ShopTitle = findViewById(R.id.tv_shopmain_title);
+
+
+        intent = getIntent();
         shopNo = intent.getIntExtra("smo",0);
+        Log.v("######################", "sno : " + shopNo);
 
         viewPager = findViewById(R.id.shopmain_pager);
-        ShopPagerAdapter adapters = new ShopPagerAdapter(getSupportFragmentManager());
+        ////////////////////////////////////////////////////////////////////////////
+        //      Shop no를 플레그먼트에 전달하기 위해서 어댑터에 전달                      //
+        ////////////////////////////////////////////////////////////////////////////
+        ShopPagerAdapter adapters = new ShopPagerAdapter(getSupportFragmentManager(), shopNo);
         viewPager.setAdapter(adapters);
+
         imageButton = findViewById(R.id.btn_home_goHome);
 
+        imageButton.setOnClickListener(onClickListener);
+
         desktopIP = intent.getStringExtra("desktopIP");
-        urlAddr = ShareVar.hostRootAddr;
+        urlAddr = ShareVar.hostRootAddr+"Hair/Shop/shop_select.jsp";
         Log.v("Message",urlAddr);
 
-        ShopTitle = findViewById(R.id.tv_shopmain_title);
+
 
         TabLayout tabLayout = findViewById(R.id.tab_layout_shopmain);
         tabLayout.setupWithViewPager(viewPager);
-        imageButton.setOnClickListener(onClickListener);
+
+
+        ////////////////////////////////////////////////////////////////////////////
+        //      하단 NavigationView 생성                                            //
+        ////////////////////////////////////////////////////////////////////////////
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
@@ -119,10 +136,12 @@ public class ShopHomeActivity extends AppCompatActivity {
 
     private void connectGetData(){
         try{
-            ShopNetworkTask networkTask = new ShopNetworkTask(ShopHomeActivity.this, urlAddr, "select");
+            ShopNetworkTask networkTask = new ShopNetworkTask(ShopHomeActivity.this, urlAddr+"?sno="+shopNo, "select");
             Object obj = networkTask.execute().get();
             shops = (ArrayList<Shop>) obj;
-            ShopTitle.setText(shops.get(0).getName());
+            ShopTitle.setText(shops.get(shopNo-1).getName());
+            Log.v("Message","shopNo");
+
             adapters = new ShopListAdapter(ShopHomeActivity.this, R.layout.activity_shop_main, shops);
 
      //       listView.setAdapter(adapters);
@@ -134,6 +153,9 @@ public class ShopHomeActivity extends AppCompatActivity {
         }
     }
 
+    ////////////////////////////////////////////////////////////////////////////
+    //      ImageButton 부분 intent로 메인 홈으로 이동                            //
+    ////////////////////////////////////////////////////////////////////////////
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {

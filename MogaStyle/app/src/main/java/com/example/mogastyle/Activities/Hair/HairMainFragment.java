@@ -22,8 +22,7 @@ public class HairMainFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_hair_main, container, false);
       //  MapView mapView = new MapView(mContext);
-//        ViewGroup mapViewContainer = (ViewGroup)root.findViewById(R.id.map_view);
-
+      //  ViewGroup mapViewContainer = (ViewGroup)root.findViewById(R.id.map_view);
       //  mapViewContainer.addView(mapView);
         return root;
     }

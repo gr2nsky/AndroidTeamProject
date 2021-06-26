@@ -22,7 +22,6 @@ public class ShopNetworkTask extends AsyncTask<Integer,String,Object> {
     String mAddr = null;
     ProgressDialog progressDialog = null;
     ArrayList<Shop> shops;
-    //NetworkTask를 검색, 입력, 수정, 삭제 구분 없이 하나로 사용하기 위해 생성자 변수 추가
     String where = null;
 
     public ShopNetworkTask(Context context, String mAddr, String where) {
@@ -31,6 +30,7 @@ public class ShopNetworkTask extends AsyncTask<Integer,String,Object> {
         this.shops = shops;
         this.shops = new ArrayList<Shop>();
         this.where = where;
+        Log.v("######################", "addr : " + mAddr);
     }
 
     @Override

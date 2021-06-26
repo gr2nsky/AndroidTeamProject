@@ -87,4 +87,5 @@ public class Shop {
     public void setImage(String image) {
         this.image = image;
     }
+
 }
