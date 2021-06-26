@@ -90,7 +90,7 @@ public class HairMainActivity extends AppCompatActivity {
         marker.setSelectedMarkerType(MapPOIItem.MarkerType.BluePin);
         mapView.addPOIItem(marker);
     }
-    
+
 
     //KAKAO-MAP--
 
