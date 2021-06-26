@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mogastyle.Adapters.Hair.Styling.StylingListAdapter;
 import com.example.mogastyle.Bean.Styling;
-import com.example.mogastyle.NetworkTasks.Hair.StylingNetworkTask;
+import com.example.mogastyle.NetworkTasks.Hair.Styling.StylingNetworkTask;
 import com.example.mogastyle.R;
 
 import java.util.ArrayList;

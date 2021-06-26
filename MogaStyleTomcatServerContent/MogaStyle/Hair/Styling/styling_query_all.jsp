@@ -7,7 +7,7 @@
  	String id_mysql = "root";
  	String pw_mysql = "qwer1234";
 
-  String Q1 = "SELECT title, price, typeCode ";
+  String Q1 = "SELECT title, price, typeCode, image ";
 	String Q2 = "FROM styling ";
 
   int count = 0;
@@ -32,9 +32,10 @@
             }
 %>
 			{
-      			"title" : "<%=rs.getString(1) %>",
+      "title" : "<%=rs.getString(1) %>",
 			"price" : "<%=rs.getInt(2) %>",
-			"typeCode" : "<%=rs.getString(3) %>"
+			"typeCode" : "<%=rs.getString(3) %>",
+      "image" : "<%=rs.getString(4) %>"
 			}
 
 <%

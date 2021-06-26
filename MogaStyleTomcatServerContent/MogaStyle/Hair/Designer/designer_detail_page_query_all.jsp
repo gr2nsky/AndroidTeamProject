@@ -3,13 +3,16 @@
     pageEncoding="UTF-8"%>
 
 <%
+  request.setCharacterEncoding("utf-8");
+  int dno = Integer.parseInt(request.getParameter("dno"));
+
 	String url_mysql = "jdbc:mysql://localhost:3306/mogastyle?serverTimezone=Asia/Seoul&characterEncoding=utf8&useSSL=false";
  	String id_mysql = "root";
  	String pw_mysql = "qwer1234";
 
-  String Q1 = "SELECT d.dno, u.name, d.introduction ";
-	String Q2 = "FROM user u, designer d ";
-	String Q3 = "WHERE d.user_no = u.no ";
+  String Q1 = "SELECT u.name, d.certificationDate, d.introduction, s.no sno, u.image ";
+	String Q2 = "FROM user u, designer d, shop s, employ e ";
+	String Q3 = "WHERE d.dno = " + dno + " and d.user_no = u.no and d.dno = e.designer_no and e.shop_no = s.no";
 
   int count = 0;
 
@@ -33,9 +36,11 @@
             }
 %>
 			{
-			"no" : "<%=rs.getInt(1) %>",
-			"name" : "<%=rs.getString(2) %>",
-			"introduction" : "<%=rs.getString(3) %>"
+			"name" : "<%=rs.getString(1) %>",
+      "certificationDate" : "<%=rs.getString(2) %>",
+			"introduction" : "<%=rs.getString(3) %>",
+      "sno" : "<%=rs.getInt(4) %>",
+      "image" : "<%=rs.getString(5) %>"
 			}
 
 <%
@@ -48,6 +53,7 @@
         conn_mysql.close();
     } catch (Exception e) {
         e.printStackTrace();
+        out.print(e);
     }
 
 %>

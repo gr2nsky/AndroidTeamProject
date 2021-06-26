@@ -4,17 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 import com.example.mogastyle.Bean.Designer;
 import com.example.mogastyle.Common.ShareVar;
-import com.example.mogastyle.NetworkTasks.Hair.DesignerDetailPageNetworkTask;
+import com.example.mogastyle.NetworkTasks.Hair.Designer.DesignerDetailPageNetworkTask;
 import com.example.mogastyle.R;
-import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 

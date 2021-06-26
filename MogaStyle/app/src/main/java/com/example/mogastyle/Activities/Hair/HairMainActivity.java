@@ -19,7 +19,7 @@ import com.example.mogastyle.Activities.MyPage.MyPageMainActivity;
 import com.example.mogastyle.Adapters.Hair.Shop.ShopListAdapter;
 import com.example.mogastyle.Bean.Shop;
 import com.example.mogastyle.Common.ShareVar;
-import com.example.mogastyle.NetworkTasks.Hair.ShopNetworkTask;
+import com.example.mogastyle.NetworkTasks.Hair.Shop.ShopNetworkTask;
 import com.example.mogastyle.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
