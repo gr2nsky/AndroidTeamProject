@@ -13,22 +13,20 @@ import java.util.ArrayList;
 
 public class ShareVar {
 
-<<<<<<< HEAD
 
-=======
->>>>>>> MyPageAweSome
     public static String hostIP = "";
     public final static String hostRootAddr = "http://" + hostIP + ":8080/MogaStyle/";
     public final static String userImgPath = hostRootAddr + "img/user/";
     public final static String shopImgPath = hostRootAddr + "img/shop/";
-<<<<<<< HEAD
     public final static String styleImgPath = hostRootAddr + "img/style/";
     public final static String reviewImgPath = hostRootAddr + "img/review/";
+    public final static String diaryImgPath = hostRootAddr + "img/diary/";
 
     ////////////////////////////////////////////////////////////////////////
     //                        home키에 사용될 친구입니다.                       //
     ///////////////////////////////////////////////////////////////////////
     public static ArrayList<Activity> stackedActivities = new ArrayList<>();
+
     public static void goHome(){
         if (stackedActivities.isEmpty())
             return;
@@ -36,9 +34,7 @@ public class ShareVar {
             a.finish();
         }
     }
-=======
-    public final static String diaryImgPath = hostRootAddr + "img/diary/";
->>>>>>> MyPageAweSome
+
 
 }
  
