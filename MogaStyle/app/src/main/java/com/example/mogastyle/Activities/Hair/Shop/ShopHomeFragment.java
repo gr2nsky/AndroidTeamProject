@@ -1,5 +1,6 @@
 package com.example.mogastyle.Activities.Hair.Shop;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,7 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.mogastyle.Bean.Shop;
 import com.example.mogastyle.Common.ShareVar;
 import com.example.mogastyle.NetworkTasks.Hair.ShopNetworkTask;
@@ -23,60 +26,48 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
 public class ShopHomeFragment extends Fragment {
-    int shopNo = 0;
+    Context con;
+    Shop shopBean = null;
     ImageView imageView;
-   // EditText ShopName,ShopTel,ShopAddress,ShopPostcode,ShopIntroduction;
-    EditText ShopName,ShopTel,ShopAddress,ShopIntroduction;
-    String urlAddr = null;
-    ArrayList<Shop> shops;
-   String desktopIP = ShareVar.hostIP;
+    TextView tv_shop_tel, tv_shop_address, tv_shop_introduction;
+    TextView tv_rating;
+    TextView tv_count;
 
-    public ShopHomeFragment(int shopNo) {
-        this.shopNo = shopNo;
+    public ShopHomeFragment(Shop shopBean, Context con) {
+        this.shopBean = shopBean;
+        this.con = con;
     }
 
-    @Nullable
-    @org.jetbrains.annotations.Nullable
     @Override
-    public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_shop_home,container,false);
 
-        urlAddr = ShareVar.hostRootAddr+"Hair/Shop/shop_select.jsp";
-        Log.v("Message",urlAddr);
+        tv_shop_tel = view.findViewById(R.id.tv_shop_tel);
+        tv_shop_address = view.findViewById(R.id.tv_shop_address);
+        tv_shop_introduction = view.findViewById(R.id.tv_shop_introduction);
+        imageView = view.findViewById(R.id.iv_shop_img);
+        tv_rating = view.findViewById(R.id.tv_shop_home_rate);
+        tv_count = view.findViewById(R.id.tv_shop_home_review_count);
 
-        ShopName = view.findViewById(R.id.edt_shop_name);
-        ShopTel = view.findViewById(R.id.edt_shop_tel);
-        ShopAddress = view.findViewById(R.id.edt_shop_address);
-        ShopIntroduction = view.findViewById(R.id.edt_shop_introduction);
-        imageView = view.findViewById(R.id.img_shop_img);
+        tv_shop_tel.setText(shopBean.getTel());
+        tv_shop_address.setText(shopBean.getAddress());
+        tv_shop_introduction.setText(shopBean.getIntroduction());
+        Glide.with(con)
+                .load(ShareVar.shopImgPath+shopBean.getImage())
+                .placeholder(R.drawable.ic_no_image)
+                .error(R.drawable.ic_no_image)
+                .fallback(R.drawable.ic_no_image)
+                .into(imageView);
+        tv_rating.setText(Double.toString(shopBean.getRating()));
+        tv_count.setText(Integer.toString(shopBean.getCount()));
+
         return view;
     }
 
     @Override
-    public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        connectGetDate();
-    }
-
-    private void connectGetDate(){
-            try{
-                ShopNetworkTask networkTask = new ShopNetworkTask(getContext(), urlAddr+"?sno="+shopNo, "select");
-                Object obj = networkTask.execute().get();
-                shops = (ArrayList<Shop>) obj;
-                ShopName.setText(shops.get(shopNo-1).getName());
-                ShopTel.setText("tel : "+shops.get(shopNo-1).getTel());
-                ShopAddress.setText("주소 :"+shops.get(shopNo-1).getAddress());
-              ShopIntroduction.setText("소개 : "+shops.get(shopNo-1).getIntroduction());
-
-                Log.v("Message","shopNo");
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-    }
 
 }

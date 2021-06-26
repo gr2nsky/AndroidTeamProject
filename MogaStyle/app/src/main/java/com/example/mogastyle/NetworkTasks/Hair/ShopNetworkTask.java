@@ -27,8 +27,7 @@ public class ShopNetworkTask extends AsyncTask<Integer,String,Object> {
     public ShopNetworkTask(Context context, String mAddr, String where) {
         this.context = context;
         this.mAddr = mAddr;
-        this.shops = shops;
-        this.shops = new ArrayList<Shop>();
+        this.shops = new ArrayList<>();
         this.where = where;
         Log.v("######################", "addr : " + mAddr);
     }
@@ -115,24 +114,18 @@ public class ShopNetworkTask extends AsyncTask<Integer,String,Object> {
             for (int i=0; i<jsonArray.length(); i++){
                 JSONObject jsonObject1 = (JSONObject) jsonArray.get(i);
                 String name = jsonObject1.getString("name");
-                Log.v("Status", "name : "+name);
                 String tel = jsonObject1.getString("tel");
-                Log.v("Status", "tel : "+tel);
                 String address = jsonObject1.getString("address");
-                Log.v("Status", "address : "+address);
                 String postcode = jsonObject1.getString("postCode");
-                Log.v("Status", "postCode : "+postcode);
                 String introduction = jsonObject1.getString("introduction");
-                Log.v("Status","introduction: " +introduction);
                 String holiday = jsonObject1.getString("holiday");
-                Log.v("Status","holiday: " +holiday);
                 String image = jsonObject1.getString("image");
-                Log.v("Status","image : " + image);
                 int no = jsonObject1.getInt("no");
-                Log.v("Status", "no : "+no);
+                double rating = jsonObject1.getDouble("rating");
+                int cnt = jsonObject1.getInt("cnt");
 
 
-                Shop shop = new Shop(no,name,tel,address,postcode,introduction,holiday,image);
+                Shop shop = new Shop(no, name, tel, address, postcode, introduction, holiday, image, rating, cnt);
                 shops.add(shop);
             }
         }catch (Exception e){

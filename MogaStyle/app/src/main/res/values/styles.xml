@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="text_info_shop_main_topper_tab_layout" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">20dp</item>
+        <item name="android:fontFamily">@font/bmjua_otf</item>
+    </style>
+</resources>

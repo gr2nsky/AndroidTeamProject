@@ -15,7 +15,7 @@
             android:id="@+id/Linear_shopmain_topper"
             android:layout_width="match_parent"
             android:layout_height="83dp"
-            android:background="#FDF3F6"
+            android:background="@color/high_light_color"
             android:orientation="horizontal"
             android:padding="10dp">
 
@@ -55,9 +55,11 @@
             android:id="@+id/tab_layout_shopmain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabMode="scrollable"
-            android:background="#F5F6F8"
-            app:tabGravity="center"/>
+            android:background="@color/high_light_color"
+            app:tabTextAppearance="@style/text_info_shop_main_topper_tab_layout"
+            app:tabGravity="fill"
+            app:tabSelectedTextColor="@color/menu_selected"
+            app:tabIndicatorColor="@color/menu_selected"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -66,27 +68,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-<!--            <ListView-->
-<!--            android:id="@+id/lv_shop"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="0px"-->
-<!--            android:layout_weight="5"/>-->
-
     </androidx.viewpager.widget.ViewPager>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:itemIconTint="@drawable/selector"
-        app:itemTextColor="@drawable/selector"
-        app:menu="@menu/menu" />
-
-
-
-
-
-
-
 </LinearLayout>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 클래스파일 없음 이름만 Activity임 -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
+        <ImageView
+            android:id="@+id/img_hairlist_image1"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/ic_no_image" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp">
+                <TextView
+                    android:id="@+id/tv_hairlist_name"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:gravity="left|center"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/bmjua_otf"
+                    android:text="미용실 이름"
+                    android:textSize="17dp"/>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_baseline_star_24"/>
+                        <TextView
+                            android:id="@+id/tv_hairlist_rating"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="5.0"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/bmjua_otf"/>
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_baseline_sms_24"
+                            android:layout_marginLeft="30dp"/>
+                        <TextView
+                            android:id="@+id/tv_hairlist_rewivew_num"
+                            android:layout_width="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_height="wrap_content"
+                            android:text="60"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/bmjua_otf"/>
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_hairlist_introduction"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:gravity="left|center"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/bmjua_otf"
+                    android:text="간단한 소개"/>
+        </LinearLayout>
+</LinearLayout>
