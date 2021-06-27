@@ -48,18 +48,12 @@ public class DiaryUpdateDiaryPage extends AsyncTask<Integer, String, Integer> {
 
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                //
-                //              RequestBody.create의 parameter의 순서가 바뀜
-                //
-                /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 .addFormDataPart("image", file.getName(), RequestBody.create(file, MediaType.parse("image/jpeg")))
                 .addFormDataPart("no" ,strNo)
                 .addFormDataPart("date" , date)
                 .addFormDataPart("hairShop",hairShop)
                 .addFormDataPart("designerName",designerName)
                 .addFormDataPart("comments",comments)
-                /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 .build();
 
         Request request = new Request.Builder()
