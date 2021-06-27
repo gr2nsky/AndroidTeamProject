@@ -19,20 +19,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MogaStyle">
-        <activity android:name=".Activities.Hair.Styling.StylingListRecyclerActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
+        <activity android:name=".Activities.Hair.Styling.StylingListRecyclerActivity"/>
         <activity android:name=".Activities.Consult.ConsultTalkListActivity" />
         <activity android:name=".Activities.Consult.ConsultListActivity" />
         <activity android:name=".Activities.Consult.ConsultDesignerAnswerActivity" />
         <activity android:name=".Activities.Consult.ConsultDesignerTalkActivity" />
         <activity android:name=".Activities.Consult.ConsultDesignerListActivity" />
-        <activity android:name=".Activities.Diary.DiaryEditStyleActivity" />
+        <activity android:name=".Activities.Hair.Designer.DesignerListActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+    <activity android:name=".Activities.Hair.Designer.DesignerDetailPageActivity"/>
+
+    <activity android:name=".Activities.Diary.DiaryEditStyleActivity" />
         <activity android:name=".Activities.Diary.DiaryListDetailActivity" />
         <activity android:name=".Activities.Diary.DiaryWriteActivity" />
         <activity android:name=".Activities.Diary.DiaryPageActivity" />

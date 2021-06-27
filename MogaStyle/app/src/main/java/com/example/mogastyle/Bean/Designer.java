@@ -9,27 +9,28 @@ public class Designer {
     String certificationDate;
     String introduction;
     String holiday;
+    String image;
 
     // Field_외래키
     int shopNo;
     int stylingNo;
 
-    // 여기에서 이미지는 따로 불러오지 않는다.
-
-    // 생성자(Constructor) : (괄호) 안에 써줘야 값 불러와!
-
-    //Designer List
-    public Designer(int no, String name, String introduction) {
+    // 생성자(Constructor)
+    // Designer List
+    public Designer(int no, String name, String introduction, String image) {
         this.no = no;
         this.name = name;
         this.introduction = introduction;
+        this.image = image;
     }
 
-    public Designer(String name, String certificationDate, String introduction, int shopNo) {
+    // Designer Detail page
+    public Designer(String name, String certificationDate, String introduction, int shopNo, String image) {
         this.name = name;
         this.certificationDate = certificationDate;
         this.introduction = introduction;
         this.shopNo = shopNo;
+        this.image = image;
     }
 
 
@@ -82,6 +83,14 @@ public class Designer {
 
     public void setHoliday(String holiday) {
         this.holiday = holiday;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public int getShopNo() {

@@ -3,10 +3,12 @@ package com.example.mogastyle.Activities.Hair.Designer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.mogastyle.Bean.Designer;
 import com.example.mogastyle.Common.ShareVar;
 import com.example.mogastyle.NetworkTasks.Hair.Designer.DesignerDetailPageNetworkTask;
@@ -17,7 +19,8 @@ import java.util.ArrayList;
 public class DesignerDetailPageActivity extends AppCompatActivity {
 
     // Field
-    String urlAddr = ShareVar.hostRootAddr + "Hair/Styling/designer_detail_page_query_all.jsp";
+    String urlAddr = "http://192.168.0.105:8080/test/" + "designer_detail_page_query_all.jsp";
+//    String urlAddr = ShareVar.hostRootAddr + "Hair/Designer/designer_detail_page_query_all.jsp";
     int dno = 0;
     int sno = 0;
 
@@ -27,6 +30,7 @@ public class DesignerDetailPageActivity extends AppCompatActivity {
 
     // 화면에 있는 것
     TextView tv_name, tv_certificationDate, tv_introduction;
+    ImageView iv_image;
 
     // onCreate : 초반에 딱 1번만 실행
     @Override
@@ -40,6 +44,7 @@ public class DesignerDetailPageActivity extends AppCompatActivity {
         Log.v("Message", "dno : "+ dno);
 
         // ID값 가져오기
+        iv_image = findViewById(R.id.iv_designer_detail_page_image);
         tv_name = findViewById(R.id.tv_designer_detail_page_name);
         tv_certificationDate = findViewById(R.id.tv_designer_detail_page_certificationDate);
         tv_introduction = findViewById(R.id.tv_designer_detail_page_introduction);
@@ -48,6 +53,13 @@ public class DesignerDetailPageActivity extends AppCompatActivity {
         connectGetData();
 
         // Designer listView 중 한가지 항목 클릭했을 때 가져오는 값
+        //이미지 :
+        Glide.with(DesignerDetailPageActivity.this)
+                .load(ShareVar.userImgPath + members.get(0).getImage())
+                .placeholder(R.drawable.ic_no_image)
+                .error(R.drawable.ic_no_image)
+                .fallback(R.drawable.ic_no_image)
+                .into(iv_image);
         tv_name.setText("이름 : " + members.get(0).getName());
         tv_certificationDate.setText("미용 자격증 취득일 : " + members.get(0).getCertificationDate());
         tv_introduction.setText("소개 : " + members.get(0).getIntroduction());

@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.mogastyle.Bean.Designer;
+import com.example.mogastyle.Common.ShareVar;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -21,7 +22,7 @@ public class DesignerDetailPageNetworkTask extends AsyncTask<Integer, String, Ob
 
     // Field
     Context context = null;
-    String mAddr = null;
+    String mAddr = ShareVar.hostRootAddr;
     ProgressDialog progressDialog = null;
     ArrayList<Designer> designerList = null;     // select 할 때 쓸 ArrayList
 
@@ -144,9 +145,10 @@ public class DesignerDetailPageNetworkTask extends AsyncTask<Integer, String, Ob
                 String certificationDate = jsonObject1.getString("certificationDate");
                 String introduction = jsonObject1.getString("introduction");
                 int sno = jsonObject1.getInt("sno");
+                String image = jsonObject1.getString("image");
 
                 // Bean으로 넣어서 ArrayList 추가
-                Designer member = new Designer(name, certificationDate, introduction, sno);
+                Designer member = new Designer(name, certificationDate, introduction, sno, image);
                 Log.v("Message", "networkTask designer : " + member.print());
                 designerList.add(member);
             }
