@@ -49,12 +49,6 @@ public class ReviewFragment extends Fragment {
     TextView tv_all_rating;
     RatingBar ratingBar;
     TextView tv_all_count;
-    TextView tv_cut_rating;
-    TextView tv_cut_count;
-    TextView tv_perm_rating;
-    TextView tv_perm_count;
-    TextView tv_dyeing_rating;
-    TextView tv_dyeing_count;
     RecyclerView reviewList;
     RecyclerView.LayoutManager layoutManager;
     ReviewAdapter reviewAdapter;
@@ -82,13 +76,13 @@ public class ReviewFragment extends Fragment {
         tv_all_rating = v.findViewById(R.id.tv_review_all_rating);
         ratingBar = v.findViewById(R.id.rating_bar_review_rating);
         tv_all_count = v.findViewById(R.id.tv_review_all_count);
-        tv_cut_rating = v.findViewById(R.id.tv_review_cut_rating);
-        tv_cut_count = v.findViewById(R.id.tv_review_cut_count);
-        tv_perm_rating = v.findViewById(R.id.tv_review_perm_rating);
-        tv_perm_count = v.findViewById(R.id.tv_review_perm_count);
-        tv_dyeing_rating = v.findViewById(R.id.tv_review_dyeing_rating);
-        tv_dyeing_count = v.findViewById(R.id.tv_review_dyeing_count);
         reviewList = v.findViewById(R.id.recycler_view_review_list);
+
+        if(checkType == 1){
+            setLaouyResoureByDesigner();
+        } else{
+            setLaouyResoureByShop();
+        }
 
         retrofitService = RetrofitCall.reservationService();
         return v;
@@ -137,4 +131,13 @@ public class ReviewFragment extends Fragment {
             Toast.makeText(getContext(), "리뷰 로드에 실패했습니다.", Toast.LENGTH_SHORT).show();
         }
     };
+
+    public void setLaouyResoureByShop(){
+        tv_all_rating.setText(Double.toString(shopBean.getRating()));
+        ratingBar.setNumStars((int)Math.round(shopBean.getRating()));;
+        tv_all_count.setText(Integer.toString(shopBean.getCount()));
+    }
+    public void setLaouyResoureByDesigner(){
+
+    }
 }

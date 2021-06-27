@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         this.setFinishOnTouchOutside(false);
 
         // main 에서 3개의 프레그먼트 이동
@@ -59,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //getPhoneDialog 두둥 등장
-        // null -> 4자리 나오면 ...
+//        // null -> 4자리 나오면 ...
 //        if(LoginedUserInfo.user.getUserPhone().length() == 4) {
 //            openPhoneDialog();
 //        }
