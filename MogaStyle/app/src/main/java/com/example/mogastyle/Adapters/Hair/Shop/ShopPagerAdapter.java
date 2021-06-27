@@ -33,7 +33,7 @@ public class ShopPagerAdapter extends FragmentPagerAdapter {
         arrayList.add(new ShopHomeFragment(shopBean, con));
         arrayList.add(new MenuFragment());
         arrayList.add(new DesignerFragment());
-        arrayList.add(new ReviewFragment());
+        arrayList.add(new ReviewFragment(shopBean, con));
 
         name.add("홈");
         name.add("메뉴");

@@ -38,11 +38,11 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
         TextView tv_submit_date;
         TextView tv_report;
 
-        public ReviewViewHolder(@NonNull @NotNull View itemView) {
+        public ReviewViewHolder(View itemView) {
             super(itemView);
             tv_menu_name = itemView.findViewById(R.id.tv_review_list_item_menu_name);
             tv_designer_name = itemView.findViewById(R.id.tv_review_list_item_designer_name);
-            ratingBar = itemView.findViewById(R.id.tv_review_list_item_rating);
+            ratingBar = itemView.findViewById(R.id.rb_review_list_item);
             tv_rating = itemView.findViewById(R.id.tv_review_list_item_rating);
             tv_content = itemView.findViewById(R.id.tv_review_list_item_content);
             imageView = itemView.findViewById(R.id.iv_review_list_item);
@@ -66,7 +66,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
 
     @Override
     public ReviewViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_reservation_check, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_review, parent, false);
         ReviewAdapter.ReviewViewHolder viewHolder = new ReviewAdapter.ReviewViewHolder(v);
         return viewHolder;
     }
@@ -79,12 +79,12 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
         holder.tv_content.setText(rb.getReviewContent());
         holder.tv_writer.setText(rb.getUserName());
         holder.ratingBar.setNumStars(rb.getReviewScore());
-        holder.tv_rating.setText(rb.getReviewScore());
+        holder.tv_rating.setText(Integer.toString(rb.getReviewScore()));
         Glide.with(con)
                 .load(ShareVar.reviewImgPath+rb.getReviewPhoto())
-                .placeholder(R.drawable.ic_no_image)
-                .error(R.drawable.ic_no_image)
-                .fallback(R.drawable.ic_no_image)
+                .placeholder(R.drawable.jpeg_default_profile_photo)
+                .error(R.drawable.jpeg_default_profile_photo)
+                .fallback(R.drawable.jpeg_default_profile_photo)
                 .into(holder.imageView);
         holder.tv_submit_date.setText(rb.getReservationDate());
         holder.tv_report.setOnClickListener(new View.OnClickListener() {

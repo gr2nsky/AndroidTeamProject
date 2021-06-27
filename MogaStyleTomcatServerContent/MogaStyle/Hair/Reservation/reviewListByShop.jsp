@@ -4,20 +4,20 @@
     pageEncoding="UTF-8"%>
 <%
   request.setCharacterEncoding("utf-8");
-  int userNo = Integer.parseInt(request.getParameter("userNo"));
+  int sno = Integer.parseInt(request.getParameter("sno"));
 
   String url_mysql = "jdbc:mysql://localhost/mogastyle?serverTimezone=Asia/Seoul&characterEncoding=utf8&useSSL=false";
 	String id_mysql = "root";
 	String pw_mysql = "qwer1234";
 
-  String q1 = "SELECT r.no reservationNo, r.reservationDate, r.reservationTime, r.totalPrice, r.cancelDate, st.title stylingName, sp.name shopName, d.name designerName, sp.sImage, d.uImage, sp.address, r.reviewContent ";
-  String q2 = "FROM (SELECT * FROM reservation WHERE user_no = ?) r, ";
-  String q3 =	"(SELECT r.no, s.title FROM styling s, reservation r WHERE r.styling_no = s.no) st, ";
-  String q4 = "(SELECT r.no, s.name, s.image sImage, s.address FROM shop s, reservation r WHERE r.shop_no = s.no) sp, ";
-  String q5 = "(SELECT r.no, u.name, u.image uImage FROM designer d, user u, reservation r WHERE r.designer_no = d.dno AND d.user_no = u.no) d ";
-  String q6 = "WHERE r.no = st.no AND st.no = sp.no AND sp.no = d.no ";
-  String q7 = "ORDER BY r.reservationDate DESC, r.reservationTime DESC";
-  String query = q1 + q2 + q3 + q4 + q5 + q6 + q7;
+    String q1 = "SELECT r.no, st.title, d.name dName, u.name uName, r.reviewContent, r.reviewScore, r.reviewPhoto, r.reservationDate ";
+    String q2 = "FROM (SELECT * FROM reservation WHERE shop_no = ?) r, ";
+    String q3 =	"(SELECT r.no, s.title FROM styling s, reservation r WHERE r.styling_no = s.no) st, ";
+    String q4 = "(SELECT r.no, u.name FROM user u, reservation r WHERE r.user_no = u.no) u, ";
+    String q5 = "(SELECT r.no, u.name FROM designer d, user u, reservation r WHERE r.designer_no = d.dno AND d.user_no = u.no) d ";
+    String q6 = "WHERE r.no = st.no AND r.designer_no = d.no  AND r.user_no = u.no AND r.reviewContent IS NOT NULL ";
+    String q7 = "ORDER BY r.reservationDate DESC, r.reservationTime DESC";
+    String query = q1 + q2 + q3 + q4 + q5 + q6 + q7;
 
   int count = 0;
   Connection conn_mysql = null;
@@ -28,7 +28,7 @@
         conn_mysql = DriverManager.getConnection(url_mysql, id_mysql, pw_mysql);
         pstmt = conn_mysql.prepareStatement(query);
 
-        pstmt.setInt(1, userNo);
+        pstmt.setInt(1, sno);
         rs = pstmt.executeQuery();
 %>
 		{
@@ -44,18 +44,14 @@
             }
 %>
 			{
-      "no" : "<%=rs.getInt(1) %>",
-			"reservationDate" : "<%=rs.getString(2) %>",
-			"reservationTime" : "<%=rs.getInt(3) %>",
-			"totalPrice" : "<%=rs.getInt(4) %>",
-      "cancelDate" : "<%=rs.getString(5) %>",
-      "stylingTitle" : "<%=rs.getString(6) %>",
-      "shopName" : "<%=rs.getString(7) %>",
-      "designerName" : "<%=rs.getString(8) %>",
-      "shopImage" : "<%=rs.getString(9) %>",
-      "designerImage" : "<%=rs.getString(10) %>",
-      "shopAddress" : "<%=rs.getString(11) %>",
-      "reviewContent" : "<%=rs.getString(11) %>"
+        "no" : "<%=rs.getInt(1) %>",
+  			"stylingTitle" : "<%=rs.getString(2) %>",
+  			"designerName" : "<%=rs.getString(3) %>",
+  			"userName" : "<%=rs.getString(4) %>",
+        "reviewContent" : "<%=rs.getString(5) %>",
+        "reviewScore" : "<%=rs.getString(6) %>",
+        "reviewPhoto" : "<%=rs.getString(7) %>",
+        "reservationDate" : "<%=rs.getString(8) %>"
       }
 
 <%

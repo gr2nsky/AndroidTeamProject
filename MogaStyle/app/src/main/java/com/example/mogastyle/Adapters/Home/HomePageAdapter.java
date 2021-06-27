@@ -20,7 +20,7 @@ public class HomePageAdapter extends FragmentPagerAdapter {
         super(fragmentManager);
     }
 
-    @NonNull
+
     @NotNull
     @Override
     public Fragment getItem(int position) {
@@ -44,9 +44,10 @@ public class HomePageAdapter extends FragmentPagerAdapter {
     }
 
     @Nullable
-    @org.jetbrains.annotations.Nullable
     @Override
     public CharSequence getPageTitle(int position) {
         return "Page" + position;
     }
+
+
 }
