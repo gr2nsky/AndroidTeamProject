@@ -2,6 +2,7 @@ package com.example.mogastyle.Adapters.Hair.Reservation;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.mogastyle.Activities.Hair.Reservation.ReservationCheckActivity;
+import com.example.mogastyle.Activities.Review.ReviewSubmitActivity;
 import com.example.mogastyle.NetworkTasks.Hair.Reservation.RetrofitCall;
 import com.example.mogastyle.NetworkTasks.Hair.Reservation.RetrofitService;
 import com.example.mogastyle.Bean.ReservationBean;
@@ -90,7 +92,7 @@ public class ResCheckAdapter extends RecyclerView.Adapter<ResCheckAdapter.ResChe
         ReservationBean rb = rbList.get(position);
 
         Glide.with(con)
-                .load(ShareVar.shopImgPath+rb.getShopImage())
+                .load(ShareVar.shopImgPath + rb.getShopImage())
                 .placeholder(R.drawable.jpeg_default_profile_photo)
                 .error(R.drawable.jpeg_default_profile_photo)
                 .fallback(R.drawable.jpeg_default_profile_photo)
@@ -98,7 +100,7 @@ public class ResCheckAdapter extends RecyclerView.Adapter<ResCheckAdapter.ResChe
         holder.shop_name.setText(rb.getShopName());
         holder.shop_addr.setText(rb.getShopAddress());
         Glide.with(con)
-                .load(ShareVar.userImgPath+rb.getDesignerImage())
+                .load(ShareVar.userImgPath + rb.getDesignerImage())
                 .placeholder(R.drawable.jpeg_default_profile_photo)
                 .error(R.drawable.jpeg_default_profile_photo)
                 .fallback(R.drawable.jpeg_default_profile_photo)
@@ -108,7 +110,7 @@ public class ResCheckAdapter extends RecyclerView.Adapter<ResCheckAdapter.ResChe
         holder.btn_bottom.setText(btn_text);
         holder.tv_date.setText(datePaser(rb));
 
-        if(btn_text.equals("")){
+        if (btn_text.equals("")) {
             holder.btn_bottom.setVisibility(View.INVISIBLE);
         } else {
             holder.btn_bottom.setVisibility(View.VISIBLE);
@@ -117,20 +119,18 @@ public class ResCheckAdapter extends RecyclerView.Adapter<ResCheckAdapter.ResChe
         holder.btn_bottom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (checkType){
+                switch (checkType) {
                     case 0:
                         resCancelDialog(rb.getNo());
                         break;
                     case 1:
-                        /////////////
-                        // 리뷰쓰기  //
-                        ////////////
+                        Intent intent = new Intent(ac.getApplicationContext(), ReviewSubmitActivity.class);
+                        ac.startActivity(intent);
                         break;
                 }
             }
         });
     }
-
     @Override
     public int getItemCount() {
         return rbList.size();

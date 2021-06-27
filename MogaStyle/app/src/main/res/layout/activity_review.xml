@@ -30,14 +30,14 @@
                 android:fontFamily="@font/bmjua_otf"/>
             <RatingBar
                 android:id="@+id/rating_bar_review_rating"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:progressTint="@color/btn_super_positive"
+                android:layout_gravity="center"
                 android:numStars="5"
                 android:stepSize="0.5"
                 android:isIndicator="false"
-                android:padding="20dp"
-                style="@style/Widget.AppCompat.RatingBar.Small"
+                style="@style/Widget.AppCompat.RatingBar"
                 android:rating="3"/>
             <TextView
                 android:id="@+id/tv_review_all_count"
@@ -49,119 +49,6 @@
                 android:textSize="20dp"
                 android:textColor="@color/black"
                 android:fontFamily="@font/bmjua_otf"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_weight="3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="5dp">
-                <TextView
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:text="커트"
-                    android:textSize="20dp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/bmjua_otf"/>
-                <TextView
-                    android:id="@+id/tv_review_cut_rating"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:text="4.5"
-                    android:textSize="20dp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/bmjua_otf"/>
-                <TextView
-                    android:id="@+id/tv_review_cut_count"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:text="(28)"
-                    android:textSize="20dp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/bmjua_otf"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="5dp">
-                <TextView
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:text="펌"
-                    android:textSize="20dp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/bmjua_otf"/>
-                <TextView
-                    android:id="@+id/tv_review_perm_rating"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:text="4.5"
-                    android:textSize="20dp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/bmjua_otf"/>
-                <TextView
-                    android:id="@+id/tv_review_perm_count"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:text="(28)"
-                    android:textSize="20dp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/bmjua_otf"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:text="염색"
-                    android:textSize="20dp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/bmjua_otf"/>
-                <TextView
-                    android:id="@+id/tv_review_dyeing_rating"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:text="4.5"
-                    android:textSize="20dp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/bmjua_otf"/>
-                <TextView
-                    android:id="@+id/tv_review_dyeing_count"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:text="(28)"
-                    android:textSize="20dp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/bmjua_otf"/>
-            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
