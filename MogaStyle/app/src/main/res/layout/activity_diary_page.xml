@@ -15,11 +15,14 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
         >
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_diary_page_main_image"
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            app:shapeAppearanceOverlay="@style/roundimageview"
             />
 
         <TextView

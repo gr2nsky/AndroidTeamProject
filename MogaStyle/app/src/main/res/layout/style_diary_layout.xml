@@ -9,7 +9,7 @@
     android:background="@drawable/background_rounded_conner_border"
     >
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_diary_select_origin_image"
         android:layout_width="84dp"
         android:layout_height="116dp"
@@ -19,6 +19,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.529"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
         app:shapeAppearanceOverlay="@style/roundimageview"
 
         />

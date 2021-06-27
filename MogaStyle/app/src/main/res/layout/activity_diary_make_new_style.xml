@@ -8,10 +8,12 @@
     tools:context=".Activities.Diary.DiaryMakeNewStyleActivity"
     android:gravity="center">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_diary_make_new_diary_selectedImage"
         android:layout_width="200dp"
         android:layout_height="200dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
         app:shapeAppearanceOverlay="@style/roundimageview"
          />
 
@@ -22,7 +24,8 @@
         android:text="불러오기"
         android:fontFamily="@font/bmjua_otf"
         android:backgroundTint="@color/btn_super_positive"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="40dp"
+        android:textColor="@color/black"/>
 
     <LinearLayout
         android:orientation="vertical"

@@ -9,12 +9,13 @@
     tools:context=".Activities.Diary.DiaryEditStyleActivity"
     android:gravity="center">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/selectedImageEdit"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        app:shapeAppearanceOverlay="@style/roundimageview"
-        />
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:shapeAppearanceOverlay="@style/roundimageview"/>
 
     <Button
         android:id="@+id/btn_getGalleryPhotoEdit"
