@@ -3,6 +3,7 @@ package com.example.mogastyle.NetworkTasks.Home;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.json.JSONObject;
 
@@ -17,13 +18,13 @@ public class FindPwUpdatePw extends AsyncTask<Integer , String, Object> {
     Context context;
     String mAddr;
     ProgressDialog progressDialog;
-    String userNewPw1, userName;
+    String userNewPw1, userId;
 
-    public FindPwUpdatePw(Context context, String mAddr, String userNewPw1,String userName) {
+    public FindPwUpdatePw(Context context, String mAddr, String userNewPw1,String userId) {
         this.context = context;
         this.mAddr = mAddr;
         this.userNewPw1 = userNewPw1;
-        this.userName = userName;
+        this.userId = userId;
     }
 
     @Override
@@ -64,7 +65,8 @@ public class FindPwUpdatePw extends AsyncTask<Integer , String, Object> {
             httpURLConnection.setRequestMethod("POST");
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(httpURLConnection.getOutputStream());
 
-            String sendMSG = "userNewPw1="+userNewPw1 +"&userName="+userName;
+            String sendMSG = "userNewPw1="+userNewPw1 +"&userId="+userId;
+
             outputStreamWriter.write(sendMSG);
             outputStreamWriter.flush();
 
@@ -75,9 +77,11 @@ public class FindPwUpdatePw extends AsyncTask<Integer , String, Object> {
 
 
                 while (true) {
+
                     String str = bufferedReader.readLine();
                     if (str == null) break;
                     stringBuffer.append(str + "\n");
+
                 }
 
                 JSONObject jsonObject = new JSONObject(stringBuffer.toString());
@@ -88,9 +92,11 @@ public class FindPwUpdatePw extends AsyncTask<Integer , String, Object> {
             e.printStackTrace();
         } finally {
             try {
+
                 if (bufferedReader != null) bufferedReader.close();
                 if (inputStreamReader != null) inputStreamReader.close();
                 if (inputStream != null) inputStream.close();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -1,7 +1,9 @@
 package com.example.mogastyle.Activities.Home;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -49,6 +51,9 @@ public class HomeHairTypeFragment extends Fragment {
     String updateResult = "";
     String urlAddr = ShareVar.hostRootAddr ;
 
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor sharedPreferencesEdit;
+
     public static HomeHairTypeFragment newInstance(int page, String title , String userName) {
         HomeHairTypeFragment fragment = new HomeHairTypeFragment();
         Bundle args = new Bundle();
@@ -79,6 +84,18 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container,
     sb_home_hair_thickness = homeHairType.findViewById(R.id.sb_home_hair_thickness);
     sb_home_hair_sparsely = homeHairType.findViewById(R.id.sb_home_hair_sparsely);
     sb_home_hair_curledness = homeHairType.findViewById(R.id.sb_home_hair_curledness);
+
+//    String uHT = sharedPreferences.getString("uHT" , "1");
+//    String uHS = sharedPreferences.getString("uHS" , "1");
+//    String uHC = sharedPreferences.getString("uHC" , "1");
+//
+//    int userHT = Integer.parseInt(uHT);
+//    int userHS = Integer.parseInt(uHS);
+//    int userHC = Integer.parseInt(uHC);
+//
+//    sb_home_hair_thickness.setProgress(userHT);
+//    sb_home_hair_sparsely.setProgress(userHS);
+//    sb_home_hair_curledness.setProgress(userHC);
 
     sb_home_hair_thickness.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
         @Override
@@ -143,6 +160,12 @@ public View onCreateView(LayoutInflater inflater, ViewGroup container,
 
             if(updateResult.equals("1")){
                 Toast.makeText(getContext(), "업데이트 완료!", Toast.LENGTH_SHORT).show();
+
+                sharedPreferencesEdit = sharedPreferences.edit();
+                sharedPreferencesEdit.putString("uHT", uHT);
+                sharedPreferencesEdit.putString("uHS", uHS);
+                sharedPreferencesEdit.putString("uHC", uHC);
+                sharedPreferencesEdit.commit();
 
             }else{
                 Toast.makeText(getContext(), "업데이트 오류!", Toast.LENGTH_SHORT).show();
