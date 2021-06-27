@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mogastyle.Adapters.Hair.Designer.DesignerAdapter;
 import com.example.mogastyle.Bean.Designer;
+import com.example.mogastyle.Common.ShareVar;
 import com.example.mogastyle.NetworkTasks.Hair.Designer.DesignerNetworkTask;
 import com.example.mogastyle.R;
 
@@ -23,7 +24,8 @@ public class DesignerListActivity extends AppCompatActivity {
     DesignerAdapter adapter;
     ListView listView;
 
-    String windowIP; // 메인에 구성 url을 대신에 다른것
+    // IP
+    String urlAddr = null;
 
 
     @Override
@@ -35,8 +37,10 @@ public class DesignerListActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.lv_designer_list);
 
-        Intent intent = getIntent();
-        windowIP = intent.getStringExtra("hostRootAddr");
+ //       urlAddr = ShareVar.hostRootAddr + "Hair/Designer/designer_query_all.jsp";
+
+        // 아래는 내 톰캣 서버 : 위에 있는 Git폴더 경로로 하면 안 뜸
+        urlAddr = "http://192.168.0.105:8080/test/" + "designer_query_all.jsp";
 
     }
 
@@ -51,7 +55,7 @@ public class DesignerListActivity extends AppCompatActivity {
     private void connectGetData() {
         Log.v("Message", "DesignerListActivity_connectGetData");
         try {
-            DesignerNetworkTask networkTask = new DesignerNetworkTask(DesignerListActivity.this, windowIP, "select");
+            DesignerNetworkTask networkTask = new DesignerNetworkTask(DesignerListActivity.this, urlAddr, "select");
             Object obj = networkTask.execute().get();
             members = (ArrayList<Designer>) obj;
             
@@ -59,9 +63,6 @@ public class DesignerListActivity extends AppCompatActivity {
             Log.v("Message", members.get(0).toString());
             adapter = new DesignerAdapter(DesignerListActivity.this, R.layout.list_item_desiner_detail_view, members);
             listView.setAdapter(adapter);
-
-            // 여기서 클릭 액션부터 안 먹음
-            Log.v("Message", "after click");
 
         }catch (Exception e){
             e.printStackTrace();

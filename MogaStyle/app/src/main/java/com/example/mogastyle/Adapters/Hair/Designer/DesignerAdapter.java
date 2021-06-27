@@ -7,10 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.mogastyle.Activities.Hair.Designer.DesignerDetailPageActivity;
 import com.example.mogastyle.Bean.Designer;
+import com.example.mogastyle.Common.ShareVar;
 import com.example.mogastyle.R;
 
 import java.util.ArrayList;
@@ -53,11 +56,19 @@ public class DesignerAdapter extends BaseAdapter {
         convertView = inflater.inflate(this.layout, parent, false);
 
         // designer listView : ID 값 불러오기
+        ImageView iv_image = convertView.findViewById(R.id.iv_designer_list_image);
         TextView tv_no = convertView.findViewById(R.id.tv_designer_list_no);
         TextView tv_name = convertView.findViewById(R.id.tv_designer_list_name);
         TextView tv_introduction = convertView.findViewById(R.id.tv_designer_list_introduction);
 
         // 화면에 보여주기
+        //이미지 :
+        Glide.with(mContext)
+                .load(ShareVar.userImgPath + data.get(position).getImage())
+                .placeholder(R.drawable.ic_no_image)
+                .error(R.drawable.ic_no_image)
+                .fallback(R.drawable.ic_no_image)
+                .into(iv_image);
         tv_no.setText("No. " + data.get(position).getNo());
         tv_name.setText("이름 : " + data.get(position).getName());
         tv_introduction.setText("소개 : " + data.get(position).getIntroduction());
