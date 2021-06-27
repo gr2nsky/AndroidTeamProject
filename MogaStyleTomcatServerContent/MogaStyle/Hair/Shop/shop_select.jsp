@@ -7,10 +7,10 @@
  	String id_mysql = "root";
  	String pw_mysql = "qwer1234";
 
-  String query1 = "SELECT name, tel, address, postCode, introduction, holiday, image, no, avg(reviewScore) rating, ";
+  String query1 = "SELECT name, tel, address, postCode, introduction, holiday, image, sno, avg(reviewScore) rating, ";
   String query2 = "count(case when reviewScore IS NOT NULL then 1 end) cnt ";
   String query3 = "FROM shop LEFT JOIN (SELECT reviewContent, reviewPhoto, reviewScore, shop_no FROM reservation) r ";
-  String query4 = "ON shop.no = r.shop_no GROUP BY shop.no";
+  String query4 = "ON shop.sno = r.shop_no GROUP BY shop.sno";
   String query = query1 + query2 + query3 + query4;
   int count = 0;
 

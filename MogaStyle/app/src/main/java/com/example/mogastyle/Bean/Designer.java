@@ -14,6 +14,8 @@ public class Designer {
     // Field_외래키
     int shopNo;
     int stylingNo;
+    private double rating;
+    private int count;
 
     // 생성자(Constructor)
     // Designer List
@@ -107,6 +109,22 @@ public class Designer {
 
     public void setStylingNo(int stylingNo) {
         this.stylingNo = stylingNo;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 
     public String print(){

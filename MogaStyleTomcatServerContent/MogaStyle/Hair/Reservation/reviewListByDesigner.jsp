@@ -12,7 +12,7 @@
 
   String q1 = "SELECT r.no, st.title, d.name dName, u.name uName, r.reviewContent, r.reviewScore, r.reviewPhoto, r.reservationDate ";
   String q2 = "FROM (SELECT * FROM reservation WHERE designer_no = ?) r, ";
-  String q3 =	"(SELECT r.no, s.title FROM styling s, reservation r WHERE r.styling_no = s.no) st, ";
+  String q3 =	"(SELECT r.no, s.title FROM styling s, reservation r WHERE r.styling_no = s.stno) st, ";
   String q4 = "(SELECT r.no, u.name FROM user u, reservation r WHERE r.user_no = u.no) u, ";
   String q5 = "(SELECT r.no, u.name FROM designer d, user u, reservation r WHERE r.designer_no = d.dno AND d.user_no = u.no) d ";
   String q6 = "WHERE r.no = st.no AND r.designer_no = d.no  AND r.user_no = u.no AND r.reviewContent IS NOT NULL ";
@@ -63,7 +63,7 @@
 <%
         conn_mysql.close();
     } catch (Exception e) {
-        e.printStackTrace();
+        out.print(e);
     }
 
 %>

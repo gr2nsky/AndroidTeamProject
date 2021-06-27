@@ -10,9 +10,9 @@
  	String id_mysql = "root";
  	String pw_mysql = "qwer1234";
 
-  String Q1 = "SELECT u.name, d.certificationDate, d.introduction, s.no sno, u.image ";
+  String Q1 = "SELECT u.name, d.certificationDate, d.introduction, s.sno sno, u.image ";
 	String Q2 = "FROM user u, designer d, shop s, employ e ";
-	String Q3 = "WHERE d.dno = " + dno + " and d.user_no = u.no and d.dno = e.designer_no and e.shop_no = s.no";
+	String Q3 = "WHERE d.dno = " + dno + " and d.user_no = u.no and d.dno = e.designer_no and e.shop_no = s.sno";
 
   int count = 0;
 
