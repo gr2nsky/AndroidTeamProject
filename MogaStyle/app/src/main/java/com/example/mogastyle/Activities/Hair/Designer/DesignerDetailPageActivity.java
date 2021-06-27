@@ -5,22 +5,27 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
+import com.example.mogastyle.Adapters.Hair.Designer.FragmentDesignerDetailPageAdapter;
 import com.example.mogastyle.Bean.Designer;
 import com.example.mogastyle.Common.ShareVar;
 import com.example.mogastyle.NetworkTasks.Hair.Designer.DesignerDetailPageNetworkTask;
 import com.example.mogastyle.R;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
 public class DesignerDetailPageActivity extends AppCompatActivity {
 
     // Field
-    String urlAddr = "http://192.168.0.105:8080/test/" + "designer_detail_page_query_all.jsp";
-//    String urlAddr = ShareVar.hostRootAddr + "Hair/Designer/designer_detail_page_query_all.jsp";
+//    String urlAddr = "http://192.168.0.105:8080/test/" + "designer_detail_page_query_all.jsp";
+    String urlAddr = ShareVar.hostRootAddr + "Hair/Designer/designer_detail_page_query_all.jsp";
     int dno = 0;
     int sno = 0;
 
@@ -65,34 +70,41 @@ public class DesignerDetailPageActivity extends AppCompatActivity {
         tv_introduction.setText("소개 : " + members.get(0).getIntroduction());
         sno = members.get(0).getShopNo();
 
-//        // Tab 관련
-//        TabLayout tabLayout = findViewById(R.id.tab_layout);
-//
-//        ViewPager viewPager = findViewById(R.id.pager);
-//        PagerAdapter pagerAdapter = new FragmentDesignerDetailPageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
-//
-//        // Tab 부분 버튼을 클릭했을 때
-//        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-//            @Override
-//            public void onTabSelected(TabLayout.Tab tab) {
-//                Log.v("Message", "onTabSelected_MainActivity");
-//                viewPager.setCurrentItem(tab.getPosition());
-//                Toast.makeText(DesignerDetailPageActivity.this, "선택됨", Toast.LENGTH_SHORT).show();
-//
-//            }
-//
-//            @Override
-//            public void onTabUnselected(TabLayout.Tab tab) {
-//                Log.v("Message", "onTabUnselected_MainActivity");
-//
-//            }
-//
-//            @Override
-//            public void onTabReselected(TabLayout.Tab tab) {
-//                Log.v("Message", "onTabReselected_MainActivity");
-//
-//            }
-//        });
+        // Tab 관련
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
+
+        ViewPager viewPager = findViewById(R.id.pager);
+        PagerAdapter pagerAdapter = new FragmentDesignerDetailPageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+
+        // Adapter와 연결
+        viewPager.setAdapter(pagerAdapter);
+
+        tabLayout.setupWithViewPager(viewPager); // 같이 호출 불러주는 것 추가
+
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        // Tab 부분 버튼을 클릭했을 때
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                Log.v("Message", "onTabSelected_MainActivity");
+                viewPager.setCurrentItem(tab.getPosition());
+                Toast.makeText(DesignerDetailPageActivity.this, "선택됨", Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                Log.v("Message", "onTabUnselected_MainActivity");
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                Log.v("Message", "onTabReselected_MainActivity");
+
+            }
+        });
 
 
     }

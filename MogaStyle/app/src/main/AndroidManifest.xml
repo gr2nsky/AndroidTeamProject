@@ -25,13 +25,7 @@
         <activity android:name=".Activities.Consult.ConsultDesignerAnswerActivity" />
         <activity android:name=".Activities.Consult.ConsultDesignerTalkActivity" />
         <activity android:name=".Activities.Consult.ConsultDesignerListActivity" />
-        <activity android:name=".Activities.Hair.Designer.DesignerListActivity">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
+        <activity android:name=".Activities.Hair.Designer.DesignerListActivity"/>
     <activity android:name=".Activities.Hair.Designer.DesignerDetailPageActivity"/>
 
     <activity android:name=".Activities.Diary.DiaryEditStyleActivity" />
@@ -57,7 +51,11 @@
         <activity android:name=".Activities.Hair.HairMainActivity" />
         <activity android:name=".Activities.Diary.DiaryMainActivity" />
         <activity android:name=".Activities.LogoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".Activities.LoginActivity" />
         <activity android:name=".Activities.MainActivity" />
