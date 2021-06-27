@@ -13,16 +13,9 @@ import java.util.ArrayList;
 
 public class ShareVar {
 
-<<<<<<< HEAD
 
-
-
-
-    public static String hostIP = "192.168.35.80";
-
-=======
     public static String hostIP = "";
->>>>>>> 2632ca62656d6d3087921188a9ffba9862ecbd27
+
     public final static String hostRootAddr = "http://" + hostIP + ":8080/MogaStyle/";
     public final static String userImgPath = hostRootAddr + "img/user/";
     public final static String shopImgPath = hostRootAddr + "img/shop/";
