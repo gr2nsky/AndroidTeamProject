@@ -60,7 +60,7 @@ public class ShopHomeActivity extends AppCompatActivity {
         ////////////////////////////////////////////////////////////////////////////
         //      Shop no를 플레그먼트에 전달하기 위해서 어댑터에 값 전달                        //
         ////////////////////////////////////////////////////////////////////////////
-        shopPagerAdapter = new ShopPagerAdapter(getSupportFragmentManager(), shopBean, con);
+//        shopPagerAdapter = new ShopPagerAdapter(getSupportFragmentManager(), shopBean, con);
         viewPager.setAdapter(shopPagerAdapter);
 
         imageButton = findViewById(R.id.btn_home_goHome);
