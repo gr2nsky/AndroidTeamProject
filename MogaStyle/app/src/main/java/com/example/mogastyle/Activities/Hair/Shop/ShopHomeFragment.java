@@ -49,7 +49,8 @@ public class ShopHomeFragment extends Fragment {
                 .error(R.drawable.ic_no_image)
                 .fallback(R.drawable.ic_no_image)
                 .into(imageView);
-        tv_rating.setText(Double.toString(shopBean.getRating()));
+        double roundedRating = Math.round(shopBean.getRating()*10)/10;
+        tv_rating.setText(Double.toString(roundedRating));
         tv_count.setText(Integer.toString(shopBean.getCount()));
 
         return view;

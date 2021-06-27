@@ -36,7 +36,8 @@ public class FragmentDesignerDetailPageAdapter extends FragmentPagerAdapter {
                 return designerDetailPageStylingFragment;
             case 1:
                 Log.v("Message", "getItem_DesignerDetailPageReviewFragment");
-                return new ReviewFragment(designerBean);
+                ReviewFragment reviewFragment = new ReviewFragment(designerBean);
+                return reviewFragment;
             default:
                 return null;
         }

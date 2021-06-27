@@ -117,7 +117,7 @@ public class ReviewFragment extends Fragment {
 
             Log.d(TAG, "onResponse:성공");
             Log.d(TAG, "결과 body: " + response.body());
-            Log.d(TAG, "결과 reservationList: " + result.print());
+            Log.d(TAG, "결과 reviewList: " + result.print());
 
             layoutManager = new LinearLayoutManager(getContext());
             reviewList.setLayoutManager(layoutManager);
@@ -133,11 +133,15 @@ public class ReviewFragment extends Fragment {
     };
 
     public void setLaouyResoureByShop(){
-        tv_all_rating.setText(Double.toString(shopBean.getRating()));
+        double roundedRating = Math.round(shopBean.getRating()*10)/10;
+        tv_all_rating.setText(Double.toString(roundedRating));
         ratingBar.setNumStars((int)Math.round(shopBean.getRating()));;
         tv_all_count.setText(Integer.toString(shopBean.getCount()));
     }
     public void setLaouyResoureByDesigner(){
-
+        double roundedRating = Math.round(designerBean.getRating()*10)/10;
+        tv_all_rating.setText(Double.toString(roundedRating));
+        ratingBar.setNumStars((int)Math.round(designerBean.getRating()));;
+        tv_all_count.setText(Integer.toString(designerBean.getCount()));
     }
 }
