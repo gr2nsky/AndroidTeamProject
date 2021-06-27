@@ -87,6 +87,9 @@ public class MyPageMainActivity extends AppCompatActivity {
 
             Glide.with(this)
                     .load(LoginedUserInfo.user.getUserImage())
+                    .placeholder(R.drawable.ic_no_image)
+                    .error(R.drawable.ic_no_image)
+                    .fallback(R.drawable.ic_no_image)
                     .into(iv_my_page_user_image);
 
 

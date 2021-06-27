@@ -2,13 +2,16 @@ package com.example.mogastyle.Activities.Hair;
 
 import android.content.Context;
 import android.content.Intent;
+import android.location.Address;
 import android.location.Geocoder;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +35,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class HairMainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
@@ -54,12 +58,19 @@ public class HairMainActivity extends AppCompatActivity {
         listView = findViewById(R.id.lv_shoplist);
         urlAddr = ShareVar.hostRootAddr+"Hair/Shop/shop_select.jsp";
 
+
+
+
+
+
         //Map StartPoint
              mapView = new MapView(this);
 
             ViewGroup mapViewContainer = findViewById(R.id.map_view);
             mapViewContainer.addView(mapView);
-            mapView.removeAllPOIItems();
+            Marker("한세고" , 127.0231222, 37.5036695);
+
+//            mapView.removeAllPOIItems();
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -69,7 +80,6 @@ public class HairMainActivity extends AppCompatActivity {
             }
         },4000);
 
-        Marker("한세고" , 37.5514579595, 126.951949155);
 
         locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
 
@@ -82,10 +92,40 @@ public class HairMainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
     } //onCreate
 
+//    https://www.google.co.kr/maps/search/%EC%97%AD%EC%82%BC%EB%8F%99+809%EB%B2%88%EC%A7%80+%EC%B2%9C%EC%A7%80%EB%B9%8C%EB%94%A9/@37.5036695,127.0231222,17z/data=!3m1!4b1?hl=ko
+//
+
+
+    //
+    public void getLatLong(ArrayList<Shop> shops){
+        List<Address> addressList = null;
+        String str = shops.get(1).getAddress();
+
+        Geocoder geocoder = new Geocoder(this);
+        try{
+            addressList = geocoder.getFromLocationName(str , 10);
+        }catch(IOException e){
+            e.printStackTrace();
+            Log.d("test", "입출력오류");
+        }
+
+        if (addressList != null ){
+            if (addressList.size() == 0){
+                Toast.makeText(this, "NONE", Toast.LENGTH_SHORT).show();
+            }else{
+              addressList.get(0).getLatitude();
+              addressList.get(0).getLongitude();
+              Log.d("HHHHHHH" , Double.toString(addressList.get(0).getLatitude()) + Double.toString(addressList.get(0).getLongitude()));
+
+              Marker(shops.get(1).getName() , addressList.get(1).getLatitude() ,addressList.get(1).getLongitude());
+            }
+        }
+    }
 
 
     //KAKAO-MAP
     public void Marker(String MarkerName , double startX, double startY){
+
         mapPoint = MapPoint.mapPointWithGeoCoord(startY , startX);
         mapView.setMapCenterPoint(mapPoint , true);
 
@@ -115,7 +155,9 @@ public class HairMainActivity extends AppCompatActivity {
             ShopNetworkTask networkTask = new ShopNetworkTask(HairMainActivity.this, urlAddr, "select");
             Object obj = networkTask.execute().get();
             shops = (ArrayList<Shop>) obj;
-
+            //
+//            getLatLong(shops);
+            //
             adapters = new ShopListAdapter(HairMainActivity.this, R.layout.list_item_hair_main_shop_list, shops);
             listView.setAdapter(adapters);
 //            listView.setOnItemClickListener(onItemClickListener);

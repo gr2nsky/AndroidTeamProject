@@ -59,9 +59,15 @@ public class MyPageUpdateActivity extends AppCompatActivity {
         iv_my_page_update_image = findViewById(R.id.iv_my_page_update_image);
 
         Log.d("NET" ,devicePath);
-        Glide.with(this)
-                .load(ShareVar.userImgPath + LoginedUserInfo.user.getUserImage())
-                .into(iv_my_page_update_image);
+
+
+            Glide.with(this)
+                    .load(LoginedUserInfo.user.getUserImage())
+                    .placeholder(R.drawable.ic_no_image)
+                    .error(R.drawable.ic_no_image)
+                    .fallback(R.drawable.ic_no_image)
+                    .into(iv_my_page_update_image);
+
 
         //사용자에게 사진(Media) 사용 권한 받기
         ActivityCompat.requestPermissions(MyPageUpdateActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MODE_PRIVATE);

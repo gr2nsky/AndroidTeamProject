@@ -46,12 +46,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="스타일 이름"
-        android:fontFamily="@font/bmjua_otf"/>
+        android:fontFamily="@font/bmjua_otf"
+        android:layout_marginLeft="30dp"/>
         <EditText
             android:id="@+id/et_diary_make_new_diary_styleTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
             android:hint="개성있는 당신의 스타일 이름!"
             android:inputType="textPersonName"
             android:fontFamily="@font/bmjua_otf"

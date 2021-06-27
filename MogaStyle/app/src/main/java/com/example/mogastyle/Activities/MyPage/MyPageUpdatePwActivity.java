@@ -2,6 +2,7 @@ package com.example.mogastyle.Activities.MyPage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -32,8 +33,7 @@ public class MyPageUpdatePwActivity extends AppCompatActivity {
 
     String updateResult;
 
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor sharedPreferencesEdit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,6 +102,11 @@ public class MyPageUpdatePwActivity extends AppCompatActivity {
                 intent = new Intent(MyPageUpdatePwActivity.this , MyPageMainActivity.class);
                 // 업데이트 완료시 sharedPreference 지움
 
+                SharedPreferences sharedPreferences = getSharedPreferences("autoLogined", Activity.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                //editor.clear()는 auto에 들어있는 모든 정보를 기기에서 지웁니다.
+                editor.clear();
+                editor.commit();
 
                 //
                 startActivity(intent);
