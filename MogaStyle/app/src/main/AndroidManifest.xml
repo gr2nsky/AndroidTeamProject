@@ -27,8 +27,6 @@
         <activity android:name=".Activities.Consult.ConsultDesignerTalkActivity" />
         <activity android:name=".Activities.Consult.ConsultDesignerListActivity" />
         <activity android:name=".Activities.Hair.Designer.DesignerDetailPageActivity"/>
-
-        <activity android:name=".Activities.Diary.DiaryEditStyleActivity" />
         <activity android:name=".Activities.Diary.DiaryEditStyleActivity" />
         <activity android:name=".Activities.Diary.DiaryListDetailActivity" />
         <activity android:name=".Activities.Diary.DiaryWriteActivity" />
