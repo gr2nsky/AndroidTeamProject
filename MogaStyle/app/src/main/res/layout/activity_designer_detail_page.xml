@@ -103,29 +103,6 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:layout_weight="1"
-            android:gravity="left"
-            >
-
-            <TextView
-                android:id="@+id/tv_designer_detail_page_go_shop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="근무지로 이동"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:fontFamily="@font/bmjua_otf"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="30dp"
-                />
-
-        </LinearLayout>
-
     </LinearLayout>
 
 

@@ -117,7 +117,7 @@
             android:layout_margin="5dp"
             android:background="@drawable/background_rounded_corners_white"
             android:backgroundTint="#E5D2AB"
-            android:src="@drawable/ic_baseline_more_horiz_24"
+            android:src="@drawable/ic_baseline_calendar_today_24"
             android:scaleType="fitCenter"
             android:padding="15dp"
             />
@@ -127,7 +127,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="상세보기"
+            android:text="예약하기"
             android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold"

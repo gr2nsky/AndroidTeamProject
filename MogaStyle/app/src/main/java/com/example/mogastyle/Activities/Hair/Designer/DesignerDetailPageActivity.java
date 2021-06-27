@@ -74,7 +74,8 @@ public class DesignerDetailPageActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tab_layout);
 
         ViewPager viewPager = findViewById(R.id.pager);
-        PagerAdapter pagerAdapter = new FragmentDesignerDetailPageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        PagerAdapter pagerAdapter = new FragmentDesignerDetailPageAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), members.get(0));
+        // members.get(0) = Bean의 배열인데 bean 배열은 하나만 가져옴 따라서 매개변수로 bean을 준 것임
 
         // Adapter와 연결
         viewPager.setAdapter(pagerAdapter);
@@ -89,7 +90,6 @@ public class DesignerDetailPageActivity extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 Log.v("Message", "onTabSelected_MainActivity");
                 viewPager.setCurrentItem(tab.getPosition());
-                Toast.makeText(DesignerDetailPageActivity.this, "선택됨", Toast.LENGTH_SHORT).show();
 
             }
 
