@@ -2,6 +2,7 @@ package com.example.mogastyle.Activities.Hair;
 
 import android.content.Context;
 import android.content.Intent;
+import android.location.Geocoder;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,6 +30,7 @@ import net.daum.mf.map.api.MapView;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class HairMainActivity extends AppCompatActivity {
@@ -67,13 +69,20 @@ public class HairMainActivity extends AppCompatActivity {
             }
         },4000);
 
+        Marker("한세고" , 37.5514579595, 126.951949155);
+
         locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
+
+
+
         //Map StartPoint---
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.page_reservation);
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
     } //onCreate
+
+
 
     //KAKAO-MAP
     public void Marker(String MarkerName , double startX, double startY){
@@ -90,6 +99,7 @@ public class HairMainActivity extends AppCompatActivity {
         marker.setSelectedMarkerType(MapPOIItem.MarkerType.BluePin);
         mapView.addPOIItem(marker);
     }
+
 
 
     //KAKAO-MAP--

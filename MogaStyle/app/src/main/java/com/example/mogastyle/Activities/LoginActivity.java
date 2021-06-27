@@ -95,6 +95,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         tv_login_another_way_login = findViewById(R.id.tv_login_another_way_login);
         tv_login_another_way_login.setOnClickListener(onClickListener);
 
+        //----
+        btn_login_goMain.setVisibility(View.INVISIBLE);
+        //----
+
         //KAKAO LOGIN
         kakaoSessionCallback = new ISessionCallback() {
             @Override
@@ -138,6 +142,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                 e.printStackTrace();
                             }
                         userCheckResult = (String) object;
+
 
                         if(userCheckResult.equals("0")){
                             //먼저 db 에 없다면..
