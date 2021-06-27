@@ -18,6 +18,7 @@ import com.example.mogastyle.Bean.Styling;
 import com.example.mogastyle.Common.ShareVar;
 import com.example.mogastyle.R;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import static com.example.mogastyle.Common.ShareVar.hostRootAddr;
@@ -76,7 +77,13 @@ public class StylingRecyclerAdapter extends RecyclerView.Adapter<StylingRecycler
                 .into(holder.iv_image);
 
         holder.tv_title.setText(data.get(position).getTitle());
-        holder.tv_price.setText("" + data.get(position).getPrice());
+
+        // 천자리 마다 콤마
+        int returnData1 = data.get(position).getPrice();
+        DecimalFormat Commas = new DecimalFormat("#,###");
+        String returnData2 = (String)Commas.format(returnData1);
+
+        holder.tv_price.setText("" + returnData2);
 
         // 해당되는 번째에 typeCode를 불러와서 char배열에 담아준다.
         char [] typeCode = typeSplit(data.get(position).getTypeCode());

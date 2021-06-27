@@ -7,17 +7,20 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.mogastyle.Activities.Hair.Designer.DesignerDetailPageReviewFragment;
 import com.example.mogastyle.Activities.Hair.Designer.DesignerDetailPageStylingFragment;
+import com.example.mogastyle.Activities.Review.ReviewFragment;
+import com.example.mogastyle.Bean.Designer;
 
 public class FragmentDesignerDetailPageAdapter extends FragmentPagerAdapter {
 
     int tabCount;
+    Designer designerBean;
 
     // 생성자
-    public FragmentDesignerDetailPageAdapter(FragmentManager fm, int behavior) {
+    public FragmentDesignerDetailPageAdapter(FragmentManager fm, int behavior, Designer designerBean) {
         super(fm, behavior);
         this.tabCount = behavior;
+        this.designerBean = designerBean;
         Log.v("Message", "FragmentDesignerDetailPageAdapter_FragmentDesignerDetailPageAdapter");
     }
 
@@ -33,8 +36,7 @@ public class FragmentDesignerDetailPageAdapter extends FragmentPagerAdapter {
                 return designerDetailPageStylingFragment;
             case 1:
                 Log.v("Message", "getItem_DesignerDetailPageReviewFragment");
-                DesignerDetailPageReviewFragment designerDetailPageReviewFragment = new DesignerDetailPageReviewFragment();
-                return designerDetailPageReviewFragment;
+                return new ReviewFragment(designerBean);
             default:
                 return null;
         }

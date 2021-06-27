@@ -43,7 +43,6 @@ public class ReviewFragment extends Fragment {
 
     String TAG = "ReviewFragment";
     //-------------
-    Context con;
     Shop shopBean = null;
     Designer designerBean = null;
     //-------------
@@ -66,15 +65,13 @@ public class ReviewFragment extends Fragment {
     //-------------
     private RetrofitService retrofitService;
 
-    public ReviewFragment(Designer designerBean, Context con) {
+    public ReviewFragment(Designer designerBean) {
         this.designerBean = designerBean;
-        this.con = con;
         this.checkType = 1;
     }
 
-    public ReviewFragment(Shop shopBean, Context con) {
+    public ReviewFragment(Shop shopBean) {
         this.shopBean = shopBean;
-        this.con = con;
         this.checkType = 2;
     }
 
@@ -128,16 +125,16 @@ public class ReviewFragment extends Fragment {
             Log.d(TAG, "결과 body: " + response.body());
             Log.d(TAG, "결과 reservationList: " + result.print());
 
-            layoutManager = new LinearLayoutManager(con);
+            layoutManager = new LinearLayoutManager(getContext());
             reviewList.setLayoutManager(layoutManager);
-            reviewAdapter = new ReviewAdapter(con, R.layout.list_item_review, rbList);
+            reviewAdapter = new ReviewAdapter(getContext(), R.layout.list_item_review, rbList);
             reviewList.setAdapter(reviewAdapter);
         }
         @Override
         public void onFailure(Call<ReservationList> call, Throwable t) {
             Log.d(TAG, "onResponse:실패");
             Log.d(TAG, "결과 : " + t.toString());
-            Toast.makeText(con, "리뷰 로드에 실패했습니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "리뷰 로드에 실패했습니다.", Toast.LENGTH_SHORT).show();
         }
     };
 }
