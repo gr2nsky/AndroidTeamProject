@@ -1,5 +1,6 @@
 package com.example.mogastyle.Activities.Home;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,8 +8,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.mogastyle.Activities.Hair.Reservation.ReservationCheckActivity;
+import com.example.mogastyle.Activities.MainActivity;
 import com.example.mogastyle.Common.LoginedUserInfo;
 import com.example.mogastyle.R;
 
@@ -52,6 +56,15 @@ public class HomeFragment extends Fragment {
         TextView tv_home_login_status = Home.findViewById(R.id.tv_home_login_status);
         tv_home_login_status.setText(LoginedUserInfo.user.getName() + " 님 환영합니다!");
         //--환영 인사 end
+
+        Button btn_home_goReservation = Home.findViewById(R.id.btn_home_goReservation);
+        btn_home_goReservation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ReservationCheckActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return Home;
     }
