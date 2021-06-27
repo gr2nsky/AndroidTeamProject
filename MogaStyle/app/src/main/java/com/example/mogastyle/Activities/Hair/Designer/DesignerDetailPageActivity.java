@@ -3,6 +3,7 @@ package com.example.mogastyle.Activities.Hair.Designer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -10,9 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.bumptech.glide.Glide;
+import com.example.mogastyle.Adapters.Hair.Designer.FragmentDesignerDetailPageAdapter;
 import com.example.mogastyle.Bean.Designer;
 import com.example.mogastyle.Common.ShareVar;
-import com.example.mogastyle.NetworkTasks.Hair.DesignerDetailPageNetworkTask;
+import com.example.mogastyle.NetworkTasks.Hair.Designer.DesignerDetailPageNetworkTask;
 import com.example.mogastyle.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -21,7 +24,8 @@ import java.util.ArrayList;
 public class DesignerDetailPageActivity extends AppCompatActivity {
 
     // Field
-    String urlAddr = ShareVar.hostRootAddr + "Hair/Styling/designer_detail_page_query_all.jsp";
+//    String urlAddr = "http://192.168.0.105:8080/test/" + "designer_detail_page_query_all.jsp";
+    String urlAddr = ShareVar.hostRootAddr + "Hair/Designer/designer_detail_page_query_all.jsp";
     int dno = 0;
     int sno = 0;
 
@@ -31,6 +35,7 @@ public class DesignerDetailPageActivity extends AppCompatActivity {
 
     // 화면에 있는 것
     TextView tv_name, tv_certificationDate, tv_introduction;
+    ImageView iv_image;
 
     // onCreate : 초반에 딱 1번만 실행
     @Override
@@ -44,6 +49,7 @@ public class DesignerDetailPageActivity extends AppCompatActivity {
         Log.v("Message", "dno : "+ dno);
 
         // ID값 가져오기
+        iv_image = findViewById(R.id.iv_designer_detail_page_image);
         tv_name = findViewById(R.id.tv_designer_detail_page_name);
         tv_certificationDate = findViewById(R.id.tv_designer_detail_page_certificationDate);
         tv_introduction = findViewById(R.id.tv_designer_detail_page_introduction);
@@ -52,39 +58,53 @@ public class DesignerDetailPageActivity extends AppCompatActivity {
         connectGetData();
 
         // Designer listView 중 한가지 항목 클릭했을 때 가져오는 값
+        //이미지 :
+        Glide.with(DesignerDetailPageActivity.this)
+                .load(ShareVar.userImgPath + members.get(0).getImage())
+                .placeholder(R.drawable.ic_no_image)
+                .error(R.drawable.ic_no_image)
+                .fallback(R.drawable.ic_no_image)
+                .into(iv_image);
         tv_name.setText("이름 : " + members.get(0).getName());
         tv_certificationDate.setText("미용 자격증 취득일 : " + members.get(0).getCertificationDate());
         tv_introduction.setText("소개 : " + members.get(0).getIntroduction());
         sno = members.get(0).getShopNo();
 
-//        // Tab 관련
-//        TabLayout tabLayout = findViewById(R.id.tab_layout);
-//
-//        ViewPager viewPager = findViewById(R.id.pager);
-//        PagerAdapter pagerAdapter = new FragmentDesignerDetailPageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
-//
-//        // Tab 부분 버튼을 클릭했을 때
-//        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-//            @Override
-//            public void onTabSelected(TabLayout.Tab tab) {
-//                Log.v("Message", "onTabSelected_MainActivity");
-//                viewPager.setCurrentItem(tab.getPosition());
-//                Toast.makeText(DesignerDetailPageActivity.this, "선택됨", Toast.LENGTH_SHORT).show();
-//
-//            }
-//
-//            @Override
-//            public void onTabUnselected(TabLayout.Tab tab) {
-//                Log.v("Message", "onTabUnselected_MainActivity");
-//
-//            }
-//
-//            @Override
-//            public void onTabReselected(TabLayout.Tab tab) {
-//                Log.v("Message", "onTabReselected_MainActivity");
-//
-//            }
-//        });
+        // Tab 관련
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
+
+        ViewPager viewPager = findViewById(R.id.pager);
+        PagerAdapter pagerAdapter = new FragmentDesignerDetailPageAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), members.get(0));
+        // members.get(0) = Bean의 배열인데 bean 배열은 하나만 가져옴 따라서 매개변수로 bean을 준 것임
+
+        // Adapter와 연결
+        viewPager.setAdapter(pagerAdapter);
+
+        tabLayout.setupWithViewPager(viewPager); // 같이 호출 불러주는 것 추가
+
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        // Tab 부분 버튼을 클릭했을 때
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                Log.v("Message", "onTabSelected_MainActivity");
+                viewPager.setCurrentItem(tab.getPosition());
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                Log.v("Message", "onTabUnselected_MainActivity");
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                Log.v("Message", "onTabReselected_MainActivity");
+
+            }
+        });
 
 
     }

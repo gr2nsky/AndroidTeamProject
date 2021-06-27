@@ -1,4 +1,4 @@
-package com.example.mogastyle.NetworkTasks.Hair;
+package com.example.mogastyle.NetworkTasks.Hair.Shop;
 
 import android.app.ProgressDialog;
 import android.content.Context;

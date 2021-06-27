@@ -19,7 +19,7 @@ import com.example.mogastyle.Activities.MyPage.MyPageMainActivity;
 import com.example.mogastyle.Adapters.Hair.Shop.ShopListAdapter;
 import com.example.mogastyle.Bean.Shop;
 import com.example.mogastyle.Common.ShareVar;
-import com.example.mogastyle.NetworkTasks.Hair.ShopNetworkTask;
+import com.example.mogastyle.NetworkTasks.Hair.Shop.ShopNetworkTask;
 import com.example.mogastyle.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -53,17 +53,17 @@ public class HairMainActivity extends AppCompatActivity {
         urlAddr = ShareVar.hostRootAddr+"Hair/Shop/shop_select.jsp";
 
         //Map StartPoint
-             mapView = new MapView(this);
-
-            ViewGroup mapViewContainer = findViewById(R.id.map_view);
-            mapViewContainer.addView(mapView);
-            mapView.removeAllPOIItems();
+//             mapView = new MapView(this);
+//
+//            ViewGroup mapViewContainer = findViewById(R.id.map_view);
+//            mapViewContainer.addView(mapView);
+//            mapView.removeAllPOIItems();
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
+//                mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
             }
         },4000);
 

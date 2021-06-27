@@ -12,6 +12,7 @@ public class Styling {
     private String gender;
     private int price;
     private int leadTime;
+    String image;
 
     public Styling(int no, String typeCode, String submitDate, String deleteDate, String title, String content, String gender, int price, String time, int leadTime) {
         this.no = no;
@@ -26,10 +27,11 @@ public class Styling {
     }
 
     // Styling List : 생성자(Constructor)
-    public Styling(String title, int price, String typeCode) {
+    public Styling(String title, int price, String typeCode, String image) {
         this.title = title;
         this.price = price;
         this.typeCode = typeCode;
+        this.image = image;
     }
 
 
@@ -103,5 +105,13 @@ public class Styling {
 
     public void setLeadTime(int leadTime) {
         this.leadTime = leadTime;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

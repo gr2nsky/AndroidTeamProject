@@ -33,10 +33,10 @@ public class ShopPagerAdapter extends FragmentPagerAdapter {
         arrayList.add(new ShopHomeFragment(shopBean, con));
         arrayList.add(new MenuFragment());
         arrayList.add(new DesignerFragment());
-        arrayList.add(new ReviewFragment(shopBean, con));
+        arrayList.add(new ReviewFragment(shopBean));
 
         name.add("홈");
-        name.add("메뉴");
+        name.add("스타일링");
         name.add("디자이너");
         name.add("리뷰");
     

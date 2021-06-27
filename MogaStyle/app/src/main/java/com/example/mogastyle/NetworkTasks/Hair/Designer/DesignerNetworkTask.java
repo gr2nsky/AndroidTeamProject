@@ -1,4 +1,4 @@
-package com.example.mogastyle.NetworkTasks.Hair;
+package com.example.mogastyle.NetworkTasks.Hair.Designer;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.mogastyle.Bean.Designer;
+import com.example.mogastyle.Common.ShareVar;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -17,21 +18,24 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class DesignerDetailPageNetworkTask extends AsyncTask<Integer, String, Object> {
+import static com.example.mogastyle.Common.ShareVar.hostRootAddr;
+
+public class DesignerNetworkTask extends AsyncTask<Integer, String, Object> {
 
     // Field
     Context context = null;
-    String mAddr = null;
+    String mAddr = ShareVar.hostRootAddr;
     ProgressDialog progressDialog = null;
-    ArrayList<Designer> designerList = null;     // select 할 때 쓸 ArrayList
+    ArrayList<Designer> designerList;     // select 할 때 쓸 ArrayList
 
     // Network Task를 검색, 입력, 수정, 삭제 구분 없이 하나로 사용하기 위해 생성자 변수 추가.
     String where = null;
 
     // Construct
-    public DesignerDetailPageNetworkTask(Context context, String mAddr, String where) {
+    public DesignerNetworkTask(Context context, String mAddr, String where) {
         this.context = context;
         this.mAddr = mAddr;
+        this.designerList = designerList;
         this.designerList = new ArrayList<Designer>();
         this.where = where;
     }
@@ -62,7 +66,7 @@ public class DesignerDetailPageNetworkTask extends AsyncTask<Integer, String, Ob
 
     @Override
     protected Object doInBackground(Integer... integers) {
-        Log.v("Message", "DesignerDetailPageNetworkTask_doInBackground");
+        Log.v("Message", "DesignerNetworkTask_doInBackground");
         StringBuffer stringBuffer = new StringBuffer();
         InputStream inputStream = null;
         InputStreamReader inputStreamReader = null;
@@ -70,20 +74,20 @@ public class DesignerDetailPageNetworkTask extends AsyncTask<Integer, String, Ob
         String result = null;
 
         try {
-            Log.v("Message", "DesignerDetailPageNetworkTask_mAddr : " + mAddr);
+            Log.v("Message", "mAddr : " + mAddr);
             URL url = new URL(mAddr);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setConnectTimeout(10000);
 
             if(httpURLConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                Log.v("Message", "DesignerDetailPageNetworkTask_HTTP_OK: ");
+                Log.v("Message", "HTTP_OK: ");
 
                 inputStream = httpURLConnection.getInputStream();
                 inputStreamReader = new InputStreamReader(inputStream);
                 bufferedReader = new BufferedReader(inputStreamReader);
 
                 while (true) {
-                    Log.v("Message", "DesignerDetailPageNetworkTask_while(true): ");
+                    Log.v("Message", "while(true): ");
 
                     String strline = bufferedReader.readLine();
                     if(strline == null) break;
@@ -91,7 +95,7 @@ public class DesignerDetailPageNetworkTask extends AsyncTask<Integer, String, Ob
                 }
 
                 if(where.equals("select")) {
-                    Log.v("Message", "DesignerDetailPageNetworkTask_str: ");
+                    Log.v("Message", "str: ");
                     parserSelect(stringBuffer.toString());
                 }else {     // select 만 좀 다르기때문에 나눔@@@@@@
                     result = parserAction(stringBuffer.toString());     // 리턴값을 받아야함~
@@ -129,27 +133,27 @@ public class DesignerDetailPageNetworkTask extends AsyncTask<Integer, String, Ob
 
     }
 
-    // parsing이니깐..? Jason임..
     private void parserSelect(String str){
-        Log.v("Message", "DesignerDetailPageNetworkTask_parserSelect_str: " + str);
+        Log.v("Message", "parserSelect_str: " + str);
         try {
-            Log.v("Message", "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@1");
             JSONObject jsonObject = new JSONObject(str);
             JSONArray jsonArray = new JSONArray(jsonObject.getString("designer_info")); // 얘는 데이터가 많기 때문에 Array로 가져오는 것임!
             designerList.clear(); // ArrayList 정리
 
-            for(int i=0; i < jsonArray.length(); i++ ) {
+            for(int i=0; i < jsonArray.length(); i++ ){
                 JSONObject jsonObject1 = (JSONObject) jsonArray.get(i);
+                int no = jsonObject1.getInt("no");
                 String name = jsonObject1.getString("name");
-                String certificationDate = jsonObject1.getString("certificationDate");
                 String introduction = jsonObject1.getString("introduction");
-                int sno = jsonObject1.getInt("sno");
+                String image = jsonObject1.getString("image");
+
 
                 // Bean으로 넣어서 ArrayList 추가
-                Designer member = new Designer(name, certificationDate, introduction, sno);
-                Log.v("Message", "networkTask designer : " + member.print());
+                Designer member = new Designer(no, name, introduction, image);
                 designerList.add(member);
             }
+
+
 
         }catch (Exception e){
             e.printStackTrace();
@@ -160,4 +164,3 @@ public class DesignerDetailPageNetworkTask extends AsyncTask<Integer, String, Ob
 
 
 } // NetworkTask
-
