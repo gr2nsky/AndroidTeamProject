@@ -37,10 +37,10 @@ public class DesignerListActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.lv_designer_list);
 
- //       urlAddr = ShareVar.hostRootAddr + "Hair/Designer/designer_query_all.jsp";
+        urlAddr = ShareVar.hostRootAddr + "Hair/Designer/designer_query_all.jsp";
 
         // 아래는 내 톰캣 서버 : 위에 있는 Git폴더 경로로 하면 안 뜸
-        urlAddr = "http://192.168.0.105:8080/test/" + "designer_query_all.jsp";
+//        urlAddr = "http://192.168.0.105:8080/test/" + "designer_query_all.jsp";
 
     }
 
