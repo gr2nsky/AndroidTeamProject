@@ -13,7 +13,7 @@
   String query1 = "SELECT r.no, r.reservationDate, r.reservationTime, s.leadTime ";
   String query2 = "FROM (SELECT *, TIMESTAMPDIFF(DAY, now(), reservationDate) timeDiff ";
   String query3 = "FROM reservation WHERE designer_no = ? AND cancelDate IS NULL) r, styling s ";
-  String query4 = "WHERE r.timeDiff BETWEEN 0 AND 32 AND r.styling_no = s.no ";
+  String query4 = "WHERE r.timeDiff BETWEEN 0 AND 32 AND r.styling_no = s.stno ";
   String query5 = "ORDER BY reservationDate ASC, reservationTime ASC";
   String query = query1 + query2 + query3 + query4 + query5;
 
@@ -57,7 +57,7 @@
 <%
         conn_mysql.close();
     } catch (Exception e) {
-        e.printStackTrace();
+        out.print(e);
     }
 
 %>

@@ -85,6 +85,7 @@ public class ReviewFragment extends Fragment {
         }
 
         retrofitService = RetrofitCall.reservationService();
+        getReviewList();
         return v;
     }
 
@@ -93,11 +94,11 @@ public class ReviewFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        getReviewList();
-    }
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        getReviewList();
+//    }
 
     public void getReviewList(){
         rbList = new ArrayList<>();

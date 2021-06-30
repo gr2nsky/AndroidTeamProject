@@ -290,14 +290,14 @@ public class ReservationActivity extends AppCompatActivity {
     /////////////////////////////////////////////
     public void tempDataMaker(){
         reservedDates = new ArrayList<>();
-        tempDesignerBean = new TempDesignerBean(1, "최준", "2020-05-26", "tempImg.png", "5");
+        tempDesignerBean = new TempDesignerBean(1, "최준", "2020-05-26", "tempImg.jpg", "5");
         loadDesignerResDatas(tempDesignerBean.getNo());
         tempDesignerBean.setResDates(reservedDates);
 
         ///////////////////////////////////////////////////////////////////
         //                       진짜 bean 가져오도록 이후 수정                //
         //////////////////////////////////////////////////////////////////
-        User user = new User(1, "dbswovlf2009", "윤재필", "1.jpg", "01047339270","0", "0");
+        User user = new User(48, "dbswovlf2009", "윤재필", "1.jpg", "01047339270","0", "0");
         LoginedUserInfo.user = user;
         
         tempStyleBean = new TempStyleBean(1, "봄탄소년단", 50000);

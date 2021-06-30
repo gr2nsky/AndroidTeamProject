@@ -12,8 +12,8 @@
 
   String q1 = "SELECT r.no reservationNo, r.reservationDate, r.reservationTime, r.totalPrice, r.cancelDate, st.title stylingName, sp.name shopName, d.name designerName, sp.sImage, d.uImage, sp.address, r.reviewContent ";
   String q2 = "FROM (SELECT * FROM reservation WHERE user_no = ?) r, ";
-  String q3 =	"(SELECT r.no, s.title FROM styling s, reservation r WHERE r.styling_no = s.no) st, ";
-  String q4 = "(SELECT r.no, s.name, s.image sImage, s.address FROM shop s, reservation r WHERE r.shop_no = s.no) sp, ";
+  String q3 =	"(SELECT r.no, s.title FROM styling s, reservation r WHERE r.styling_no = s.stno) st, ";
+  String q4 = "(SELECT r.no, s.name, s.image sImage, s.address FROM shop s, reservation r WHERE r.shop_no = s.sno) sp, ";
   String q5 = "(SELECT r.no, u.name, u.image uImage FROM designer d, user u, reservation r WHERE r.designer_no = d.dno AND d.user_no = u.no) d ";
   String q6 = "WHERE r.no = st.no AND st.no = sp.no AND sp.no = d.no ";
   String q7 = "ORDER BY r.reservationDate DESC, r.reservationTime DESC";
@@ -67,7 +67,7 @@
 <%
         conn_mysql.close();
     } catch (Exception e) {
-        e.printStackTrace();
+        out.print(e);
     }
 
 %>

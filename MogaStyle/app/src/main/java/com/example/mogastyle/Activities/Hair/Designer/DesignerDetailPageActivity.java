@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class DesignerDetailPageActivity extends AppCompatActivity {
 
     // Field
-//    String urlAddr = "http://192.168.0.105:8080/test/" + "designer_detail_page_query_all.jsp";
+    // String urlAddr = "http://192.168.0.105:8080/test/" + "designer_detail_page_query_all.jsp";
     String urlAddr = ShareVar.hostRootAddr + "Hair/Designer/designer_detail_page_query_all.jsp";
     int dno = 0;
     int sno = 0;

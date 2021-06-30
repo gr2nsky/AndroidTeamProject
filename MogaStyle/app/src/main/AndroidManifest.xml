@@ -40,9 +40,13 @@
             android:theme="@style/Theme.MogaStyle.NoActionBar" />
         <activity android:name=".Activities.FindIdPwActivity" />
         <activity android:name=".Activities.SignUpActivity" />
-        <activity android:name=".Activities.Hair.Reservation.ReservationCheckActivity" />
+        <activity android:name=".Activities.Hair.Reservation.ReservationCheckActivity" >
+
+        </activity>
         <activity android:name=".Activities.Hair.Reservation.PaymentActivity" />
-        <activity android:name=".Activities.Hair.Reservation.ReservationActivity" />
+        <activity android:name=".Activities.Hair.Reservation.ReservationActivity">
+
+        </activity>
         <activity android:name=".Activities.Consult.ConsultMainActivity" />
         <activity android:name=".Activities.Hair.Shop.ShopHomeActivity" />
         <activity android:name=".Activities.LoginBasicActivity" />

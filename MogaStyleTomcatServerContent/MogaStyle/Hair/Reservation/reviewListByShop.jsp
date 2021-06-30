@@ -14,7 +14,7 @@
   String q2 = "FROM (SELECT * FROM reservation WHERE shop_no = ?) r, ";
   String q3 =	"(SELECT r.no, s.title FROM styling s, reservation r WHERE r.styling_no = s.stno) st, ";
   String q4 = "(SELECT r.no, u.name FROM user u, reservation r WHERE r.user_no = u.no) u, ";
-  String q5 = "(SELECT r.no, u.name FROM designer d, user u, reservation r WHERE r.designer_no = d.dno AND d.user_no = u.no) d ";
+  String q5 = "(SELECT r.no, u.name FROM designer d, user u, reservation r WHERE r.designer_no =  d.dno AND d.user_no = u.no) d ";
   String q6 = "WHERE r.no = st.no AND r.designer_no = d.no  AND r.user_no = u.no AND r.reviewContent IS NOT NULL ";
   String q7 = "ORDER BY r.reservationDate DESC, r.reservationTime DESC";
   String query = q1 + q2 + q3 + q4 + q5 + q6 + q7;

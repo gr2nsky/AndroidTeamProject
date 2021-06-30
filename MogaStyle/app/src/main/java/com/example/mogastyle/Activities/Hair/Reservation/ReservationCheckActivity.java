@@ -43,7 +43,7 @@ public class ReservationCheckActivity extends AppCompatActivity {
     ////           수정해야 함                 //
     /////////////////////////////////////////
     //int userNo = LoginedUserInfo.user.getNo();
-    int userNo = 1;
+    int userNo = 48;
     ArrayList<ReservationBean> rbList;
     ArrayList<ReservationBean> preUseRbList;
     ArrayList<ReservationBean> usedRbList;
